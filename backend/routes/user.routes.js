@@ -38,7 +38,6 @@ userRoute.post("/login", async(req,res)=>{
                         const token = jwt.sign({
                             userID: check[0]._id
                         }, 'token', { expiresIn: '24hr' });
-
                         res.status(200).json({ok:true,msg:"Logged in Successfully",token});
                     } else {
                         res.status(400).json({ok:false,msg:"Wrong E-mail or Password"});
