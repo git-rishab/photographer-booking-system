@@ -37,3 +37,14 @@ form.addEventListener("submit", async(e)=>{
     form.email.value = "";
     form.pwd.value = "";
 })
+
+const google = document.getElementById("google");
+const github = document.getElementById("github");
+
+google.addEventListener("click", ()=>{
+    window.location.href = "https://bookmyshoot-backend.onrender.com/auth/google"
+})
+
+github.addEventListener("click", ()=>{
+    window.location.href = "https://bookmyshoot-backend.onrender.com/auth/github"
+})
