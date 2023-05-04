@@ -12,11 +12,12 @@
       name="viewport"
       content="width=device-width,initial-scale=1,maximum-scale=1"
     />
-    <link rel="stylesheet" href="./styles/signup.css" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"
       defer
     ></script>
+    <title>BookMyShoot | Register</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -24,12 +25,6 @@
       class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1"
     >
       <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-        <div>
-          <img
-            src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
-            class="w-32 mx-auto"
-          />
-        </div>
         <div class="mt-5 flex flex-col items-center">
           <h1 class="text-2xl xl:text-3xl font-extrabold">
             Sign up for BookMyShoot
@@ -40,12 +35,14 @@
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
+                  id="name"
                   placeholder="Name"
                   required
                 />
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="email"
+                  id="email"
                   placeholder="Email"
                   required
                 />
@@ -53,15 +50,16 @@
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
+                  id="pass"
                   required
                 />
                 <input
                   type="radio"
                   id="radio1"
                   name="options"
-                  value="1"
-                  checked
+                  value="client"
                   class="mt-5 ml-3"
+                  required
                 />
                 <label for="radio1">I'm a Client</label>
 
@@ -70,7 +68,7 @@
                   class="ml-8"
                   id="radio2"
                   name="options"
-                  value="2"
+                  value="photographer"
                 />
                 <label for="radio2">I'm a Photographer</label>
 
@@ -136,4 +134,5 @@
       </div>
     </div>
   </body>
+  <script src="./scripts/signup.js"></script>
 </html>
