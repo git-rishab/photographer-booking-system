@@ -1,11 +1,14 @@
 const express = require("express");
+const cors = require("cors");
 const { connection, client } = require("./config/db");
 const { logger } = require("./middlewares/logger.middleware");
 const { userRoute } = require("./routes/user.routes");
+const { authRoute } = require("./routes/auth.routes");
 require("dotenv").config();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(logger);
 
@@ -18,6 +21,7 @@ app.get( "/", (req,res)=>{
 })
 
 app.use("/user", userRoute);
+app.use("/auth", authRoute);
 
 
 app.listen(process.env.PORT, async()=>{
