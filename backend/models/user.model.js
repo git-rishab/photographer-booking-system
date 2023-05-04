@@ -1,30 +1,36 @@
 const mongoose = require("mongoose");
-
-const userSchema = mongoose.Schema({
-    name: {
-        type:String,
-        required:true
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    pass: { type: String, required: true },
+    role: { type: String, enum: ['client', 'photographer','admin'], default: 'client' },
+    availability: { type: [String], default: [] },
+    approved: { type: Boolean, default: false },
+    camera: {
+      type: String
     },
-    email: {
-        type:String,
-        required:true,
-        unique:true
+    expertise: {
+      type: String
     },
-    pass: {
-        type:String,
-        required:true,
+    address: {
+      type: String
     },
-    role: {
-        type:String,
-        default:"client",
-        enum:["photographer","admin","client"]
+    samplePics: {
+      type: [String]
     }
-},{
-    versionKey:false
-})
+  });
 
 const UserModel = mongoose.model("user",userSchema);
 
 module.exports = {
     UserModel
 }
+// const imageSchema = new mongoose.Schema({
+//   name: String,
+//   image: {
+//     data: Buffer,
+//     contentType: String,
+//     userID:String
+//   },
+// });
