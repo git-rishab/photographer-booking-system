@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Display Images</title>
+</head>
+<style>
+  #gallery{
+    /* border:1px solid black; */
+    width: 80%;
+    margin:auto;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12%;
+  }
+  .images_div{
+  border: 1px solid red;  
+  display: flex;
+  width: 440px;
+  height: 200px;
+}
+
+.images_div img{
+  min-width: 0;
+  flex: 1 1 10px;
+  object-fit: cover;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.images_div img:hover{
+  flex: 1 1 280px;
+  opacity: 1;
+}
+</style>
+
+<body>
+    <div id="gallery"></div>
+    <script>
+        let container = document.getElementById('gallery')
+        // Fetch the images data from the server
+        fetch('http:localhost:3000/images')
+            .then(response => response.json())
+            .then(images => {
+                console.log(images);
+                Display(images)
+            });
+
+        function Display(data) {
+            container.innerHTML = null;
+            data.forEach((image) => {
+                console.log(image);
+                let photographer_div=document.createElement("div");
+                photographer_div.setAttribute("class","images_div")
+                photographer_div.setAttribute("id",`${image._id}`)
+                for (let i = 0; i < image.images.length; i++) {
+                    // console.log(image.images[i]._id)
+                    const img = new Image();
+                    img.src = `data:image/png;base64,${image.images[i]._id}`
+                    photographer_div.appendChild(img);
+                }
+                container.append(photographer_div)
+
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

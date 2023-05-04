@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Node.js MongoDB Image Upload Tutorial</title>
+  </head>
+  <body>
+    <h1>Node.js MongoDB Image Upload Tutorial</h1>
+    <hr />
+    <h2>Upload Image</h2>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div>
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" />
+      </div>
+      <div>
+        <button type="submit">Upload Image</button>
+      </div>
+    </form>
+    <hr />
+    <p><a href="/images">Uploaded Images</a></p>
+  </body>
+</html>

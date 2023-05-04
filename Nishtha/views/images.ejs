@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Node.js MongoDB Image Upload Tutorial</title>
+</head>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<body>
+    <h1>Node.js MongoDB Image Upload Tutorial</h1>
+    <hr />
+    <% if (images.length> 0) { %>
+        <% images.forEach((image)=> { %>
+            <div class="grid-container">
+                <h2>
+                    <%= image.name %>
+                </h2>
+                <img src="data:<%= image.image.contentType %>;base64,<%= image.image.data.toString('base64') %>" />
+            </div>
+            <% }); %>
+                <% } else { %>
+                    <p>No images uploaded yet.</p>
+                    <% } %>
+</body>
+
+</html>
