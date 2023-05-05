@@ -39,7 +39,7 @@ userRoute.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
     const refreshToken = jwt.sign({ userId: user._id }, process.env.refresh_secret, { expiresIn: "3hr" })
     const response = {
-      "status": "Logged In",
+      "ok": true,
       "token": token,
       "refreshToken": refreshToken
     }
