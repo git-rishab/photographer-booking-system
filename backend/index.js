@@ -4,14 +4,17 @@ const { connection, client } = require("./config/db");
 const { logger } = require("./middlewares/logger.middleware");
 const { userRoute } = require("./routes/user.routes");
 const {BookingRouter} = require("./routes/booking.routes")
-const cors = require("cors")
 const { authRoute } = require("./routes/auth.routes");
 require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(logger);
-app.use(cors())
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+
+
 app.get( "/", (req,res)=>{
     try {
         res.send({"ok":true,"msg":"Welcome to Backend of Book My Shoot"});
@@ -20,9 +23,15 @@ app.get( "/", (req,res)=>{
     }
 })
 
+// Using EJS for rendering the ejs files
+app.get('/photographer_details', (req, res) => {
+    res.render('index');
+});
+
 app.use("/user", userRoute);
 app.use("/book",BookingRouter);
 app.use("/auth", authRoute);
+
 app.listen(process.env.PORT, async()=>{
     try {
         await connection;
