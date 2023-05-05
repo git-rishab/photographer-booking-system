@@ -1,0 +1,269 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+#logo{
+    width: 20%;
+}
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.146);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: absolute;
+    z-index: 1;
+    position: fixed;
+    transition: padding-bottom padding-top background-color 0.5s ease;
+}
+
+nav.scrolled {
+    background-color: #dd4545;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.nav-contents {
+    display: flex;
+    gap: 3rem;
+}
+
+.bg_image {
+    width: 100%;
+    position: relative;
+    padding-bottom: 46.25%;
+}
+
+video {
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+
+.static_book {
+    text-align: center;
+    padding: 3rem;
+    background-color: #f4f4f4;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px 1px, rgba(0, 0, 0, 0.06) 0px 2px 4px 1px;
+}
+
+.trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 70%;
+    margin: auto;
+}
+
+.trust>div img {
+    max-width: 50px;
+}
+
+.trust p:last-child {
+    font-weight: bold;
+}
+
+form>input,
+select {
+    display: block;
+    width: 565px;
+    height: 60px;
+    border-radius: 3px;
+    border: none;
+    font-size: 16px;
+}
+
+select option {
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+}
+
+#date {
+    width: 562px;
+    font-family: 'Lato', sans-serif;
+}
+
+.overlay_booking input[type="submit"] {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.overlay_booking {
+    width: auto;
+    padding: 2rem;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    background-color: rgba(255, 255, 255, 0.446);
+    border-radius: 3px;
+}
+
+.how_it_works {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    margin: 1% 0 3% 8%;
+}
+.how_it_works div>p:nth-child(1){
+    display: flex;
+    gap: 0.5rem;
+}
+.steps_to_book {
+    width: 30%;
+    height: auto;
+    font-size: 18px;
+}
+
+.steps_to_book div p:nth-child(2) {
+    color: gray;
+}
+
+.images>img {
+    width: 70%;
+    border-radius: 5px;
+}
+
+.index_reviews {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.index_reviews div {
+    width: 30%;
+    height: 300px;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 10px;
+    background: #dd45458e;
+}
+
+.index_reviews div p {
+    text-align: center;
+    /* margin-bottom: 100px; */
+    font-size: 23px;
+    font-weight: 550;
+}
+.index_reviews div span{
+    text-align: end;
+    font-size: larger;
+    color: whitesmoke;
+}
+.photographer_join>img {
+    width: 80%;
+    border-radius: 5px;
+    margin: 3% 0 3% 10%;
+}
+.photographer_join{
+    position: relative;
+}
+#signup_btm{
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    font-size: 15px;
+    border-radius: 3px;
+    padding: 0.7rem 2rem 0.7rem 2rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(136, 136, 136);
+}
+
+footer ul {
+    display: flex;
+    gap: 2rem;
+}
+
+footer ul li:nth-child(1) {
+    list-style-type: none;
+}
+
+footer div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    /* font-size: large; */
+    justify-content: space-between;
+}
+
+ion-icon {
+    font-size: 24px;
+}
+
+
+@media screen and (min-width: 500px) and (max-width: 1300px) {
+    .overlay_booking {
+        width: auto;
+        padding: 2rem;
+        position: absolute;
+        top: 10%;
+        left: 15%;
+        background-color: rgba(255, 255, 255, 0.446);
+        border-radius: 3px;
+    }
+
+    .overlay_booking h1 {
+        font-size: larger;
+    }
+
+    form>input,
+    select {
+        display: block;
+        width: 250px;
+        height: 40px;
+        border-radius: 3px;
+        border: none;
+        font-size: 14px;
+    }
+
+    .overlay_booking input[type="submit"] {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    #date {
+        width: 250px;
+    }
+
+    .images {
+        margin-left: 15%;
+    }
+
+    .steps_to_book {
+        width: 50%;
+    }
+
+    .index_reviews div {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
+    .index_reviews div p {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 550;
+    }
+}
+
+@media screen and (min-width: 100px) and (max-width:500px){
+}
