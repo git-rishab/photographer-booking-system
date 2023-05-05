@@ -361,7 +361,7 @@ body {
 
 #content main .box-info {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	grid-gap: 24px;
 	margin-top: 36px;
 }
@@ -393,6 +393,18 @@ body {
 #content main .box-info li:nth-child(3) .bx {
 	background: var(--light-orange);
 	color: var(--orange);
+}
+#content main .box-info li:nth-child(4) .bx {
+	background: var(--light-yellow);
+	color: var(--yellow);
+}
+#content main .box-info li:nth-child(5) .bx {
+	background: var(--light-orange);
+	color: var(--orange);
+}
+#content main .box-info li:nth-child(6) .bx {
+	background: var(--light-blue);
+	color: var(--blue);
 }
 #content main .box-info li .text h3 {
 	font-size: 24px;

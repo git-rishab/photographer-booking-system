@@ -1,3 +1,9 @@
+// dashborad div
+let dashDiv = document.querySelector(".box-info");
+
+// all new requests div
+let newRequestDiv = document.querySelector("#new-request");
+
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
 allSideMenu.forEach(item=> {
@@ -80,5 +86,24 @@ let ds = document.querySelectorAll(".sdbtn")
 ds.forEach((ele)=>{	
 	ele.addEventListener("click",(e)=>{
 		console.log(e.target.innerText);
+		if(e.target.innerText === "Clients"){
+			newRequest();
+		}
 	})
 })
+
+ function newRequest(){
+	 fetch('https://bookmyshoot-backend.onrender.com/user/pending',{
+		method: "GET",
+  			headers: {"Content-type": "application/json;charset=UTF-8",
+					  "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU0ZWIyYTQyZTc4OGJmM2Y2NTBiNmEiLCJpYXQiOjE2ODMzMDEzNDAsImV4cCI6MTY4MzMwNDk0MH0.B9Qlf99rKFfR8zVH_iOFByjocFiiDWl4cRvQJtDTb9I"
+					}
+	 	})
+			.then((res)=>res.json())
+			.then((data)=>{
+				console.log(data);
+			})
+			.catch((err)=>console.log(err));
+
+	dashDiv.style.display = "none";
+}
