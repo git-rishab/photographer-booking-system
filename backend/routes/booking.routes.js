@@ -108,3 +108,28 @@ BookingRouter.post('/requests/:bookingId', authMiddleWare, async (req, res) => {
   module.exports={
     BookingRouter
   }
+  // {
+  //   "_id": {
+  //     "$oid": "645509efa817b6d6e53c4c24"
+  //   },
+  //   "photographer": {
+  //     "$oid": "64527477abde073483bf24d1"
+  //   },
+  //   "client": {
+  //     "$oid": "64527477abde073483bf24d1"
+  //   },
+  //   "start_time": {
+  //     "$date": "2023-06-01T10:00:00.000Z"
+  //   },
+  //   "end_time": {
+  //     "$date": "2023-06-01T14:00:00.000Z"
+  //   },
+  //   "status": "pending",
+  //   "createdAt": {
+  //     "$date": "2023-05-05T13:51:44.006Z"
+  //   },
+  //   "updatedAt": {
+  //     "$date": "2023-05-05T13:51:44.006Z"
+  //   },
+  //   "__v": 0
+  // }
