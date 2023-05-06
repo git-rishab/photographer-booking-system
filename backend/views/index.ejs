@@ -166,6 +166,7 @@
 
   // handle file drop
   dropZone.addEventListener('drop', (e) => {
+    console.log("hi");
     const files = e.dataTransfer.files;
     handleFiles(files);
   }, false);

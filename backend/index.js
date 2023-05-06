@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
+
+
+
 app.get( "/", (req,res)=>{
     try {
         res.send({"ok":true,"msg":"Welcome to Backend of Book My Shoot"});
@@ -23,10 +26,8 @@ app.get( "/", (req,res)=>{
     }
 })
 
-// Using EJS for rendering the ejs files
-app.get('/photographer_details', (req, res) => {
-    res.render('index');
-});
+
+
 
 app.use("/user", userRoute);
 app.use("/book",BookingRouter);

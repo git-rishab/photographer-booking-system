@@ -9,9 +9,12 @@ require("dotenv").config()
 const userRoute = express.Router();
 const multer = require('multer');
 const ejs = require('ejs');
+
 //Set up multer
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
+
 userRoute.post("/register", async (req, res) => {
   const { name, email, pass, role } = req.body;
   const check = await UserModel.find({ email });
@@ -31,6 +34,7 @@ userRoute.post("/register", async (req, res) => {
 
   });
 })
+
 userRoute.post("/login", async (req, res) => {
   try {
     const { email, pass } = req.body;
@@ -77,6 +81,7 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 userRoute.get('/pending', authMiddleWare, async (req, res) => {
   try {
     const users = await UserModel.find({ role: "photographer", approved: false });
@@ -85,6 +90,7 @@ userRoute.get('/pending', authMiddleWare, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 userRoute.put('/applications/:email', authMiddleWare, async (req, res) => {
   try {
     const { email } = req.params;
@@ -104,22 +110,31 @@ userRoute.put('/applications/:email', authMiddleWare, async (req, res) => {
   }
 });
 
-//Route for rendering the photographer detail submission page
-userRoute.get('/photographer_details', (req, res) => {
-  res.render('index');
-});
+//route for rendering the photographer page
+
+userRoute.get("/photo",(req,res)=>{
+  res.render("index")
+})
 
 //Route for updating the details
-userRoute.patch('/submit_photographer_details',async(req,res)=>{
-  const {camera,address,expertise}=req.body
+userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
+  console.log(req.user._id)
+  const payload=req.body
   console.log(req.body)
-  res.send({message:"success"});
+  try{
+    await UserModel.findByIdAndUpdate({"_id":req.user._id},payload)
+    res.send({message:"success"});
+  }catch(err){
+    console.log(err);
+  }
 })
 
 //Route for uploading the images
 
-userRoute.post('/upload', upload.single('image'), async (req, res) => {
-  console.log(res);
+userRoute.get('/checking',(req,res)=>{
+  res.send({message:"success"})
+})
+userRoute.post('/upload', upload.single('image'),async (req, res) => {
   const image = new Image({
     // name: req.file.originalname,
     image: {
