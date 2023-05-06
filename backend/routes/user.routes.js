@@ -46,7 +46,7 @@ userRoute.post("/login", async (req, res) => {
     tokenList[refreshToken] = response
     res.status(200).json(response)
   } catch (error) {
-    console.log(error)
+    res.status(400).json({"ok":false,"msg":error.message});
   }
 })
 userRoute.post('/apply', authMiddleWare,async (req, res) => {
