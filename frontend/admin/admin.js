@@ -1,9 +1,20 @@
+//  ALL DIVs
 // dashborad div
-let dashDiv = document.querySelector(".box-info");
+let boxDiv = document.querySelector(".box-info");
+
+// all registered users div
+let allRegistrationDiv = document.querySelector("#all-users-div");
+allRegistrationDiv.style.display = "none";
 
 // all new requests div
-let newRequestDiv = document.querySelector("#new-request");
+let newRequestDiv = document.querySelector("#new-request-div");
+newRequestDiv.style.display = "none";
 
+
+
+
+
+// --------------------------------------------------
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
 allSideMenu.forEach(item=> {
@@ -80,30 +91,53 @@ switchMode.addEventListener('change', function () {
 
 
 
-// ------------------------new code-----------------
+// ------------------------new code----------------------------------
 
 let ds = document.querySelectorAll(".sdbtn")
 ds.forEach((ele)=>{	
 	ele.addEventListener("click",(e)=>{
 		console.log(e.target.innerText);
-		if(e.target.innerText === "Clients"){
-			newRequest();
+		if(e.target.innerText === "All Registrations"){
+			fetchAllRegistration();
+		}
+		else if(e.target.innerText === "New Requests"){
+			fetchNewRequest();
 		}
 	})
 })
 
- function newRequest(){
-	 fetch('https://bookmyshoot-backend.onrender.com/user/pending',{
-		method: "GET",
-  			headers: {"Content-type": "application/json;charset=UTF-8",
-					  "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU0ZWIyYTQyZTc4OGJmM2Y2NTBiNmEiLCJpYXQiOjE2ODMzMDEzNDAsImV4cCI6MTY4MzMwNDk0MH0.B9Qlf99rKFfR8zVH_iOFByjocFiiDWl4cRvQJtDTb9I"
-					}
-	 	})
-			.then((res)=>res.json())
-			.then((data)=>{
-				console.log(data);
-			})
-			.catch((err)=>console.log(err));
+// all registrations
+async function fetchAllRegistration(){
+	showAllRegistration();
+}
 
-	dashDiv.style.display = "none";
+function showAllRegistration(){
+	allRegistrationDiv.style.display = "block";
+	boxDiv.style.display = "none";
+	newRequestDiv.style.display = "none";
+	
+}
+
+
+// pending request
+async function fetchNewRequest(){
+	//  await fetch('https://bookmyshoot-backend.onrender.com/user/pending',{
+	// 	method: "GET",
+  	// 		headers: {"Content-type": "application/json;charset=UTF-8",
+	// 				  "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU0ZWIyYTQyZTc4OGJmM2Y2NTBiNmEiLCJpYXQiOjE2ODMzMTEzNTMsImV4cCI6MTY4MzMxNDk1M30.KpBjivnrwbUrPc5eYmg0KRgZTACtULpZ_nfdgv8TUuk"
+	// 				}
+	//  	})
+	// 		.then((res)=>res.json())
+	// 		.then((data)=>{
+	// 			console.log(data);
+				// showNewRequest(data);
+				showNewRequest();
+			// })
+			// .catch((err)=>console.log(err));
+}
+
+function showNewRequest(){
+	boxDiv.style.display = "none";
+	newRequestDiv.style.display = "block";
+	allRegistrationDiv.style.display = "none"
 }
