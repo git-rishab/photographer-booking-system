@@ -91,7 +91,7 @@ userRoute.get('/pending', authMiddleWare, async (req, res) => {
   }
 });
 
-userRoute.put('/applications/:email', authMiddleWare, async (req, res) => {
+userRoute.put('/applications/:email', async (req, res) => {
   try {
     const { email } = req.params;
     const { approved } = req.body;
@@ -109,12 +109,6 @@ userRoute.put('/applications/:email', authMiddleWare, async (req, res) => {
     res.status(500).send({ error: 'Server Error' });
   }
 });
-
-//route for rendering the photographer page
-
-userRoute.get("/photo",(req,res)=>{
-  res.render("index")
-})
 
 //Route for updating the details
 userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
@@ -149,6 +143,8 @@ userRoute.post('/upload', upload.single('image'),authMiddleWare,async (req, res)
 //Route for getting the images by userID
 
 userRoute.get('/images', async (req, res) => {
+  const photographers= await UserModel.find({approved:true})
+  console.log(photographers)
   const images = await Image.aggregate([
       {
         $group: {
@@ -162,7 +158,8 @@ userRoute.get('/images', async (req, res) => {
         },
       },
     ]);
-    res.send(images);
+    
+    res.send({images,photographers});
 });
 
 
