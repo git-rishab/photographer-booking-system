@@ -1,30 +1,40 @@
 const express = require("express");
 const { UserModel } = require("../models/user.model");
+const {Image}= require("../models/image.model") 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const tokenList={}
+const tokenList = {}
 const { authMiddleWare } = require("../middlewares/jwt.middleware");
 require("dotenv").config()
 const userRoute = express.Router();
-userRoute.post("/register", async(req,res)=>{
-    const {name,email,pass,role} = req.body;
-    const check = await UserModel.find({email});
-    if(check.length > 0){
-        return res.status(200).json({"ok":false,"msg":"User already exist"});
+const multer = require('multer');
+const ejs = require('ejs');
+
+//Set up multer
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+
+userRoute.post("/register", async (req, res) => {
+  const { name, email, pass, role } = req.body;
+  const check = await UserModel.find({ email });
+  if (check.length > 0) {
+    return res.status(200).json({ "ok": false, "msg": "User already exist" });
+  }
+
+  bcrypt.hash(pass, 5, async (err, hash) => {
+    try {
+      const data = new UserModel({ name, email, pass: hash, role });
+      await data.save();
+      res.status(200).json({ "ok": true, "msg": "Registered Successfully" });
+
+    } catch (error) {
+      res.status(400).json({ "ok": false, "msg": error.message });
     }
 
-    bcrypt.hash(pass, 5, async (err, hash)=> {
-        try {
-            const data = new UserModel({name,email, pass:hash, role});
-            await data.save();
-            res.status(200).json({"ok":true,"msg":"Registered Successfully"});
-    
-        } catch (error) {
-            res.status(400).json({"ok":false,"msg":error.message});
-        }
-
-    });
+  });
 })
+
 userRoute.post("/login", async (req, res) => {
   try {
     const { email, pass } = req.body;
@@ -49,7 +59,7 @@ userRoute.post("/login", async (req, res) => {
     res.status(400).json({"ok":false,"msg":error.message});
   }
 })
-userRoute.post('/apply', authMiddleWare,async (req, res) => {
+userRoute.post('/apply', authMiddleWare, async (req, res) => {
   const { name, email, camera, expertise, address, samplePics } = req.body;
   try {
     let user = await UserModel.findOne({ email });
@@ -71,7 +81,8 @@ userRoute.post('/apply', authMiddleWare,async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-userRoute.get('/pending',authMiddleWare, async (req, res) => {
+
+userRoute.get('/pending', authMiddleWare, async (req, res) => {
   try {
     const users = await UserModel.find({ role: "photographer", approved: false });
     res.status(200).json(users);
@@ -79,7 +90,8 @@ userRoute.get('/pending',authMiddleWare, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-userRoute.put('/applications/:email',authMiddleWare,async (req, res) => {
+
+userRoute.put('/applications/:email', async (req, res) => {
   try {
     const { email } = req.params;
     const { approved } = req.body;
@@ -97,6 +109,58 @@ userRoute.put('/applications/:email',authMiddleWare,async (req, res) => {
     res.status(500).send({ error: 'Server Error' });
   }
 });
+
+//Route for updating the details
+userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
+  console.log("hi");
+  console.log(req.user._id)
+  const payload=req.body
+  console.log(req.body)
+  try{
+    await UserModel.findByIdAndUpdate({"_id":req.user._id},payload)
+    res.send({message:"success"});
+  }catch(err){
+    console.log(err);
+  }
+})
+
+//Route for uploading the images
+userRoute.post('/upload', upload.single('image'),authMiddleWare,async (req, res) => {
+  const image = new Image({
+    name: req.file.originalname,
+    image: {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+      userID:req.user._id // adding userid in the image
+    },
+  });
+
+  await image.save();
+  res.send({message:"image uploaded"});
+});
+
+//Route for getting the images by userID
+
+userRoute.get('/images', async (req, res) => {
+  const photographers= await UserModel.find({approved:true})
+  const images = await Image.aggregate([
+      {
+        $group: {
+          _id: '$image.userID',
+          images: {
+            $push: {
+              _id: '$image.data',
+              content_type:'$image.contentType'
+            },
+          },
+        },
+      },
+    ]);
+    
+    res.send({images,photographers});
+});
+
+
 module.exports = {
   userRoute
 }

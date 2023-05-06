@@ -1,6 +1,8 @@
 const form = document.querySelector("form");
-const URL = "http://localhost:3000"
+const URL = "https://bookmyshoot-backend.onrender.com"
 
+const client_checked= document.getElementById("radio1")
+const photographer_checked= document.getElementById("radio2")
 form.addEventListener("submit", async(e)=>{
     const checkedValue = document.querySelector('input[type=radio]:checked').value;
     e.preventDefault();
@@ -10,7 +12,6 @@ form.addEventListener("submit", async(e)=>{
         pass:form.pass.value,
         role:checkedValue
     }
-    
     const request = await fetch(`${URL}/user/register`, {
         method:"POST",
         headers:{
@@ -27,7 +28,11 @@ form.addEventListener("submit", async(e)=>{
             'success'
         )
         setTimeout(()=>{
+            if(client_checked.checked){
             window.location.href = "./login.html";
+            }else{
+                window.location.href="./photographer_details.html"
+            }
         },2500)
     } else {
         Swal.fire({
@@ -38,6 +43,7 @@ form.addEventListener("submit", async(e)=>{
         });
     }
 })
+
 
 const google = document.getElementById("google");
 const github = document.getElementById("github");
