@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000"
+const URL = "https://bookmyshoot-backend.onrender.com"
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async(e)=>{
@@ -16,7 +16,6 @@ form.addEventListener("submit", async(e)=>{
         body:JSON.stringify(formData)
     });
     const response = await request.json();
-    
     if(response.ok){
         Swal.fire(
             response.msg,
@@ -26,6 +25,7 @@ form.addEventListener("submit", async(e)=>{
         setTimeout(()=>{
             window.location.href = "./login.html";
         },2500)
+        localStorage.setItem("token", response.token);
     } else {
         Swal.fire({
             icon: "error",

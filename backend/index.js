@@ -25,10 +25,6 @@ app.get( "/", (req,res)=>{
         res.send({"ok":false, "msg":error.message})
     }
 })
-
-
-
-
 app.use("/user", userRoute);
 app.use("/book",BookingRouter);
 app.use("/auth", authRoute);

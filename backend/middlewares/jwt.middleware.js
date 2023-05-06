@@ -3,7 +3,7 @@ const {UserModel} = require("../models/user.model")
 require("dotenv").config()
 const authMiddleWare = async(req,res,next)=>{
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization;
         const decodedToken = jwt.verify(token,process.env.secret)
         const {userId} = decodedToken;
         //Checking if user exists

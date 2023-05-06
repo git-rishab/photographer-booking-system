@@ -118,6 +118,7 @@ userRoute.get("/photo",(req,res)=>{
 
 //Route for updating the details
 userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
+  console.log("hi");
   console.log(req.user._id)
   const payload=req.body
   console.log(req.body)
@@ -130,17 +131,13 @@ userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
 })
 
 //Route for uploading the images
-
-userRoute.get('/checking',(req,res)=>{
-  res.send({message:"success"})
-})
-userRoute.post('/upload', upload.single('image'),async (req, res) => {
+userRoute.post('/upload', upload.single('image'),authMiddleWare,async (req, res) => {
   const image = new Image({
-    // name: req.file.originalname,
+    name: req.file.originalname,
     image: {
       data: req.file.buffer,
       contentType: req.file.mimetype,
-      userID:req.body.userID // adding userid in the image
+      userID:req.user._id // adding userid in the image
     },
   });
 

@@ -18,6 +18,10 @@ const userSchema = new Schema({
     address: {
       type: String,
       default: null
+    },
+    price:{
+      type:Number,
+      default:null
     }
   });
 
