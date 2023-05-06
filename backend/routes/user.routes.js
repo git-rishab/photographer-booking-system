@@ -136,7 +136,6 @@ userRoute.post('/upload', upload.single('image'),authMiddleWare,async (req, res)
   });
 
   await image.save();
-
   res.send({message:"image uploaded"});
 });
 
@@ -144,7 +143,6 @@ userRoute.post('/upload', upload.single('image'),authMiddleWare,async (req, res)
 
 userRoute.get('/images', async (req, res) => {
   const photographers= await UserModel.find({approved:true})
-  console.log(photographers)
   const images = await Image.aggregate([
       {
         $group: {

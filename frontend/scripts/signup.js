@@ -12,9 +12,6 @@ form.addEventListener("submit", async(e)=>{
         pass:form.pass.value,
         role:checkedValue
     }
-
-
-
     const request = await fetch(`${URL}/user/register`, {
         method:"POST",
         headers:{
