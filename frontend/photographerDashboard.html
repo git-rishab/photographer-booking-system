@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookMyShoot | Dashboard</title>
-    <link rel="stylesheet" href="./styles/photographerDashboard.css">
-</head>
-<body>
-    
-</body>
-<script src="./scripts/photographerDashboard.js"></script>
+    <link rel="stylesheet" href="./styles/photographerDashboard.css" />
+  </head>
+  <body>
+    <nav>
+      <div>
+        <div id="logo"><img src="./images/logo.png" alt="logo" /></div>
+        <div id="name">Welcome back! Abc Name</div>
+      </div>
+      <div>
+        <div id="logout">Sign out</div>
+        <div id="settings">
+          <img src="./images/settings.png" alt="settings" />
+        </div>
+      </div>
+    </nav>
+
+    <div id="events">
+      <div class="box">Queue</div>
+      <div class="box">Accepted</div>
+      <div class="box">Rejected</div>
+      <div class="box">Meetings</div>
+      <div class="box">Slots</div>
+    </div>
+
+    <div id="cont">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Acccept</th>
+            <th>Reject</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="accept"><div>Accept</div></td>
+            <td class="reject"><div>Reject</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script src="./scripts/photographerDashboard.js"></script>
 </html>
