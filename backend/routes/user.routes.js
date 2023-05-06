@@ -49,14 +49,14 @@ userRoute.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
     const refreshToken = jwt.sign({ userId: user._id }, process.env.refresh_secret, { expiresIn: "3hr" })
     const response = {
-      "status": "Logged In",
+      "ok": true,
       "token": token,
       "refreshToken": refreshToken
     }
     tokenList[refreshToken] = response
     res.status(200).json(response)
   } catch (error) {
-    console.log(error)
+    res.status(400).json({"ok":false,"msg":error.message});
   }
 })
 userRoute.post('/apply', authMiddleWare, async (req, res) => {
