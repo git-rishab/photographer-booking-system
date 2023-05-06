@@ -7,9 +7,15 @@ a {
     text-decoration: none;
     color: white;
 }
-#logo{
+
+#logo {
     width: 20%;
 }
+
+.logo_name>a>img {
+    width: 40%;
+}
+
 nav {
     width: 100%;
     display: flex;
@@ -25,9 +31,14 @@ nav {
 }
 
 nav.scrolled {
-    background-color: #dd4545;
+    background-color: #ffffff;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+nav.scrolled a{
+    color: black;
 }
 
 .nav-contents {
@@ -113,10 +124,12 @@ select option {
     gap: 1rem;
     margin: 1% 0 3% 8%;
 }
-.how_it_works div>p:nth-child(1){
+
+.how_it_works div>p:nth-child(1) {
     display: flex;
     gap: 0.5rem;
 }
+
 .steps_to_book {
     width: 30%;
     height: auto;
@@ -152,24 +165,29 @@ select option {
 
 .index_reviews div p {
     text-align: center;
+    margin-top: 10%;
     /* margin-bottom: 100px; */
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 550;
 }
-.index_reviews div span{
+
+.index_reviews div span {
     text-align: end;
     font-size: larger;
     color: whitesmoke;
 }
+
 .photographer_join>img {
     width: 80%;
     border-radius: 5px;
     margin: 3% 0 3% 10%;
 }
-.photographer_join{
+
+.photographer_join {
     position: relative;
 }
-#signup_btm{
+
+#signup_btm {
     position: absolute;
     top: 55%;
     left: 48%;
@@ -265,5 +283,4 @@ ion-icon {
     }
 }
 
-@media screen and (min-width: 100px) and (max-width:500px){
-}
+@media screen and (min-width: 100px) and (max-width:500px) {}
