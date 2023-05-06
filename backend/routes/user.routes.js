@@ -6,13 +6,20 @@ const tokenList={}
 const { authMiddleWare } = require("../middlewares/jwt.middleware");
 require("dotenv").config()
 const userRoute = express.Router();
+const checkRole = (role) => {
+  return (req, res, next) => {
+    if (req.user.role !== role) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+    next();
+  }
+}
 userRoute.post("/register", async (req, res) => {
   const { name, email, pass } = req.body;
   const check = await UserModel.find({ email });
   if (check.length > 0) {
     return res.status(200).json({ "ok": false, "msg": "User already exist" });
   }
-
   bcrypt.hash(pass, 5, async (err, hash) => {
     try {
       const data = new UserModel({ name, email, pass: hash });
@@ -79,7 +86,7 @@ userRoute.get('/pending',authMiddleWare, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-userRoute.put('/applications/:email',authMiddleWare,async (req, res) => {
+userRoute.put('/applications/:email',authMiddleWare,checkRole("admin"),async (req, res) => {
   try {
     const { email } = req.params;
     const { approved } = req.body;

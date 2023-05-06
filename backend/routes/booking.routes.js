@@ -2,6 +2,7 @@ const express = require("express");
 const { UserModel } = require("../models/user.model");
 const BookingRouter = express.Router();
 const { BookingModel } = require("../models/booking.model")
+const {NotificationModel} = require("../models/notification.model")
 const {authMiddleWare} = require("../middlewares/jwt.middleware")
 const moment = require("moment")
 BookingRouter.post('/book',authMiddleWare,async (req, res) => {
@@ -63,7 +64,6 @@ BookingRouter.get('/requests', authMiddleWare, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
 // POST route for photographer to accept/reject booking request
 BookingRouter.post('/requests/:bookingId', authMiddleWare, async (req, res) => {
   try {
@@ -74,7 +74,6 @@ BookingRouter.post('/requests/:bookingId', authMiddleWare, async (req, res) => {
     if (req.user.role !== 'photographer') {
       return res.status(401).json({ message: 'Unauthorized' });
     }
-
     // Find the booking request
     const booking = await BookingModel.findById(bookingId);
 
@@ -87,21 +86,56 @@ BookingRouter.post('/requests/:bookingId', authMiddleWare, async (req, res) => {
     if (booking.photographer.toString() !== req.user.id) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
-
     // Check if the booking request is still pending
     if (booking.status !== 'pending') {
       return res.status(400).json({ message: 'Booking request has already been processed' });
     }
-
     // Update the booking status
     booking.status = status;
     await booking.save();
-
     // Send response
     res.status(200).json({ message: 'Booking request updated' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+// BookingRouter.post('/notifications', authMiddleWare, async (req, res) => {
+//   try {
+//     const { to, bookingId, message } = req.body;
+
+//     // Check if the user is a photographer and is associated with the given booking
+//     const booking = await BookingModel.findOne({ _id: bookingId, photographer: req.user.id });
+//     if (!booking) {
+//       return res.status(404).json({ message: 'Booking not found' });
+//     }
+//     // Create a new notification
+//     const notification = new NotificationModel({
+//       from: req.user.id,
+//       to,
+//       booking: bookingId,
+//       message,
+//     });
+
+//     // Save the notification to the database
+//     await notification.save();
+
+//     res.json({ message: 'Notification sent successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
+
+// GET /notifications
+BookingRouter.get('/notifications', authMiddleWare, async (req, res) => {
+  try {
+    // Find all notifications sent to the user
+    const notifications = await NotificationModel.find({ to: req.user.id }).populate('from').populate('booking');
+    res.json(notifications);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
