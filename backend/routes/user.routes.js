@@ -55,18 +55,22 @@ userRoute.post("/login", async (req, res) => {
     const { email, pass } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: "User with this email not found" })
+      return res.status(401).json({ msg: "User with this email not found", ok:false })
     }
     const isPasswordSame = await bcrypt.compare(pass, user.pass)
     if (!isPasswordSame) {
-      return res.status(401).json({ message: "Invalid email or password" })
+      return res.status(401).json({ msg: "Invalid email or password", ok:false })
     }
     const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
     const refreshToken = jwt.sign({ userId: user._id }, process.env.refresh_secret, { expiresIn: "3hr" })
     const response = {
       "ok": true,
       "token": token,
-      "refreshToken": refreshToken
+      "refreshToken": refreshToken,
+      "msg":"Login Successfull",
+      "role":user.role,
+      "approved":user.approved,
+      "id":user._id
     }
     tokenList[refreshToken] = response
     res.status(200).json(response)
@@ -79,7 +83,7 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
   try {
     let user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({ msg: 'User not found', ok:false });
     }
     user.name = name;
     user.email = email;
@@ -90,10 +94,10 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
     user.approved = false;
     user.role = 'photographer';
     await user.save();
-    res.json({ message: 'Application submitted successfully' });
+    res.json({ msg: 'Application submitted successfully',ok:true});
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ msg: 'Internal server error',ok:false });
   }
 });
 
@@ -145,7 +149,16 @@ userRoute.post('/logout', (req, res) => {
   });
 });
 
-=======
+// Info of a particular user
+userRoute.get("/:id",  async(req,res)=>{
+  try {
+    const user = await UserModel.findById({_id:req.params.id});
+    const {name,email,role,approved,camera,expertise,address,price} = user;
+    res.send({ok:true, user:{name,email,role,approved,camera,expertise,address,price}})
+  } catch (error) {
+    res.status(500).send({ msg: error.message, ok:false });
+  }
+})
 
 //Route for updating the details
 userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
