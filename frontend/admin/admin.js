@@ -1,3 +1,4 @@
+
 //  ALL DIVs
 // dashborad div
 let boxDiv = document.querySelector(".box-info");
@@ -108,7 +109,19 @@ ds.forEach((ele)=>{
 
 // all registrations
 async function fetchAllRegistration(){
-	showAllRegistration();
+	await fetch(`https://bookmyshoot-backend.onrender.com/user/`,{
+		method: "GET",
+  			headers: {"Content-type": "application/json;charset=UTF-8",
+					  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NjQ5MjMsImV4cCI6MTY4MzQ2ODUyM30.-plpffEXjq1LSnolK6MjTaqGJC2_6TzaDXQfO7qFvZg"
+					}
+	 	})
+			.then((res)=>res.json())
+			.then((data)=>{
+				console.log(data);
+				// showAllRegistration(data);
+			})
+			.catch((err)=>console.log(err));
+	
 }
 
 function showAllRegistration(){
@@ -121,23 +134,43 @@ function showAllRegistration(){
 
 // pending request
 async function fetchNewRequest(){
-	//  await fetch('https://bookmyshoot-backend.onrender.com/user/pending',{
-	// 	method: "GET",
-  	// 		headers: {"Content-type": "application/json;charset=UTF-8",
-	// 				  "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU0ZWIyYTQyZTc4OGJmM2Y2NTBiNmEiLCJpYXQiOjE2ODMzMTEzNTMsImV4cCI6MTY4MzMxNDk1M30.KpBjivnrwbUrPc5eYmg0KRgZTACtULpZ_nfdgv8TUuk"
-	// 				}
-	//  	})
-	// 		.then((res)=>res.json())
-	// 		.then((data)=>{
-	// 			console.log(data);
-				// showNewRequest(data);
-				showNewRequest();
-			// })
-			// .catch((err)=>console.log(err));
+	 await fetch(`https://bookmyshoot-backend.onrender.com/user/pending`,{
+		method: "GET",
+  			headers: {"Content-type": "application/json;charset=UTF-8",
+					  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NjU3NDMsImV4cCI6MTY4MzQ2OTM0M30.Ypur-lTa41bFGO_pCB_8Y8GsFVgMDQHJZXGvtJAwFYw"
+					}
+	 	})
+			.then((res)=>res.json())
+			.then((data)=>{
+				console.log(data);
+				showNewRequest(data);
+			})
+			.catch((err)=>console.log(err));
 }
 
-function showNewRequest(){
+function showNewRequest(data){
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "block";
-	allRegistrationDiv.style.display = "none"
+	allRegistrationDiv.style.display = "none";
+	let table = document.querySelector("#new-request-div table");
+	table.innerHTML = null;
+	let thead = document.createElement("thead");
+	let theadtr = document.createElement("tr");
+	let th1 = document.createElement("th");
+	th1.textContent = "Name";
+	let th2 = document.createElement("th");
+	th2.textContent = "Email";
+	let th3 = document.createElement("th");
+	th3.textContent = "Location";
+	let th4 = document.createElement("th");
+	th4.textContent = "Camera";
+	let th5 = document.createElement("th");
+	th5.textContent = "Expertise";
+	theadtr.append(th1,th2,th3,th4,th5);
+	thead.append(theadtr);
+	table.append(thead);
+	// data.forEach((ele)=>{
+	// 	let td = document.createElement("td");
+	// 	td.textContent = ele
+	// })
 }

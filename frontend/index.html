@@ -22,13 +22,22 @@
         <div class="nav-contents">
             <a href="">For Photographers</a>
             <a href="">How it works</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Sign up</a>
+            <a href="#" id="signup-link">Login <ion-icon name="caret-down-outline"></ion-icon></a>
+            <div id="dropdown-menu" style="display: none;">
+                <a href="login.html">Login as client</a>
+                <a href="#">Login as photographer</a>
+            </div>
+            <a href="#">Sign up</a>
         </div>
+        <div class="hamburger" id="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
     </nav>
     <div class="bg_image">
-        <video class="background-feature-video"
-            src="./admin_img/Book_My_Shoot.mp4" autoplay="autoplay" loop="loop" preload="auto" muted="true"></video>
+        <video class="background-feature-video" src="./admin_img/Book_My_Shoot.mp4" autoplay="autoplay" loop="loop"
+            preload="auto" muted="true"></video>
     </div>
     <div class="overlay_booking">
         <h1>Book the best photographer for you</h1>
@@ -45,10 +54,10 @@
             <input type="date" id="date"> <br>
             <select id="duration">
                 <option value="anytime">Anytime</option>
-                <option value="1hour">1 Hour</option>
-                <option value="2hours">2 Hour</option>
-                <option value="3hours">3 Hours</option>
                 <option value="4hours">4 Hours</option>
+                <option value="5hour">5 Hour</option>
+                <option value="6hours">6 Hour</option>
+                <option value="more">More than 6 Hours...</option>
             </select> <br>
             <select id="location">
                 <option value="Adilabad">Adilabad</option>
@@ -744,16 +753,19 @@
     <div class="index_reviews">
         <div>
             <span>Rithik says</span>
-            <p><span>"</span> I love that you can review photographers portfolios and bios to see if the style is compatible with that
+            <p><span>"</span> I love that you can review photographers portfolios and bios to see if the style is
+                compatible with that
                 you have in mind. <span>"</span></p>
         </div>
         <div>
             <span>Krishna says</span>
-            <p><span>"</span> The site is simple to navigate, and it provides detailed information about the booking process.<span>"</span> </p>
+            <p><span>"</span> The site is simple to navigate, and it provides detailed information about the booking
+                process.<span>"</span> </p>
         </div>
         <div>
             <span>Shreya says</span>
-            <p><span>"</span> I really liked how fun and quick our photographer was to work with. He made us feel comfortable and we
+            <p><span>"</span> I really liked how fun and quick our photographer was to work with. He made us feel
+                comfortable and we
                 loved how he tried to get the best photos of us!<span>"</span> </p>
         </div>
     </div>
