@@ -14,16 +14,16 @@
     <div class="calendar">
         <!-- CALENDAR HEADER START -->
         <div class="calendar-header">
-            <span class="month-picker" id="month-picker">
+            <span class="month-picker" id="month-picker" >
                 February
             </span>
             <div class="year-picker">
                 <span class="year-change mt-3" id="prev-year">
-                    <pre> < </pre>
+                    <pre onclick="pickDate()"> < </pre>
                 </span>
                 <span id="year">2023</span>
                 <span class="year-change mt-3" id="next-year">
-                    <pre> > </pre>
+                    <pre onclick="pickDate()"> > </pre>
                 </span>
             </div>
 
@@ -66,14 +66,14 @@
         </div>
 
         <!-- CALENDAR FOOTER START -->
-        <div class="calendar-footer">
+        <!-- <div class="calendar-footer">
             <div class="toggle">
                 <span>Dark Mode</span>
                 <div class="dark-mode-switch">
                     <div class="dark-mode-switch-ident"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="month-list"></div>
     </div>
