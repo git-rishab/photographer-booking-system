@@ -9,10 +9,10 @@ const moment = require("moment");
 BookingRouter.get("/", async (req, res) => {
   try {
     let data = await BookingModel.find();
-    res.send(data);
+    res.send({data, ok:true});
   } catch (error) {
     console.log(error);
-    res.send({ error: error.message });
+    res.send({ error: error.message, ok:false });
   }
 });
 BookingRouter.post('/book',authMiddleWare,checkRole("client"),async (req, res) => {
@@ -21,12 +21,12 @@ BookingRouter.post('/book',authMiddleWare,checkRole("client"),async (req, res) =
     const client = await  UserModel.findById(req.user.id)
     const photographer = await UserModel.findOne({ email: photographerEmail,role:'photographer',approved:true });
     if (!photographer) {
-      return res.status(400).json({ msg: 'Photographer not found' });
+      return res.status(400).json({ msg: 'Photographer not found',ok:false });
     }
     const bookingStartTime = moment(start);
     const bookingEndTime = moment(end);
     if (!bookingStartTime.isValid() || !bookingEndTime.isValid()) {
-      return res.status(400).json({msg: 'Invalid booking time format' });
+      return res.status(400).json({msg: 'Invalid booking time format',ok:false });
     }
     // const bookingDuration = moment.duration(bookingEndTime.diff(bookingStartTime)).asHours();
     // if (bookingDuration < 4) {
@@ -38,7 +38,7 @@ BookingRouter.post('/book',authMiddleWare,checkRole("client"),async (req, res) =
       end: { $gt: bookingStartTime }
     });
     if (existingBooking) {
-      return res.status(400).json({ msg: 'Photographer is already booked for this time slot' });
+      return res.status(400).json({ msg: 'Photographer is already booked for this time slot',ok:false });
     }
     const newBooking = new BookingModel({
       client,
@@ -47,22 +47,22 @@ BookingRouter.post('/book',authMiddleWare,checkRole("client"),async (req, res) =
       end_time: bookingEndTime.toDate(),
     });
     await newBooking.save();
-    res.json({ msg: 'Booking request sent successfully' });
+    res.json({ msg: 'Booking request sent successfully',ok:true });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send({msg:err.message,ok:false});
   }
 });
 // Retrieve all booking requests for a specific photographer
-BookingRouter.get('/requests', authMiddleWare, async (req, res) => {
+BookingRouter.get('/requests/:status', authMiddleWare, async (req, res) => {
   try {
     // Get the logged-in photographer's ID
     const photographerId = req.user.id;
     // Find all booking requests for the logged-in photographer from the database
-    const bookings = await BookingModel.find({photographer: photographerId}).populate('client','email');
+    const bookings = await BookingModel.find({photographer: photographerId, status:req.params.status}).populate('client','email');
     res.json({ok:true,bookings});
   } catch (err) {
-    res.status(500).send({error:err.message,mssg:'Server Error'});
+    res.status(500).send({error:err.message,mssg:'Server Error',ok:false});
   }
 });
 // Route to accept or reject a booking request
@@ -89,10 +89,10 @@ BookingRouter.post('/requests/:bookingid', authMiddleWare, async (req, res) => {
       message: Notification,
     });
     await notification.save();
-    res.json({ok:true,mssg:"Booking updated and notification sent succcessfully"});
+    res.json({ok:true, msg:"Booking updated and notification sent succcessfully"});
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ ok:false , msg: err.message });
   }
 });
 BookingRouter.post('/:bookingId/notifications', authMiddleWare, async (req, res) => {
@@ -110,10 +110,10 @@ BookingRouter.post('/:bookingId/notifications', authMiddleWare, async (req, res)
     // Create the notification and save it to the database
     const notification = new NotificationModel({ from, to: booking.client, booking: booking._id, message });
     await notification.save();
-    res.json(notification);
+    res.json({ok:true, notification});
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ ok:false,msg: err.message });
   }
 });
 
@@ -126,7 +126,7 @@ BookingRouter.get('/notifications', authMiddleWare, async (req, res) => {
     res.json({ok:true,messages});
   } catch (error) {
     console.error(error);
-    res.status(500).json({  });
+    res.status(500).json({ ok:false, msg:error.message });
   }
 });
 
