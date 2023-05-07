@@ -104,6 +104,8 @@ select option {
 .overlay_booking input[type="submit"] {
     font-weight: bold;
     font-size: 17px;
+    background-color: #dd4545;
+    color: white;
 }
 
 .overlay_booking {
