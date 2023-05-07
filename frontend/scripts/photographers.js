@@ -1,9 +1,9 @@
 let container = document.getElementById('gallery')
 // Fetch the images data from the server
-
+const url = "https://bookmyshoot-backend.onrender.com"
 async function fetchData() {
     try {
-        const response = await fetch('http://localhost:3000/user/images');
+        const response = await fetch(`${url}/user/images`);
         const data = await response.json();
         Display(data.images, data.photographers);
     } catch (error) {
@@ -13,13 +13,15 @@ async function fetchData() {
 
 fetchData();
 
-let count= document.getElementById("count_div")
+var photographerID;
+
+let count = document.getElementById("count_div")
 
 function Display(images, photographers) {
     container.innerHTML = null;
     count.innerHTML = null;
-    let count_title= document.createElement("h4")
-    count_title.innerText= +photographers.length+ " Photographers😍";
+    let count_title = document.createElement("h4")
+    count_title.innerText = +photographers.length + " Photographers😍";
     count.append(count_title)
     photographers.forEach((photographer) => {
         let photographer_div = document.createElement("div");
@@ -66,6 +68,8 @@ function Display(images, photographers) {
     })
 }
 
+
+
 /********************************************* Sorting ***************************************************/
 
 
@@ -75,36 +79,53 @@ let location_sort = document.getElementById("location")
 let locationValue;
 
 
-price_sort.addEventListener("change", async() => {
+price_sort.addEventListener("change", async () => {
     sortvalue = price_sort.value
-    locationValue= location_sort.value;
+    locationValue = location_sort.value;
     await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
             console.log(res);
             const data = res;
-            Display(data.images,data.photographers)
+            Display(data.images, data.photographers)
         })
         .catch(err => console.log(err));
 })
 
-location_sort.addEventListener("change", async() => {
+location_sort.addEventListener("change", async () => {
     sortvalue = price_sort.value
     sort.value
-    locationValue= location_sort.value;
+    locationValue = location_sort.value;
     await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
             console.log(res);
             const data = res;
-            Display(data.images,data.photographers)
-            if(!data.photographers.length){
+            Display(data.images, data.photographers)
+            if (!data.photographers.length) {
                 Swal.fire('Oops, Photographers not found at this location ☹')
-                setTimeout(()=>{
-                    window.location.href="./photographers.html"
+                setTimeout(() => {
+                    window.location.href = "./photographers.html"
                 }, 2500)
             }
         })
         .catch(err => console.log(err));
 })
 
+
+
+// for redirecting
+container.addEventListener("click", (event) => {
+    if (event.target.id === "view_profile") {
+        const photographerId = event.target.closest(".photographer_div").id;
+        localStorage.setItem("photographerId", photographerId);
+        fetchProfilePage(photographerId);
+        console.log(photographerId);
+    }
+});
+
+
+function fetchProfilePage(photographerId) {
+    const profilePageUrl ="photographer.html"
+    window.open(profilePageUrl, "_blank");
+}
