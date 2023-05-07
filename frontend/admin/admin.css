@@ -406,6 +406,10 @@ body {
 	background: var(--light-blue);
 	color: var(--blue);
 }
+#content main .box-info li:nth-child(7) .bx {
+	background: var(--light-yellow);
+	color: var(--yellow);
+}
 #content main .box-info li .text h3 {
 	font-size: 24px;
 	font-weight: 600;
@@ -461,9 +465,18 @@ body {
 	font-size: 13px;
 	text-align: left;
 	border-bottom: 1px solid var(--grey);
+	text-align: center;
 }
-#content main .table-data .order table td {
+#content main .table-data .order table th:first-child {
+	padding-bottom: 12px;
+	font-size: 13px;
+	text-align: left;
+	border-bottom: 1px solid var(--grey);
+	text-align: left;
+}
+#content main .order table td {
 	padding: 16px 0;
+	text-align: center;
 }
 #content main .table-data .order table tr td:first-child {
 	display: flex;
@@ -487,7 +500,7 @@ body {
 	border-radius: 20px;
 	font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
+#content main .table-data .order table tr .status.completed {
 	background: var(--blue);
 }
 #content main .table-data .order table tr td .status.process {
@@ -496,7 +509,25 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
+#content main .table-data .order table .client {
+	background: var(--light-blue);
+}
+#content main .table-data .order table .photographer {
+	background: var(--light-yellow);
+}
+#content main .table-data .order table .admin {
+	background: var(--light-orange);
+}
 
+#content main .table-data .order table .accepted{
+	background: var(--light-blue);
+}
+#content main .table-data .order table .pending{
+	background: var(--light-yellow);
+}
+#content main .table-data .order table .rejected{
+	background: var(--light-orange);
+}
 
 #content main .table-data .todo {
 	flex-grow: 1;
