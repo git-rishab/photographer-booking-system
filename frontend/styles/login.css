@@ -182,7 +182,7 @@ a:hover {
 
 @media (max-width:720px){
   .container{
-    position: static;
-    background-color: #3b476b;
+    /* position: static; */
+    margin: auto;
   }
 }
