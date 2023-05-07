@@ -22,8 +22,8 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.146);
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     position: absolute;
     z-index: 1;
     position: fixed;
@@ -32,8 +32,8 @@ nav {
 
 nav.scrolled {
     background-color: #ffffff;
-    padding-top: 2rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 
@@ -89,31 +89,43 @@ select {
     border-radius: 3px;
     border: none;
     font-size: 16px;
+    padding: 0px 0px 0px 20px;
+}
+
+form>input:focus,
+select:focus{
+    outline: none;
 }
 
 select option {
     font-size: 16px;
     font-family: 'Lato', sans-serif;
 }
-
 #date {
-    width: 562px;
+    width: 97%;
     font-family: 'Lato', sans-serif;
 }
 
 .overlay_booking input[type="submit"] {
     font-weight: bold;
     font-size: 17px;
+
     background-color: #dd4545;
     color: white;
+
+    background-color: #5184EB;
+}
+input[type="submit"]:hover{
+    cursor: pointer;
+    background-color: #7496da;
 }
 
 .overlay_booking {
     width: auto;
     padding: 2rem;
     position: absolute;
-    top: 30%;
-    left: 15%;
+    top: 140px;
+    left: 12%;
     background-color: rgba(255, 255, 255, 0.446);
     border-radius: 3px;
 }

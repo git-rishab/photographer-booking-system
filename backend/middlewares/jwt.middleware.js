@@ -17,4 +17,5 @@ const authMiddleWare = async(req,res,next)=>{
         return res.status(401).json({message:error.message})
     }
 }
+
 module.exports = {authMiddleWare}
