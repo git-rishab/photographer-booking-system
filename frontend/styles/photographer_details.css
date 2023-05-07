@@ -1,0 +1,158 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: sans-serif;
+  background-color: #f0f2f5;
+}
+#head{
+  font-size: 25px;
+  text-align: center;
+}
+#info{
+  margin-top: 10px;
+  color: grey;
+}
+form {
+  margin-top: 30px;
+}
+
+label{
+  margin-top: 10px;
+  color: #000000;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid rgb(211, 202, 202);
+  margin-bottom: 5px;
+  width: 90%;
+  padding: 10px;
+}
+input:focus{
+  outline: none;
+  border: 1px solid #79A6FE;
+}
+
+#dropZone {
+  width: 250px;
+  height: 200px;
+  border: 2px dashed gray;
+  /* margin: 10px; */
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+  margin-left: 35px;
+  /* margin-top:30px; */
+}
+
+#dropZone.dragover {
+  background-color: lightgray;
+}
+
+#main_div {
+  width: 40%;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  padding: 50px;
+  margin-top: 50px;
+}
+
+#drop_img {
+  margin-top: 80px;
+}
+#main_div1{
+  width: 100%;
+}
+
+#main_div div {
+  display: flex;
+  flex-direction: column;
+}
+
+#main_div>div:nth-child(1) {
+  padding: 20px;
+  background-color: #f1617d;
+  border-radius: 20px;
+}
+
+#main_div>div img {
+  margin-top: 20px;
+  width: 100%;
+}
+
+#submit_details {
+  margin-top: 20px;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+/* #submit_div {
+  margin: auto;
+} */
+#submit_details{
+  border: none;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #79A6FE;
+  color: #fff;
+}
+
+#submit_details:hover{
+  cursor: pointer;
+  background-color: #8daef0;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: 100px;
+  background-color: rgb(136, 136, 136);
+}
+
+footer ul {
+  display: flex;
+  gap: 2rem;
+}
+
+footer ul li:nth-child(1) {
+  list-style-type: none;
+}
+
+footer div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  /* font-size: large; */
+  justify-content: space-between;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 750px) {
+  #main_div {
+    width: 90%;
+  }
+  footer{
+    display: none;
+  }
+}
