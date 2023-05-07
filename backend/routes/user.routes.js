@@ -163,18 +163,18 @@ userRoute.get('/images', async (req, res) => {
 
 userRoute.get('/SortByPrice', async (req, res) => {
   let query={}
-  console.log(req.query)
   let sortby={price:0}
   query.approved=true;
   if(req.query.location){
     query.address=req.query.location
   }
-  if (req.query.asc!=undefined) {
-    sortby["price"] = 1;
-  } else if(req.query.desc!=undefined){
-    sortby["price"] = -1;
+  if (req.query.Sortby) {
+    if(req.query.Sortby=="asc"){
+      sortby["price"] = 1;
+    }else{
+      sortby["price"] = -1;
+    }
   }
-  console.log(query)
   const photographers= await UserModel.find(query).sort(sortby)
   const images = await Image.aggregate([
       {
