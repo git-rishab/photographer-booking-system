@@ -28,11 +28,8 @@ form.addEventListener("submit", async(e)=>{
             'success'
         )
         setTimeout(()=>{
-            if(client_checked.checked){
             window.location.href = "./login.html";
-            }else{
-                window.location.href="./photographer_details.html"
-            }
+
         },2500)
     } else {
         Swal.fire({

@@ -98,12 +98,13 @@ nav.scrolled a{
 }
 /* -------------------------------------------- Gallery ------------------------------------------------ */
 #gallery{
-    /* border:1px solid black; */
     width: 80%;
     margin:auto;
     display:grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows:  1fr;
     gap: 5%;
+    margin-bottom: 50px;
   }
   .images_div{
   /* border: 1px solid red;   */
@@ -149,7 +150,7 @@ nav.scrolled a{
 .photographer_div:nth-child(1),.photographer_div:nth-child(2){
   margin-top:40px;
 }
-.photographer_div:last-child{
+.photographer_div:last-child,.photographer_div:nth-last-child(2){
   margin-bottom: 120px;
 }
 .photographer_div{
@@ -191,7 +192,7 @@ footer {
   align-items: center;
   justify-content: space-around;
   background-color: rgb(136, 136, 136);
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 footer ul {

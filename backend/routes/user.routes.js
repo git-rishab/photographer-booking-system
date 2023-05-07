@@ -110,12 +110,11 @@ userRoute.put('/applications/:email', async (req, res) => {
   }
 });
 
+
+
 //Route for updating the details
 userRoute.patch('/submit_photographer_details', authMiddleWare, async (req, res) => {
-  console.log("hi");
-  console.log(req.user._id)
   const payload = req.body
-  console.log(req.body)
   try {
     await UserModel.findByIdAndUpdate({ "_id": req.user._id }, payload)
     res.send({ message: "success" });
@@ -160,10 +159,11 @@ userRoute.get('/images', async (req, res) => {
   res.send({ images, photographers });
 });
 
-// Route for getting the Photographers sorted by price
+// Route for getting the Photographers sorted by price and filtered by location
 
 userRoute.get('/SortByPrice', async (req, res) => {
   let query={}
+  console.log(req.query)
   let sortby={price:0}
   query.approved=true;
   if(req.query.location){

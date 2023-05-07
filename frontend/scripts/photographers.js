@@ -5,8 +5,6 @@ async function fetchData() {
     try {
         const response = await fetch('http://localhost:3000/user/images');
         const data = await response.json();
-        console.log(data.images);
-        console.log(data.photographers)
         Display(data.images, data.photographers);
     } catch (error) {
         console.error(error);
@@ -79,9 +77,9 @@ let locationValue;
 
 
 price_sort.addEventListener("change", async() => {
-    sortvalue = sort.value
+    sortvalue = price_sort.value
     locationValue= location_sort.value;
-    await fetch(`http://localhost:3000/user/SortByPrice?${sortvalue}&${locationValue}`)
+    await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
             console.log(res);
@@ -92,9 +90,10 @@ price_sort.addEventListener("change", async() => {
 })
 
 location_sort.addEventListener("change", async() => {
-    sortvalue = sort.value
+    sortvalue = price_
+    sort.value
     locationValue= location_sort.value;
-    await fetch(`http://localhost:3000/user/SortByPrice?${sortvalue}&location=${locationValue}`)
+    await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
             console.log(res);
