@@ -9,6 +9,22 @@ window.addEventListener('scroll', () => {
 });
 
 
+var signupLink = document.getElementById("signup-link");
+var dropdownMenu = document.getElementById("dropdown-menu");
+
+signupLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "block" : "none";
+});
+
+var hamburger = document.getElementById("hamburger");
+var navContents = document.getElementById("nav-contents");
+
+hamburger.addEventListener("click", function () {
+    navContents.classList.add("show-nav");
+});
+
+
 let occassion = document.getElementById("occassion")
 let date = document.getElementById("date")
 let duration = document.getElementById("duration")
@@ -18,5 +34,5 @@ const form = document.querySelector("form")
 
 form.addEventListener("submit", (event) => {
     event.preventDefault()
-    console.log(occassion.value,date.value,duration.value,place.value);
+    console.log(occassion.value, date.value, duration.value, place.value);
 })
