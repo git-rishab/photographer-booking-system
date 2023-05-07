@@ -108,3 +108,24 @@ function pickDate() {
     })
 }
 pickDate();
+
+function getTime() {
+    const datetimeInput = document.getElementById('datetimeInput');
+    const now = new Date();
+    const minTime = now.toISOString().slice(0, 16);
+    datetimeInput.setAttribute('min', minTime);
+  
+    const datetimeValue = datetimeInput.value;
+    const selectedTime = new Date(datetimeValue);
+    const currentTime = new Date();
+  
+    if (selectedTime < currentTime) {
+      datetimeInput.value = ''; // Clear the input value if it's in the past
+      return;
+    }
+  
+    const utcTime = selectedTime.toISOString();
+    console.log(utcTime); // Output: UTC format of selected time
+  }
+  
+  
