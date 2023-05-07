@@ -33,7 +33,6 @@ function Display(images, photographers) {
         for (let i = 0; i < images.length; i++) {
             if (images[i]._id == photographer._id) {
                 images_data = images[i];
-                console.log(images_data)
                 let name_div = document.createElement("div");
                 name_div.setAttribute("class", "name_div");
                 let book_div = document.createElement("div");
@@ -70,7 +69,7 @@ function Display(images, photographers) {
 /********************************************* Sorting ***************************************************/
 
 
-const price_sort = document.getElementById("form-select")
+let price_sort = document.getElementById("form-select")
 let sortvalue;
 let location_sort = document.getElementById("location")
 let locationValue;
@@ -90,7 +89,7 @@ price_sort.addEventListener("change", async() => {
 })
 
 location_sort.addEventListener("change", async() => {
-    sortvalue = price_
+    sortvalue = price_sort.value
     sort.value
     locationValue= location_sort.value;
     await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)

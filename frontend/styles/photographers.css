@@ -73,11 +73,12 @@ nav.scrolled a{
 }
 #sorting_div>div select{
   width:200px;
+  margin-top:10px;
   background-color: #fdd2d2;
   border-radius: 5px;
 }
 #sort{
-  margin-left: 5%;
+  margin-left: 6%;
 }
 
 #sort_line{
@@ -98,16 +99,21 @@ nav.scrolled a{
 }
 /* -------------------------------------------- Gallery ------------------------------------------------ */
 #gallery{
+  border: 1px solid black;
     width: 80%;
     margin:auto;
     display:grid;
+    height:fit-content;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows:  1fr;
+    grid-template-rows:  auto;
     gap: 5%;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
+  }
+  #gallery>div{
+    border: 1px solid red;  
   }
   .images_div{
-  /* border: 1px solid red;   */
+  border: 1px solid red;  
   display: flex;
   width: 440px;
   height: 200px;
@@ -150,9 +156,9 @@ nav.scrolled a{
 .photographer_div:nth-child(1),.photographer_div:nth-child(2){
   margin-top:40px;
 }
-.photographer_div:last-child,.photographer_div:nth-last-child(2){
+/* .photographer_div:last-child,.photographer_div:nth-last-child(2){
   margin-bottom: 120px;
-}
+} */
 .photographer_div{
   margin-top: 40px;
   /* border: 1px solid red; */
@@ -192,7 +198,7 @@ footer {
   align-items: center;
   justify-content: space-around;
   background-color: rgb(136, 136, 136);
-  margin-top: 150px;
+  margin-top: 250px;
 }
 
 footer ul {
@@ -214,4 +220,14 @@ footer div:nth-child(2) {
 
 ion-icon {
   font-size: 24px;
+}
+
+
+/* ------------------------------------------- Media Queries ------------------------------------------ */
+
+
+@media screen and (max-width: 768px) {
+  #gallery {
+    grid-template-columns: 1fr;
+  }
 }
