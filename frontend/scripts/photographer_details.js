@@ -80,8 +80,8 @@ detailsForm.addEventListener("submit", async(e)=>{
       },
       body:JSON.stringify(formData)
   });
+
   const response = await request.json();
-  console.log(response);
   if(response){
       Swal.fire(
           'Success'

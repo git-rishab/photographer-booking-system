@@ -22,8 +22,8 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.146);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     position: absolute;
     z-index: 1;
     position: fixed;
@@ -93,7 +93,7 @@ select {
 }
 
 form>input:focus,
-select:focus {
+select:focus{
     outline: none;
 }
 
@@ -101,8 +101,8 @@ select option {
     font-size: 16px;
     font-family: 'Lato', sans-serif;
 }
-
 #date {
+    width: 97%;
     width: 97%;
     font-family: 'Lato', sans-serif;
 }
@@ -116,8 +116,7 @@ select option {
 
     background-color: #5184EB;
 }
-
-input[type="submit"]:hover {
+input[type="submit"]:hover{
     cursor: pointer;
     background-color: #7496da;
 }
