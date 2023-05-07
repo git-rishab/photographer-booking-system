@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book My Shoot | Photographer</title>
+    <title>Book My Shoot |</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/photographer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -46,7 +46,7 @@
                     <p id="place"></p>
                 </div>
             </div>
-            <div>
+            <div id="photographer_nav">
                 <a href="#aboutme"> About Me</a>
                 <a href="#reviews">Reviews</a>
                 <a href="#works">How it works</a>
@@ -55,13 +55,12 @@
                 <p>I love music, cooking, filmmaking, photography, and my beautiful family! I have been taking photos my whole life but decided to do it professionally in 2010 and I love it more every day. I am very much a people person but ironically my specialty is photographing products, food, and beverages. Just because I specialize in capturing things doesn’t mean I lack in portrait photography, the only thing I don’t shoot is weddings ;) </p>
                 <p id="equipment">
                     <h4>Equipment</h4>
-                    <p id="camera"></p>
-                    <p id="lenses">Tamron 28-75 f2.8, Leica 45mm f1.4, LUMIX 12-35 f2.8, Sigma 18-35 f1.8 ART, Olympus M. Zuiko 60mm Macro</p>
+                    <p><b>Camera -</b> <span id="camera"></span></p>
+                    <p id="lenses"> <b>Lenses -</b> Tamron 28-75 f2.8, Leica 45mm f1.4, LUMIX 12-35 f2.8, Sigma 18-35 f1.8 ART, Olympus M. Zuiko 60mm Macro</p>
                 </p>
                 <p id="good_with">
                     <h4>Good With</h4>
-                    <p>Candid Moments</p>
-                    <p>Story Telling</p>
+                    <p id="expertise"></p>
                 </p>
             </div>
             <div id="reviews"></div>
@@ -99,6 +98,7 @@
                         <option value="event">Event</option>
                         <option value="product">Product</option>
                     </select> <br>
+                    <p class="price"><b>Price -</b> <span>₹</span> <span id="price"></span></p>
                     <input type="submit" value="Book">
                 </form>
             </div>
