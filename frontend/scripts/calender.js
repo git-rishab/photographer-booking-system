@@ -1,8 +1,10 @@
 //Dark Mode Toggle
-document.querySelector('.dark-mode-switch').onclick = () => {
-    document.querySelector('body').classList.toggle('dark');
-    document.querySelector('body').classList.toggle('light');
-};
+// document.querySelector('.dark-mode-switch').onclick = () => {
+//     document.querySelector('body').classList.toggle('light');
+//     document.querySelector('body').classList.toggle('dark');    
+// };
+
+document.querySelector('body').classList.toggle('light');
 
 //Check Year
 isCheckYear = (year) => {
@@ -80,3 +82,29 @@ let currMonth = { value: currDate.getMonth() };
 let currYear = { value: currDate.getFullYear() };
 
 generateCalendar(currMonth.value, currYear.value);
+
+const months = document.querySelectorAll(".month-list > div")
+months.forEach((month) => addEventListener("click",pickDate));
+
+function pickDate() {
+    setTimeout(()=>{
+        const days = document.querySelectorAll(".calendarDayHover");
+        const month = document.getElementById("month-picker");
+        const year = document.getElementById("year");
+        days.forEach((day)=>{
+            day.addEventListener("click", ()=>{
+                days.forEach((day) =>{
+                    if(day.innerText == new Date().getDate() && month.innerText == monthNames[new Date().getMonth()] && year.innerText == new Date().getFullYear()){
+                        day.style.backgroundColor = "#03C988";
+                    } else {
+                        day.style.backgroundColor = "white";
+                    }
+                })
+                console.log(day.innerText,month.innerText,year.innerText);
+                day.style.backgroundColor = "#CFC7C9"
+            })
+        })
+
+    })
+}
+pickDate();
