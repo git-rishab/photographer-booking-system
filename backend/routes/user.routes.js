@@ -2,7 +2,8 @@ const express = require("express");
 const { UserModel } = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const tokenList={}
+const tokenList={};
+const session = require("express-session")
 const { authMiddleWare } = require("../middlewares/jwt.middleware");
 require("dotenv").config()
 const userRoute = express.Router();
@@ -14,6 +15,15 @@ const checkRole = (role) => {
     next();
   }
 }
+userRoute.get("/", async(req,res)=>{
+  try {
+    const data = await UserModel.find();
+    res.send(data)
+    
+  } catch (error) {
+    res.status(403).json({error:error.message})
+  }
+})
 userRoute.post("/register", async (req, res) => {
   const { name, email, pass } = req.body;
   const check = await UserModel.find({ email });
@@ -104,6 +114,28 @@ userRoute.put('/applications/:email',authMiddleWare,checkRole("admin"),async (re
     res.status(500).send({ error: 'Server Error' });
   }
 });
+userRoute.get("/logout",async(req,res)=>{
+  try {
+    
+  } catch (error) {
+    
+  }
+})
+userRoute.use(session({
+  secret: 'dancingCar',
+  resave: false,
+  saveUninitialized: false
+}));
+userRoute.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500).json({ message: err.message });
+    } else {
+      res.json({ message: 'Logged out successfully' });
+    }
+  });
+});
+
 module.exports = {
-  userRoute
+  userRoute,checkRole
 }
