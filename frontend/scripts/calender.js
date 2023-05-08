@@ -84,23 +84,23 @@ let currYear = { value: currDate.getFullYear() };
 generateCalendar(currMonth.value, currYear.value);
 
 const months = document.querySelectorAll(".month-list > div")
-months.forEach((month) => addEventListener("click",pickDate));
+months.forEach((month) => addEventListener("click", pickDate));
 
 function pickDate() {
-    setTimeout(()=>{
+    setTimeout(() => {
         const days = document.querySelectorAll(".calendarDayHover");
         const month = document.getElementById("month-picker");
         const year = document.getElementById("year");
-        days.forEach((day)=>{
-            day.addEventListener("click", ()=>{
-                days.forEach((day) =>{
-                    if(day.innerText == new Date().getDate() && month.innerText == monthNames[new Date().getMonth()] && year.innerText == new Date().getFullYear()){
+        days.forEach((day) => {
+            day.addEventListener("click", () => {
+                days.forEach((day) => {
+                    if (day.innerText == new Date().getDate() && month.innerText == monthNames[new Date().getMonth()] && year.innerText == new Date().getFullYear()) {
                         day.style.backgroundColor = "#03C988";
                     } else {
                         day.style.backgroundColor = "white";
                     }
                 })
-                console.log(day.innerText,month.innerText,year.innerText);
+                console.log(day.innerText, month.innerText, year.innerText);
                 day.style.backgroundColor = "#CFC7C9"
             })
         })
@@ -114,18 +114,17 @@ function getTime() {
     const now = new Date();
     const minTime = now.toISOString().slice(0, 16);
     datetimeInput.setAttribute('min', minTime);
-  
+
     const datetimeValue = datetimeInput.value;
     const selectedTime = new Date(datetimeValue);
     const currentTime = new Date();
-  
+
     if (selectedTime < currentTime) {
-      datetimeInput.value = ''; // Clear the input value if it's in the past
-      return;
+        datetimeInput.value = ''; // Clear the input value if it's in the past
+        return;
     }
-  
+
     const utcTime = selectedTime.toISOString();
     console.log(utcTime); // Output: UTC format of selected time
-  }
-  
-  
+}
+

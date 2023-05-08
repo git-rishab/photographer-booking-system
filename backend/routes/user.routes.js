@@ -154,8 +154,8 @@ userRoute.post('/logout', (req, res) => {
 userRoute.get("/:id",  async(req,res)=>{
   try {
     const user = await UserModel.findById({_id:req.params.id});
-    const {name,email,role,approved,camera,expertise,address,price} = user;
-    res.send({ok:true, user:{name,email,role,approved,camera,expertise,address,price}})
+    const {name,email,role,approved,camera,expertise,address,price,_id} = user;
+    res.send({ok:true, user:{name,email,role,approved,camera,expertise,address,price,_id}})
   } catch (error) {
     res.status(500).send({ msg: error.message, ok:false });
   }

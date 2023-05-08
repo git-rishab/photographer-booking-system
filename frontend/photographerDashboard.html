@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookMyShoot | Dashboard</title>
     <link rel="stylesheet" href="./styles/photographerDashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <nav>
@@ -14,7 +15,7 @@
         <div id="name"></div>
       </div>
       <div>
-        <div id="logout">Sign out</div>
+        <div id="logout" onclick="logout()">Sign out</div>
         <div id="settings">
           <img src="./images/settings.png" alt="settings" />
         </div>
@@ -22,9 +23,9 @@
     </nav>
 
     <div id="events">
-      <div class="box">Queue</div>
-      <div class="box">Accepted</div>
-      <div class="box">Meetings</div>
+      <div class="box" onclick="queue()">Queue</div>
+      <div class="box" onclick="accepted()">Accepted</div>
+      <div class="box" id="meeting" onclick="meeting()">Meetings</div>
     </div>
 
     <div id="cont">
@@ -38,20 +39,11 @@
             <th>End Time</th>
             <th>Acccept</th>
             <th>Reject</th>
-            <th></th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td class="accept"><div>Accept</div></td>
-            <td class="reject"><div>Reject</div></td>
-          </tr>
+          <!-- Append data here -->
         </tbody>
       </table>
     </div>
