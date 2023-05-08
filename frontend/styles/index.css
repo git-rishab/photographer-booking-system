@@ -22,8 +22,8 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.146);
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     position: absolute;
     z-index: 1;
     position: fixed;
@@ -42,6 +42,7 @@ nav.scrolled a {
 }
 
 .nav-contents {
+    margin-left: 20%;
     display: flex;
     gap: 3rem;
 }
@@ -103,7 +104,6 @@ select option {
 }
 
 #date {
-    width: 97%;
     width: 97%;
     font-family: 'Lato', sans-serif;
 }
@@ -339,6 +339,13 @@ ion-icon {
         font-size: 18px;
         font-weight: 550;
     }
+    nav{
+        padding: 0;
+    }
+    .nav-contents{
+        margin-right: 10%;
+        font-size: small;
+    }
 }
 
 /* Media query for small screens */
@@ -359,9 +366,7 @@ ion-icon {
         height: 2px;
         background-color: #ffffff;
     }
-    nav {
-        padding: 0;
-    }
+
     .nav-contents {
         display: none;
     }
@@ -395,33 +400,101 @@ ion-icon {
         width: fit-content;
     }
 
-    .steps_to_book>div{
+    .overlay_booking {
+        display: block;
+        position: static;
+        /* margin-left: 15%; */
+    }
+
+    form>input,
+    select {
+        display: block;
+        width: 250px;
+        height: 40px;
+        border-radius: 3px;
+        border: 1px solid rgb(206, 206, 206);
+        font-size: 14px;
+    }
+
+    #date {
+        width: 230px;
+    }
+
+    .steps_to_book,
+    .index_reviews {
         width: fit-content;
     }
+
+    .steps_to_book>div {
+        width: fit-content;
+    }
+
     .index_reviews>div {
         width: fit-content;
         margin-top: 10px;
     }
+
+    .images>img {
+        width: 90%;
+    }
+
+    .overlay_booking {
+        display: block;
+        position: static;
+        /* margin-left: 15%; */
+    }
+
+    form>input,
+    select {
+        display: block;
+        width: 250px;
+        height: 40px;
+        border-radius: 3px;
+        border: 1px solid rgb(206, 206, 206);
+        font-size: 14px;
+    }
+
+    #date {
+        width: 230px;
+    }
+
+    .steps_to_book,
+    .index_reviews {
+        width: fit-content;
+    }
+
+    .steps_to_book>div {
+        width: fit-content;
+    }
+
+    .index_reviews>div {
+        width: fit-content;
+        margin-top: 10px;
+    }
+
+    .images>img {
+        width: 90%;
+    }
+
     /* Show the navigation contents when hamburger menu is clicked */
     .show-nav {
         display: flex;
+        position: absolute;
+        top: 83%;
+        left: 40%;
         flex-direction: column;
         background-color: #f9f9f9;
         padding: 20px;
-        border: 1px solid red;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
 
     .show-nav a {
-        margin-bottom: 10px;
+        font-size: small;
+        color: #333;
     }
-    footer{
+
+    footer {
         display: flex;
         flex-direction: column;
     }
-    #signup_btm{
-        padding: 0.2rem 0.3rem 0.2rem 0.3rem;
-        bottom: 30px;
-        left: 185px;
-        font-size: small;
-    }
-}
+

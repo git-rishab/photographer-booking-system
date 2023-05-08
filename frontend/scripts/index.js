@@ -17,11 +17,12 @@ signupLink.addEventListener("click", function (e) {
     dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "block" : "none";
 });
 
-var hamburger = document.getElementById("hamburger");
-var navContents = document.getElementById("nav-contents");
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
 
-hamburger.addEventListener("click", function () {
-    navContents.classList.add("show-nav");
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    console.log("clicked")
 });
 
 

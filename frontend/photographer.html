@@ -52,34 +52,43 @@
                 <a href="#works">How it works</a>
             </div>
             <div id="aboutme">
-                <p>I love music, cooking, filmmaking, photography, and my beautiful family! I have been taking photos my whole life but decided to do it professionally in 2010 and I love it more every day. I am very much a people person but ironically my specialty is photographing products, food, and beverages. Just because I specialize in capturing things doesn’t mean I lack in portrait photography, the only thing I don’t shoot is weddings ;) </p>
+                <p>I love music, cooking, filmmaking, photography, and my beautiful family! I have been taking photos my
+                    whole life but decided to do it professionally in 2010 and I love it more every day. I am very much
+                    a people person but ironically my specialty is photographing products, food, and beverages. Just
+                    because I specialize in capturing things doesn’t mean I lack in portrait photography, the only thing
+                    I don’t shoot is weddings ;) </p>
                 <p id="equipment">
-                    <h4>Equipment</h4>
-                    <p><b>Camera -</b> <span id="camera"></span></p>
-                    <p id="lenses"> <b>Lenses -</b> Tamron 28-75 f2.8, Leica 45mm f1.4, LUMIX 12-35 f2.8, Sigma 18-35 f1.8 ART, Olympus M. Zuiko 60mm Macro</p>
+                <h4>Equipment</h4>
+                <p><b>Camera -</b> <span id="camera"></span></p>
+                <p id="lenses"> <b>Lenses -</b> Tamron 28-75 f2.8, Leica 45mm f1.4, LUMIX 12-35 f2.8, Sigma 18-35 f1.8
+                    ART, Olympus M. Zuiko 60mm Macro</p>
                 </p>
                 <p id="good_with">
-                    <h4>Good With</h4>
-                    <p id="expertise"></p>
+                <h4>Good With</h4>
+                <p id="expertise"></p>
                 </p>
             </div>
             <div id="reviews"></div>
             <div id="works">
                 <h3>How it Works</h3>
                 <h5>Book</h5>
-                <p>Quickly find a top-rated photographer near you. Then book the right one for your special moment with a few simple clicks.</p>
+                <p>Quickly find a top-rated photographer near you. Then book the right one for your special moment with
+                    a few simple clicks.</p>
                 <h5>Shoot</h5>
-                <p>Relax and enjoy the moment as an experienced photographer captures it. They’ll take care of all the details.</p>
+                <p>Relax and enjoy the moment as an experienced photographer captures it. They’ll take care of all the
+                    details.</p>
                 <h5>Enjoy!</h5>
-                <p>Within 2 business days of your photoshoot, you'll be able to view, download and share. Enjoy it all again and again.</p>
+                <p>Within 2 business days of your photoshoot, you'll be able to view, download and share. Enjoy it all
+                    again and again.</p>
             </div>
         </div>
         <div class="book">
             <div>
-                <b>Start booking</b>  <br>
+                <b>Start booking</b> <br>
                 <form>
                     <label for="date">Date</label> <br>
-                    <input type="date" id="date"> <br>
+                    <input type="datetime-local" id="datetimeInput">
+                    <button id="time_btn" onclick="getTime()">Get Time</button> <br>
                     <label for="duration">Duration</label><br>
                     <select id="duration">
                         <option value="anytime">Anytime</option>
@@ -105,7 +114,7 @@
             <div id="results">
                 <h5> <span><ion-icon name="happy-outline"></ion-icon></span> Satisfaction Gurantee</h5>
                 <h5><span><ion-icon name="close-circle-outline"></ion-icon></span> Cancel within 24 hours</h5>
-                <h5><span><ion-icon name="lock-open-outline"></ion-icon></span>  Price-lock gurantee</h5>
+                <h5><span><ion-icon name="lock-open-outline"></ion-icon></span> Price-lock gurantee</h5>
             </div>
         </div>
     </div>
