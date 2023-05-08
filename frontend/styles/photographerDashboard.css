@@ -95,6 +95,7 @@ nav img{
     margin: auto;
     z-index: 5;
     height: 500px;
+    overflow: auto;
     padding: 30px 0px ;
     background-color: #fff;
 }
@@ -111,6 +112,17 @@ td, th{
 }
 td{
     padding-top: 30px;
+}
+.start{
+    color: rgb(31, 156, 31);
+    font-weight: 600;
+}
+.end{
+    color: #d10d0d;
+    font-weight: 600;
+}
+tbody > tr:hover{
+    background-color: rgb(250, 247, 247);
 }
 
 .accept > div{
@@ -134,4 +146,41 @@ td{
 .reject > div:hover{
     cursor: pointer;
     background-color: #e77777;
+}
+
+.noClient{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #d10d0d;
+}
+.meet > div{
+    background-color: #5184eb;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+.meet > div:hover{
+    cursor: pointer;
+    background-color: #7ba4f5;
+}
+#settings:hover{
+    cursor: pointer;
+}
+.message{
+    color: #515beb;
+}
+a{
+    text-decoration: none;
+}
+.link div{
+    background-color: #5184eb;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+}
+.link div:hover{
+    background-color: #7ba4f5;
 }

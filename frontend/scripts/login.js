@@ -32,7 +32,11 @@ form.addEventListener("submit", async(e)=>{
                 window.location.href = "./photographer_details.html"
                 localStorage.setItem("token", response.token);
                 localStorage.setItem("id",response.id)
-            } else {
+            } else if(response.role == "admin"){
+                window.location.href = "./admin/admin.html"
+                localStorage.setItem("token", response.token);
+                localStorage.setItem("id",response.id)
+            }else {
                 window.location.href = "./clientDashboard.html";
                 localStorage.setItem("token", response.token);
                 localStorage.setItem("id",response.id)
