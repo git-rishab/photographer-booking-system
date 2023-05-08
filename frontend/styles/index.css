@@ -22,8 +22,8 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.146);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     position: absolute;
     z-index: 1;
     position: fixed;
@@ -103,6 +103,7 @@ select option {
 }
 
 #date {
+    width: 97%;
     width: 97%;
     font-family: 'Lato', sans-serif;
 }
@@ -342,8 +343,7 @@ ion-icon {
 
 /* Media query for small screens */
 @media screen and (min-width: 100px) and (max-width:500px) {
-
-    /* Hamburger menu styles */
+/* Hamburger menu styles */
     .hamburger {
         display: none;
         flex-direction: column;
@@ -359,7 +359,9 @@ ion-icon {
         height: 2px;
         background-color: #ffffff;
     }
-
+    nav {
+        padding: 0;
+    }
     .nav-contents {
         display: none;
     }
@@ -367,7 +369,39 @@ ion-icon {
     .hamburger {
         display: flex;
     }
+    }
 
+    .overlay_booking {
+        display: block;
+        position: static;
+        /* margin-left: 15%; */
+    }
+
+    form>input,
+    select {
+        display: block;
+        width: 250px;
+        height: 40px;
+        border-radius: 3px;
+        border: 1px solid rgb(206, 206, 206);
+        font-size: 14px;
+    }
+
+    #date {
+        width: 230px;
+    }
+
+    .steps_to_book,.index_reviews {
+        width: fit-content;
+    }
+
+    .steps_to_book>div{
+        width: fit-content;
+    }
+    .index_reviews>div {
+        width: fit-content;
+        margin-top: 10px;
+    }
     /* Show the navigation contents when hamburger menu is clicked */
     .show-nav {
         display: flex;
@@ -379,5 +413,15 @@ ion-icon {
 
     .show-nav a {
         margin-bottom: 10px;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+    }
+    #signup_btm{
+        padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+        bottom: 30px;
+        left: 185px;
+        font-size: small;
     }
 }
