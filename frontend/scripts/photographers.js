@@ -1,9 +1,10 @@
 let container = document.getElementById('gallery')
 // Fetch the images data from the server
 const url = "https://bookmyshoot-backend.onrender.com"
+
 async function fetchData() {
     try {
-        const response = await fetch(`http://localhost:3000/user/images`);
+        const response = await fetch('http://localhost:3000/user/images');
         const data = await response.json();
         Display(data.images, data.photographers);
     } catch (error) {
