@@ -9,30 +9,31 @@
 </head>
 
 <body>
-  <h1>Become a BookMyShoot Photographer</h1>
-  <hr />
+  <!-- <hr /> -->
   <div id="main_div">
+    <p id="head">Become a BookMyShoot Photographer</p>
+    <p id="info">Please Enter the Below Information to Complete you signup</p>
     <div id="main_div1">
-      <form method="PATCH" action="/submit_photographer_details" enctype="multipart/form-data" id="details_Form">
+      <form method="PATCH" action="./photographerDashboard.html" enctype="multipart/form-data" id="details_Form">
         <div>
-          <label for="name">📸Camera:</label>
-          <input type="text" name="name" id="camera" />
-        </div>
-        <div>
-          <label for="name">✔Expertise:</label>
-          <input type="text" name="name" id="expertise" />
+          <label for="name">Camera:</label>
+          <input type="text" name="name" id="camera" placeholder="Which Camera Do you use?" required />
         </div>
         <div>
-          <label for="name">📍Address:</label>
-          <input type="text" name="name" id="address" />
+          <label for="name">Expertise:</label>
+          <input type="text" name="name" id="expertise" placeholder="What are your expertise?" required />
         </div>
         <div>
-          <label for="name">💲Price:</label>
-          <input type="text" name="name" id="price" />
+          <label for="name">Address:</label>
+          <input type="text" name="name" id="address" placeholder="Where do you Live?" required />
         </div>
-        <div id="submit_div">
-          <button type="submit" id="submit_details">Submit</button>
+        <div>
+          <label for="name">Price:</label>
+          <input type="text" name="name" id="price" placeholder="What's you per hour rate?" required />
         </div>
+        <button type="submit" id="submit_details">Submit</button>
+        <!-- <div id="submit_div"> -->
+        <!-- </div> -->
       </form>
     </div>
     <div>
@@ -58,10 +59,27 @@
     </div>
     <div id="main_div2">
       <div>
-        <img src="https://i.pinimg.com/originals/30/5e/6d/305e6d104bcec6cf420b108f2152a5d4.gif">
+        <!-- <img src="https://i.pinimg.com/originals/30/5e/6d/305e6d104bcec6cf420b108f2152a5d4.gif"> -->
       </div>
     </div>
   </div>
+
+  <footer>
+    <div>
+        <ul>
+            <li>Blog</li>
+            <li>Support</li>
+            <li>Terms</li>
+            <li>Privacy</li>
+        </ul>
+    </div>
+    <div>
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+        <span> | © 2023 Book My Shoot</span>
+    </div>
+</footer>
 
 </body>
 
