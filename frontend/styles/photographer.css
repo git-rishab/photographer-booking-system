@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+#logo {
+    width: 20%;
+}
+
+.logo_name>a>img {
+    width: 40%;
+    margin-left: 5%;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: 60px;
+    position: fixed;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+/* nav.scrolled {
+    background-color: #dd4545;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+} */
+
+.nav-contents {
+    display: flex;
+    gap: 3rem;
+}
+
+.swiper {
+    width: 1000px;
+    height: 300px;
+    margin-top: 1.5%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
+
+.about {
+    width: 50%;
+}
+
+.book {
+    margin-bottom: 15%;
+    padding: 2rem;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+form>input,
+select {
+    display: block;
+    width: 265px;
+    height: 60px;
+    border-radius: 5px;
+    border: 0.1px solid rgb(220, 220, 220);
+    font-size: 15px;
+    color: gray;
+}
+
+.book input[type="submit"] {
+    color: white;
+    background-color: #dd4545;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+label {
+    color: #dd4545cf;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#results>h5 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#works>p {
+    color: gray;
+}
+
+
+
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(136, 136, 136);
+}
+
+footer ul {
+    display: flex;
+    gap: 2rem;
+}
+
+footer ul li:nth-child(1) {
+    list-style-type: none;
+}
+
+footer div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    /* font-size: large; */
+    justify-content: space-between;
+}
+
+ion-icon {
+    font-size: 24px;
+}
+#photographer_nav{
+    display: flex;
+    gap: 2rem;
+    font-weight: bold;
+}
+#photographer_nav>a:hover{
+    color: #dd4545;
+    text-decoration: underline;
+    transition: text-decoration 0.2s ease;
+}
+#time_btn{
+    color: white;
+    background-color: #dd4545;
+    border: none;
+    padding: 0.5rem;
+    font-size: small;
+    border-radius: 3px;
+}
+/* after fetching the checking the css */
+
+
+.price{
+    font-size: 18px;
+}

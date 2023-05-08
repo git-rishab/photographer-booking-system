@@ -8,16 +8,20 @@ const userSchema = new Schema({
     meetings: { type:Array,required:true, default: [] },
     approved: { type: Boolean, default: false },
     camera: {
-      type: String
+      type: String,
+      default: null
     },
     expertise: {
-      type: String
+      type: String,
+      default: null
     },
     address: {
-      type: String
+      type: String,
+      default: null
     },
-    samplePics: {
-      type: [String]
+    price:{
+      type:Number,
+      default:null
     }
   });
 

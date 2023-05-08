@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookMyShoot | Dashboard</title>
+    <link rel="stylesheet" href="./styles/photographerDashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <nav>
+      <div>
+        <div id="logo"><img src="./images/logo.png" alt="logo" /></div>
+        <div id="name"></div>
+      </div>
+      <div>
+        <div id="logout" onclick="logout()">Sign out</div>
+        <div id="settings">
+          <img src="./images/settings.png" alt="settings" />
+        </div>
+      </div>
+    </nav>
+
+    <div id="events">
+      <div class="box" onclick="allPhotographer()">Bookings</div>
+      <div class="box" onclick="notification()">Notifications</div>
+    </div>
+
+    <div id="cont">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Append data here -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script src="./scripts/clientDashboard.js"></script>
+</html>

@@ -1,0 +1,233 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #dc0000;
+  background-color: #b7b7b7; /* replace with your desired color */
+}
+nav a {
+  text-decoration: none;
+  color: rgb(67, 67, 67);
+}
+
+/* ----------------------------------------------- Navbar ------------------------------------------------ */
+#logo {
+  width: 20%;
+}
+
+.logo_name>a>img {
+  width: 40%;
+  margin-left: -40px;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  /* position: absolute; */
+  z-index: 1;
+  position: fixed;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  margin-top: -8px;
+}
+
+nav.scrolled {
+  background-color: #ffffff;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+nav.scrolled a{
+  color: black;
+}
+
+.nav-contents {
+  display: flex;
+  gap: 3rem;
+}
+/* --------------------------------------------- Image   ----------------------------------------------- */
+
+#img_div{
+  margin-top: 150px;
+  width:90%;
+  margin:auto;
+}
+#img_div>img{
+  width:100%;
+  margin-top: 100px;
+}
+/* --------------------------------------------- Sorting ----------------------------------------------- */
+
+#sorting_div{
+  width: 80%;
+  margin:auto;
+  display:flex;
+  margin-top: 50px;
+}
+#sorting_div>div{
+  width: 20%;
+}
+#sorting_div>div select{
+  width:200px;
+  margin-top:10px;
+  background-color: #fdd2d2;
+  border-radius: 5px;
+}
+#sort{
+  margin-left: 6%;
+}
+
+#sort_line{
+  background-color:#767676 ;
+  height: 2px;
+  border: none;
+  max-width: 90%;
+  margin:auto;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+#count_div{
+  width: 250px;
+  margin-top: 10px;
+  height:60px;
+  margin-left: 125px;
+}
+/* -------------------------------------------- Gallery ------------------------------------------------ */
+#gallery{
+  border: 1px solid black;
+    width: 80%;
+    margin:auto;
+    display:grid;
+    height:fit-content;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows:  auto;
+    gap: 5%;
+    /* margin-bottom: 50px; */
+  }
+  #gallery>div{
+    border: 1px solid red;  
+  }
+  .images_div{
+  border: 1px solid red;  
+  display: flex;
+  width: 440px;
+  height: 200px;
+  border-radius: 20px;
+}
+#name{
+  font-size: 17px;
+  color: rgb(49, 49, 49);
+}
+#price{
+  margin-left:5px;
+}
+.images_div img{
+  min-width: 0;
+  flex: 1 1 10px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.images_div img:hover{
+  flex: 1 1 280px;
+}
+.details_div{
+    width:440px;
+    height:90px;
+    display:flex;
+    justify-content:space-between;
+    background-color: #fdd2d2;
+    color: rgb(67, 67, 67);
+}
+.details_div>div{
+   /* border: 1px solid red; */
+    /* margin-top: -15px; */
+    width: 35%;
+    padding: 10px;
+}
+.details_div>div:nth-child(1){
+  padding-left: 20px;
+}
+.photographer_div:nth-child(1),.photographer_div:nth-child(2){
+  margin-top:40px;
+}
+/* .photographer_div:last-child,.photographer_div:nth-last-child(2){
+  margin-bottom: 120px;
+} */
+.photographer_div{
+  margin-top: 40px;
+  /* border: 1px solid red; */
+  width:440px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+#view_profile{
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-image: linear-gradient(to right,#f95798,#f4344e);
+  cursor: pointer;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  height: 32px;
+  line-height: 36px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 20px;
+  width:100px;
+  margin-top: -20px;
+}
+
+
+#view_profile:hover {
+    background-image: linear-gradient(to right,#3ec7e0,#526bf4);
+}
+
+
+/* ----------------------------------------- Footer ---------------------------------------------------- */
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(136, 136, 136);
+  margin-top: 250px;
+}
+
+footer ul {
+  display: flex;
+  gap: 2rem;
+}
+
+footer ul li:nth-child(1) {
+  list-style-type: none;
+}
+
+footer div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  /* font-size: large; */
+  justify-content: space-between;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+
+/* ------------------------------------------- Media Queries ------------------------------------------ */
+
+
+@media screen and (max-width: 768px) {
+  #gallery {
+    grid-template-columns: 1fr;
+  }
+}
