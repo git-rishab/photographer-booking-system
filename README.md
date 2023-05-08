@@ -38,11 +38,21 @@ You will land on the home page. From the navigation bar, click on "Signup" to be
 If you are a professional or aspiring photographer, you have the opportunity to apply for the photographer role on our website. By applying for this role, you gain access to a range of benefits, including the ability to receive appointment requests from various users on our platform. This means that users interested in photography services can directly reach out to you to book appointments and hire you for their photography needs. It's a great opportunity to showcase your skills, expand your client base, and connect with individuals seeking photography services through our platform.
 
 ### Tech Stack
+
+#### Front-End
 -  HTML <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/html-5.svg" alt="HTML Icon" width="32" height="22">
 -  CSS  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/css-3.svg" alt="HTML Icon" width="32" height="22">
 -  Javascript  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/javascript.svg" alt="HTML Icon" width="32" height="22">
+
+#### Back-End
 -  Node JS  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/nodejs.svg" alt="HTML Icon" width="32" height="22">
 -  Express  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/express.svg" alt="HTML Icon" width="32" height="22">
--  Mongo DB  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/mongodb-icon.svg" alt="HTML Icon" width="32" height="22">
--  JWT
 -  Redis
+-  Passport
+-  PeerJS
+-  Socket.io
+
+#### DataBase
+-  Mongo DB  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/mongodb-icon.svg" alt="HTML Icon" width="32" height="22">
+-  Redis
+
