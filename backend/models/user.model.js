@@ -22,6 +22,10 @@ const userSchema = new Schema({
     price:{
       type:Number,
       default:null
+    },
+    isBlocked:{
+      type:Boolean,
+      default:false
     }
   });
 

@@ -21,10 +21,6 @@ const checkRole = (role) => {
     next();
   }
 }
-
-
-
-
 //Route for uploading the images
 userRoute.post('/upload', upload.single('image'), authMiddleWare, async (req, res) => {
   const image = new Image({
@@ -239,14 +235,11 @@ userRoute.put('/applications/:email', authMiddleWare, checkRole("admin"), async 
     res.status(500).send({ error: 'Server Error' });
   }
 });
-
-// userRoute.use(session({
-//   secret: 'dancingCar',
-//   resave: false,
-//   saveUninitialized: false
-// }));
-
-
+userRoute.use(session({
+  secret: 'dancingCar',
+  resave: false,
+  saveUninitialized: false
+}));
 userRoute.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -268,8 +261,18 @@ userRoute.get("/:id", async (req, res) => {
     res.status(500).send({ msg: error.message, ok: false });
   }
 })
-
-
+userRoute.post('/block/:userId', authMiddleWare,checkRole("admin"), async (req, res) => {
+  try {
+    // Find the user by ID and update their `blocked` field to `true`
+    const user = await UserModel.findByIdAndUpdate(req.params.userId, { blocked: true });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    return res.json({ok:true, message: 'User blocked Successfully.' });
+  } catch (error) {
+    return res.status(500).json({ message: error.message});
+  }
+});
 module.exports = {
   userRoute, checkRole
 }
