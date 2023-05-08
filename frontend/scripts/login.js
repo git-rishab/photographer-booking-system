@@ -1,4 +1,4 @@
-const URL = "https://bookmyshoot-backend.onrender.com"
+const URL = "http://localhost:3000"
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async(e)=>{
@@ -22,10 +22,27 @@ form.addEventListener("submit", async(e)=>{
             '',
             'success'
         )
+
         setTimeout(()=>{
-            window.location.href = "./login.html";
+            if(response.role == "photographer" && response.approved){
+                window.location.href = "./photographerDashboard.html"
+                localStorage.setItem("token", response.token);
+                localStorage.setItem("id",response.id)
+            } else if(response.role == "photographer"){
+                window.location.href = "./photographer_details.html"
+                localStorage.setItem("token", response.token);
+                localStorage.setItem("id",response.id)
+            } else if(response.role == "admin"){
+                window.location.href = "./admin/admin.html"
+                localStorage.setItem("token", response.token);
+                localStorage.setItem("id",response.id)
+            }else {
+                window.location.href = "./clientDashboard.html";
+                localStorage.setItem("token", response.token);
+                localStorage.setItem("id",response.id)
+            }
         },2500)
-        localStorage.setItem("token", response.token);
+
     } else {
         Swal.fire({
             icon: "error",

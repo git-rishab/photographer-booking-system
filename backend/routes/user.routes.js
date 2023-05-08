@@ -1,6 +1,6 @@
 const express = require("express");
 const { UserModel } = require("../models/user.model");
-const {Image}= require("../models/image.model") 
+const { Image } = require("../models/image.model")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const tokenList={};
@@ -55,23 +55,28 @@ userRoute.post("/login", async (req, res) => {
     const { email, pass } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: "User with this email not found" })
+      return res.status(401).json({ msg: "User with this email not found", ok:false })
     }
     const isPasswordSame = await bcrypt.compare(pass, user.pass)
     if (!isPasswordSame) {
-      return res.status(401).json({ message: "Invalid email or password" })
+      return res.status(401).json({ msg: "Invalid email or password", ok:false })
     }
     const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
     const refreshToken = jwt.sign({ userId: user._id }, process.env.refresh_secret, { expiresIn: "3hr" })
     const response = {
       "ok": true,
       "token": token,
-      "refreshToken": refreshToken
+      "refreshToken": refreshToken,
+      "msg":"Login Successfull",
+      "role":user.role,
+      "approved":user.approved,
+      "id":user._id,
+      "userName":user.name
     }
     tokenList[refreshToken] = response
     res.status(200).json(response)
   } catch (error) {
-    res.status(400).json({"ok":false,"msg":error.message});
+    res.status(400).json({ "ok": false, "msg": error.message });
   }
 })
 userRoute.post('/apply', authMiddleWare, async (req, res) => {
@@ -79,7 +84,7 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
   try {
     let user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({ msg: 'User not found', ok:false });
     }
     user.name = name;
     user.email = email;
@@ -90,10 +95,10 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
     user.approved = false;
     user.role = 'photographer';
     await user.save();
-    res.json({ message: 'Application submitted successfully' });
+    res.json({ msg: 'Application submitted successfully',ok:true});
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ msg: 'Internal server error',ok:false });
   }
 });
 
@@ -123,13 +128,7 @@ userRoute.put('/applications/:email',authMiddleWare,checkRole("admin"),async (re
     res.status(500).send({ error: 'Server Error' });
   }
 });
-userRoute.get("/logout",async(req,res)=>{
-  try {
-    
-  } catch (error) {
-    
-  }
-})
+
 userRoute.use(session({
   secret: 'dancingCar',
   resave: false,
@@ -145,41 +144,83 @@ userRoute.post('/logout', (req, res) => {
   });
 });
 
-=======
+// Info of a particular user
+userRoute.get("/:id",  async(req,res)=>{
+  try {
+    const user = await UserModel.findById({_id:req.params.id});
+    const {name,email,role,approved,camera,expertise,address,price,_id} = user;
+    res.send({ok:true, user:{name,email,role,approved,camera,expertise,address,price,_id}})
+  } catch (error) {
+    res.status(500).send({ msg: error.message, ok:false });
+  }
+})
+
+
 
 //Route for updating the details
-userRoute.patch('/submit_photographer_details',authMiddleWare,async(req,res)=>{
-  console.log("hi");
-  console.log(req.user._id)
-  const payload=req.body
-  console.log(req.body)
-  try{
-    await UserModel.findByIdAndUpdate({"_id":req.user._id},payload)
-    res.send({message:"success"});
-  }catch(err){
+userRoute.patch('/submit_photographer_details', authMiddleWare, async (req, res) => {
+  const payload = req.body
+  try {
+    await UserModel.findByIdAndUpdate({ "_id": req.user._id }, payload)
+    res.send({ message: "success" });
+  } catch (err) {
     console.log(err);
   }
 })
 
 //Route for uploading the images
-userRoute.post('/upload', upload.single('image'),authMiddleWare,async (req, res) => {
+userRoute.post('/upload', upload.single('image'), authMiddleWare, async (req, res) => {
   const image = new Image({
     name: req.file.originalname,
     image: {
       data: req.file.buffer,
       contentType: req.file.mimetype,
-      userID:req.user._id // adding userid in the image
+      userID: req.user._id // adding userid in the image
     },
   });
 
   await image.save();
-  res.send({message:"image uploaded"});
+  res.send({ message: "image uploaded" });
 });
 
 //Route for getting the images by userID
 
 userRoute.get('/images', async (req, res) => {
-  const photographers= await UserModel.find({approved:true})
+  const photographers = await UserModel.find({ approved: true })
+  const images = await Image.aggregate([
+    {
+      $group: {
+        _id: '$image.userID',
+        images: {
+          $push: {
+            _id: '$image.data',
+            content_type: '$image.contentType'
+          },
+        },
+      },
+    },
+  ]);
+
+  res.send({ images, photographers });
+});
+
+// Route for getting the Photographers sorted by price and filtered by location
+
+userRoute.get('/SortByPrice', async (req, res) => {
+  let query={}
+  let sortby={price:0}
+  query.approved=true;
+  if(req.query.location){
+    query.address=req.query.location
+  }
+  if (req.query.Sortby) {
+    if(req.query.Sortby=="asc"){
+      sortby["price"] = 1;
+    }else{
+      sortby["price"] = -1;
+    }
+  }
+  const photographers= await UserModel.find(query).sort(sortby)
   const images = await Image.aggregate([
       {
         $group: {
@@ -193,9 +234,10 @@ userRoute.get('/images', async (req, res) => {
         },
       },
     ]);
-    
+
     res.send({images,photographers});
 });
+
 module.exports = {
   userRoute,checkRole
 }

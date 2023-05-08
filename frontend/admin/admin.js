@@ -48,11 +48,11 @@ logout.addEventListener("click", async(e)=>{
 // --------------------------------------------------old code----------------
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
-allSideMenu.forEach(item=> {
+allSideMenu.forEach(item => {
 	const li = item.parentElement;
 
 	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
+		allSideMenu.forEach(i => {
 			i.parentElement.classList.remove('active');
 		})
 		li.classList.add('active');
@@ -77,10 +77,10 @@ const searchButtonIcon = document.querySelector('#content nav form .form-input b
 const searchForm = document.querySelector('#content nav form');
 
 searchButton.addEventListener('click', function (e) {
-	if(window.innerWidth < 576) {
+	if (window.innerWidth < 576) {
 		e.preventDefault();
 		searchForm.classList.toggle('show');
-		if(searchForm.classList.contains('show')) {
+		if (searchForm.classList.contains('show')) {
 			searchButtonIcon.classList.replace('bx-search', 'bx-x');
 		} else {
 			searchButtonIcon.classList.replace('bx-x', 'bx-search');
@@ -89,16 +89,16 @@ searchButton.addEventListener('click', function (e) {
 })
 
 
-if(window.innerWidth < 768) {
+if (window.innerWidth < 768) {
 	sidebar.classList.add('hide');
-} else if(window.innerWidth > 576) {
+} else if (window.innerWidth > 576) {
 	searchButtonIcon.classList.replace('bx-x', 'bx-search');
 	searchForm.classList.remove('show');
 }
 
 
 window.addEventListener('resize', function () {
-	if(this.innerWidth > 576) {
+	if (this.innerWidth > 576) {
 		searchButtonIcon.classList.replace('bx-x', 'bx-search');
 		searchForm.classList.remove('show');
 	}
@@ -109,7 +109,7 @@ window.addEventListener('resize', function () {
 const switchMode = document.getElementById('switch-mode');
 
 switchMode.addEventListener('change', function () {
-	if(this.checked) {
+	if (this.checked) {
 		document.body.classList.add('dark');
 	} else {
 		document.body.classList.remove('dark');
@@ -186,21 +186,21 @@ async function dashboardFetch(){
 }
 
 let ds = document.querySelectorAll(".sdbtn")
-ds.forEach((ele)=>{	
-	ele.addEventListener("click",(e)=>{
-		if(e.target.innerText === "All Registrations"){
+ds.forEach((ele) => {
+	ele.addEventListener("click", (e) => {
+		if (e.target.innerText === "All Registrations") {
 			fetchAllRegistration();
 		}
-		else if(e.target.innerText === "New Requests"){
+		else if (e.target.innerText === "New Requests") {
 			fetchNewRequest();
 		}
-		else if(e.target.innerText === "Clients"){
+		else if (e.target.innerText === "Clients") {
 			fetchAllClients();
 		}
-		else if(e.target.innerText === "Photographers"){
+		else if (e.target.innerText === "Photographers") {
 			fetchAllPhotographers();
 		}
-		else if(e.target.innerText === "Booking Orders"){
+		else if (e.target.innerText === "Booking Orders") {
 			fetchAllBooking();
 		}
 		else if(e.target.innerText === "Dashboard"){
@@ -211,6 +211,7 @@ ds.forEach((ele)=>{
 
 
 // fetch all registrations / users
+
 async function fetchAllRegistration(){
 	if(!localStorage.getItem("token")){
 		alert("Login fisrt to access All Registration details!");
@@ -230,11 +231,9 @@ async function fetchAllRegistration(){
 				})
 				.catch((err)=>console.log(err));
 	}
-	
-	
 }
 // show all registrations / users
-function showAllRegistration(data){
+function showAllRegistration(data) {
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "none";
 	allRegistrationDiv.style.display = "block";
@@ -261,13 +260,13 @@ function showAllRegistration(data){
 	th3.textContent = "Role";
 	let th4 = document.createElement("th");
 	th4.textContent = "Action";
-	theadtr.append(th1,th2,th3,th4);
+	theadtr.append(th1, th2, th3, th4);
 	thead.append(theadtr);
-	
+
 
 	//creating tbody for table
 	let tbody = document.createElement("tbody");
-	data.forEach((ele)=>{
+	data.forEach((ele) => {
 		// creating table row for tbody
 		let btr = document.createElement("tr");
 
@@ -275,8 +274,9 @@ function showAllRegistration(data){
 		let td1 = document.createElement("td");
 		td1.textContent = ele.name;
 		let td2 = document.createElement("td");
-		td2.textContent = ele.email ;
+		td2.textContent = ele.email;
 		let td3 = document.createElement("td");
+
 		// let span = document.createElement("span");
 		td3.textContent = ele.role ;
 		if(ele.role === "client"){
@@ -287,11 +287,12 @@ function showAllRegistration(data){
 		}
 		else if(ele.role === "admin"){
 			btr.setAttribute("class","status admin");
+
 		}
 		// td3.append(span);
 		let td4 = document.createElement("td");
 		let removebtn = document.createElement("button")
-		removebtn.textContent = "Remove" ;
+		removebtn.textContent = "Remove";
 		removebtn.style.backgroundColor = "red";
 		removebtn.style.color = "white";
 		removebtn.style.fontSize = "16px"
@@ -300,11 +301,11 @@ function showAllRegistration(data){
 		removebtn.style.border = "none";
 		td4.append(removebtn);
 
-		btr.append(td1,td2,td3,td4);
+		btr.append(td1, td2, td3, td4);
 
 		tbody.append(btr);
 	})
-	table.append(thead,tbody);
+	table.append(thead, tbody);
 
 	tableParent.append(table);
 }
@@ -339,11 +340,11 @@ async function fetchAllClients(){
 					})
 					.catch((err)=>console.log(err));
 		}
+
 	}
-	
 }
 //show al clients
-function showClients(data){
+function showClients(data) {
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "none";
 	allRegistrationDiv.style.display = "block";
@@ -370,26 +371,26 @@ function showClients(data){
 	th3.textContent = "Role";
 	let th4 = document.createElement("th");
 	th4.textContent = "Action";
-	theadtr.append(th1,th2,th3,th4);
+	theadtr.append(th1, th2, th3, th4);
 	thead.append(theadtr);
-	
+
 
 	//creating tbody for table
 	let tbody = document.createElement("tbody");
-	data.forEach((ele)=>{
+	data.forEach((ele) => {
 		// creating table row for tbody
 		let btr = document.createElement("tr");
-		btr.setAttribute("class","client");
+		btr.setAttribute("class", "client");
 		// creating table cell td for data
 		let td1 = document.createElement("td");
 		td1.textContent = ele.name;
 		let td2 = document.createElement("td");
-		td2.textContent = ele.email ;
+		td2.textContent = ele.email;
 		let td3 = document.createElement("td");
-		td3.textContent = ele.role ;
+		td3.textContent = ele.role;
 		let td4 = document.createElement("td");
 		let removebtn = document.createElement("button")
-		removebtn.textContent = "Remove" ;
+		removebtn.textContent = "Remove";
 		removebtn.style.backgroundColor = "red";
 		removebtn.style.color = "white";
 		removebtn.style.fontSize = "16px"
@@ -398,11 +399,11 @@ function showClients(data){
 		removebtn.style.border = "none";
 		td4.append(removebtn);
 
-		btr.append(td1,td2,td3,td4);
+		btr.append(td1, td2, td3, td4);
 
 		tbody.append(btr);
 	})
-	table.append(thead,tbody);
+	table.append(thead, tbody);
 
 	tableParent.append(table);
 }
@@ -439,11 +440,12 @@ async function fetchAllPhotographers(){
 					})
 					.catch((err)=>console.log(err));
 		}
+
 	}
 	
 }
 //show all photographers
-function showPhotographers(data){
+function showPhotographers(data) {
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "none";
 	allRegistrationDiv.style.display = "block";
@@ -473,36 +475,38 @@ function showPhotographers(data){
 	let th5 = document.createElement("th");
 	th5.textContent = "Expertise";
 	let th6 = document.createElement("th");
+
 	th6.textContent = "Price per Hour";
 	let th7 = document.createElement("th");
 	th7.textContent = "Action";
 	theadtr.append(th1,th2,th3,th4,th5,th6,th7);
+
 	thead.append(theadtr);
-	
+
 
 	//creating tbody for table
 	let tbody = document.createElement("tbody");
-	data.forEach((ele)=>{
+	data.forEach((ele) => {
 		// creating table row for tbody
 		let btr = document.createElement("tr");
-		btr.setAttribute("class","photographer");
+		btr.setAttribute("class", "photographer");
 
 		// creating table cell td for data
 		let td1 = document.createElement("td");
 		td1.textContent = ele.name;
 		let td2 = document.createElement("td");
-		td2.textContent = ele.email ;
+		td2.textContent = ele.email;
 		let td3 = document.createElement("td");
-		td3.textContent = ele.address ;
+		td3.textContent = ele.address;
 		let td4 = document.createElement("td");
 		td4.textContent = ele.camera;
 		let td5 = document.createElement("td");
-		td5.textContent = ele.expertise ;
+		td5.textContent = ele.expertise;
 		let td6 = document.createElement("td");
 		td6.textContent ="₹ "+ ele.price ;
 		let td7 = document.createElement("td");
 		let removebtn = document.createElement("button")
-		removebtn.textContent = "Remove" ;
+		removebtn.textContent = "Remove";
 		removebtn.style.backgroundColor = "red";
 		removebtn.style.color = "white";
 		removebtn.style.fontSize = "16px"
@@ -515,7 +519,7 @@ function showPhotographers(data){
 
 		tbody.append(btr);
 	})
-	table.append(thead,tbody);
+	table.append(thead, tbody);
 
 	tableParent.append(table);
 	// console.log(data)
@@ -548,7 +552,7 @@ async function fetchNewRequest(){
 	 
 }
 //show pending / new request
-function showNewRequest(data){
+function showNewRequest(data) {
 	allRegistrationDiv.style.display = "none";
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "block";
@@ -579,13 +583,13 @@ function showNewRequest(data){
 	th5.textContent = "Expertise";
 	let th6 = document.createElement("th");
 	th6.textContent = "Action";
-	theadtr.append(th1,th2,th3,th4,th5,th6);
+	theadtr.append(th1, th2, th3, th4, th5, th6);
 	thead.append(theadtr);
-	
+
 
 	//creating tbody for table
 	let tbody = document.createElement("tbody");
-	data.forEach((ele)=>{
+	data.forEach((ele) => {
 		// creating table row for tbody
 		let btr = document.createElement("tr");
 
@@ -593,13 +597,13 @@ function showNewRequest(data){
 		let td1 = document.createElement("td");
 		td1.textContent = ele.name;
 		let td2 = document.createElement("td");
-		td2.textContent = ele.email ;
+		td2.textContent = ele.email;
 		let td3 = document.createElement("td");
-		td3.textContent = ele.address ;
+		td3.textContent = ele.address;
 		let td4 = document.createElement("td");
-		td4.textContent = ele.camera ;
+		td4.textContent = ele.camera;
 		let td5 = document.createElement("td");
-		td5.textContent = ele.expertise ;
+		td5.textContent = ele.expertise;
 		let td6 = document.createElement("td");
 		let yesbtn = document.createElement("button");
 		yesbtn.textContent = "Approve";
@@ -608,7 +612,7 @@ function showNewRequest(data){
 		yesbtn.style.width = "50%";
 		yesbtn.style.padding = "5px";
 		yesbtn.style.color = "white";
-		yesbtn.addEventListener("click",()=>{
+		yesbtn.addEventListener("click", () => {
 			approveRequest(ele);
 		})
 		let nobtn = document.createElement("button");
@@ -618,20 +622,20 @@ function showNewRequest(data){
 		nobtn.style.width = "50%";
 		nobtn.style.padding = "5px";
 		nobtn.style.color = "white";
-		nobtn.addEventListener("click",()=>{
+		nobtn.addEventListener("click", () => {
 			rejectRequest(ele);
 		})
 
-		td6.append(yesbtn,nobtn);
+		td6.append(yesbtn, nobtn);
 
-		btr.append(td1,td2,td3,td4,td5,td6);
+		btr.append(td1, td2, td3, td4, td5, td6);
 
 		tbody.append(btr);
 	})
-	table.append(thead,tbody);
+	table.append(thead, tbody);
 
 	tableParent.append(table);
-	
+
 }
 
 
@@ -658,6 +662,7 @@ async function fetchAllBooking(){
 //show all bookings
 function showBooking(data){
 	// console.log(data);
+
 	allRegistrationDiv.style.display = "none";
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "none";
@@ -688,52 +693,54 @@ function showBooking(data){
 	th5.textContent = "End Time";
 	let th6 = document.createElement("th");
 	th6.textContent = "Status";
-	theadtr.append(th1,th2,th3,th4,th5,th6);
+	theadtr.append(th1, th2, th3, th4, th5, th6);
 	thead.append(theadtr);
 
 	// creating tbody to append booking data
 	let tbody = document.createElement("tbody");
-	data.forEach((ele)=>{
+	data.forEach((ele) => {
 		// creating table row for tbody
 		let btr = document.createElement("tr");
-		btr.setAttribute("class","trbooking")
+		btr.setAttribute("class", "trbooking")
 
 		// creating table cell td for data
 		let td1 = document.createElement("td");
 		td1.textContent = ele.client.name;
 		// td1.setAttribute("class","tdbooking");
 		let td2 = document.createElement("td");
+
 		td2.textContent = ele.photographer.name ;
+
 		// td2.setAttribute("class","tdbooking");
 		let td3 = document.createElement("td");
-		td3.textContent = ele.createdAt ;
+		td3.textContent = ele.createdAt;
 		// td3.setAttribute("class","tdbooking");
 		let td4 = document.createElement("td");
-		td4.textContent = ele.start_time ;
+		td4.textContent = ele.start_time;
 		// td4.setAttribute("class","tdbooking");
 		let td5 = document.createElement("td");
-		td5.textContent = ele.end_time ;
+		td5.textContent = ele.end_time;
 		// td5.setAttribute("class","tdbooking");
 		let td6 = document.createElement("td");
-		td6.textContent = ele.status ;
+		td6.textContent = ele.status;
 		// td6.setAttribute("class","tdbooking");
 
-		if(ele.status === "accepted"){
-			btr.setAttribute("class","accepted");
+		if (ele.status === "accepted") {
+			btr.setAttribute("class", "accepted");
 		}
-		else if(ele.status === "pending"){
-			btr.setAttribute("class","pending");
+		else if (ele.status === "pending") {
+			btr.setAttribute("class", "pending");
 		}
-		else if(ele.status === "rejected"){
-			btr.setAttribute("class","rejected");
+		else if (ele.status === "rejected") {
+			btr.setAttribute("class", "rejected");
 		}
 
-		btr.append(td1,td2,td3,td4,td5,td6);
+		btr.append(td1, td2, td3, td4, td5, td6);
 
 		tbody.append(btr);
 	})
 
-	table.append(thead,tbody);
+	table.append(thead, tbody);
 
 	tableParent.append(table);
 }
@@ -742,7 +749,7 @@ function showBooking(data){
 
 
 // ----------approving photographer request
-async function approveRequest(user){
+async function approveRequest(user) {
 	user.approved = true;
 	await fetch(`${URL}/user/applications/${user.email}`, {    
 		method: "PUT",
@@ -758,11 +765,13 @@ async function approveRequest(user){
 	.finally(()=>{
 		fetchNewRequest();
 	})
+		
 }
 
 // ----------rejecting photographer request
-async function rejectRequest(user){
+async function rejectRequest(user) {
 	user.approved = false;
+
 	await fetch(`${URL}/user/applications/${user.email}`, {    
 		method: "PUT",
 		body: JSON.stringify(user),
@@ -776,5 +785,5 @@ async function rejectRequest(user){
 	.catch((err)=>console.log(err))
 	.finally(()=>{
 		fetchNewRequest();
-	})
+
 }

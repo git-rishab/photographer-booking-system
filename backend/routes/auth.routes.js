@@ -31,7 +31,7 @@ authRoute.get(
             userID: user._id
         }, 'token', { expiresIn: '24hr' });
 
-        res.redirect(`https://github.com?id=${user._id}&token=${token}`); // chnge the link to frontend
+        res.redirect(`https://github.com?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`); // chnge the link to frontend
     }
 );
 
@@ -84,7 +84,7 @@ authRoute.get(
             userID: user._id
         }, 'token', { expiresIn: '24hr' });
 
-        res.redirect(`https://facebook.com?id=${user._id}&token=${token}`);
+        res.redirect(`https://facebook.com?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`);
     }
 );
 

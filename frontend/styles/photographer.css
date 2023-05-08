@@ -49,6 +49,8 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 70%;
+    margin: auto;
 }
 
 .about {
@@ -56,6 +58,7 @@ nav {
 }
 
 .book {
+    margin-bottom: 15%;
     padding: 2rem;
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
@@ -123,4 +126,28 @@ footer div:nth-child(2) {
 
 ion-icon {
     font-size: 24px;
+}
+#photographer_nav{
+    display: flex;
+    gap: 2rem;
+    font-weight: bold;
+}
+#photographer_nav>a:hover{
+    color: #dd4545;
+    text-decoration: underline;
+    transition: text-decoration 0.2s ease;
+}
+#time_btn{
+    color: white;
+    background-color: #dd4545;
+    border: none;
+    padding: 0.5rem;
+    font-size: small;
+    border-radius: 3px;
+}
+/* after fetching the checking the css */
+
+
+.price{
+    font-size: 18px;
 }
