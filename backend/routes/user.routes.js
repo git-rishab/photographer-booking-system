@@ -70,7 +70,8 @@ userRoute.post("/login", async (req, res) => {
       "msg":"Login Successfull",
       "role":user.role,
       "approved":user.approved,
-      "id":user._id
+      "id":user._id,
+      "userName":user.name
     }
     tokenList[refreshToken] = response
     res.status(200).json(response)
