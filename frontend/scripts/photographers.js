@@ -1,4 +1,4 @@
-let container = document.getElementById('gallery')
+let container = document.getElementById('search-results')
 // Fetch the images data from the server
 const url = "https://bookmyshoot-backend.onrender.com"
 
@@ -80,7 +80,7 @@ let location_sort = document.getElementById("location")
 let locationValue;
 
 
-price_sort.addEventListener("change", async () => {
+price_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     locationValue = location_sort.value;
     await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
@@ -93,7 +93,7 @@ price_sort.addEventListener("change", async () => {
         .catch(err => console.log(err));
 })
 
-location_sort.addEventListener("change", async () => {
+location_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     sort.value
     locationValue = location_sort.value;
@@ -116,7 +116,7 @@ location_sort.addEventListener("change", async () => {
 
 
 // for redirecting
-container.addEventListener("click", (event) => {
+container?.addEventListener("click", (event) => {
     if (event.target.id === "view_profile") {
         const photographerId = event.target.closest(".photographer_div").id;
         localStorage.setItem("photographerId", photographerId);
@@ -127,6 +127,6 @@ container.addEventListener("click", (event) => {
 
 
 function fetchProfilePage(photographerId) {
-    const profilePageUrl ="photographer.html"
+    const profilePageUrl = "photographer.html"
     window.open(profilePageUrl, "_blank");
 }
