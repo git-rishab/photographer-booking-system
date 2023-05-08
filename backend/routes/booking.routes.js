@@ -5,7 +5,6 @@ const { BookingModel } = require("../models/booking.model")
 const {NotificationModel} = require("../models/notification.model")
 const {authMiddleWare} = require("../middlewares/jwt.middleware")
 const {checkRole} = require("../routes/user.routes")
-const moment = require("moment");
 BookingRouter.get("/", async (req, res) => {
   try {
     let data = await BookingModel.find();
@@ -15,42 +14,48 @@ BookingRouter.get("/", async (req, res) => {
     res.send({ error: error.message });
   }
 });
-BookingRouter.post('/book',authMiddleWare,checkRole("client"),async (req, res) => {
+BookingRouter.post('/book', authMiddleWare, async (req, res) => {
+  const { photographerId, startTime, endTime } = req.body;
+  // Check if photographerId and userId are different
+  if (photographerId === req.user.id) {
+    return res.status(400).json({ message: 'You cannot book yourself.' });
+  }
+
+  // Check if booking is at least 4 hours
+  const diffTime = Math.abs(new Date(endTime) - new Date(startTime));
+  const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+  if (diffHours < 4) {
+    return res
+      .status(400)
+      .json({ message: 'Booking should be at least 4 hours.' });
+  }
+
   try {
-    const { photographerEmail, start, end } = req.body;
-    const client = await  UserModel.findById(req.user.id)
-    const photographer = await UserModel.findOne({ email: photographerEmail,role:'photographer',approved:true });
-    if (!photographer) {
-      return res.status(400).json({ msg: 'Photographer not found' });
-    }
-    const bookingStartTime = moment(start);
-    const bookingEndTime = moment(end);
-    if (!bookingStartTime.isValid() || !bookingEndTime.isValid()) {
-      return res.status(400).json({msg: 'Invalid booking time format' });
-    }
-    // const bookingDuration = moment.duration(bookingEndTime.diff(bookingStartTime)).asHours();
-    // if (bookingDuration < 4) {
-    //   return res.status(400).json({ msg: 'Minimum booking duration is 4 hours' });
-    // }
+    // Check if there is already a booking for the photographer during the requested time
     const existingBooking = await BookingModel.findOne({
-      photographer: photographer._id,
-      start: { $lt: bookingEndTime },
-      end: { $gt: bookingStartTime }
+      photographer: photographerId,
+      start_time: { $lt: endTime },
+      end_time: { $gt: startTime },
     });
     if (existingBooking) {
-      return res.status(400).json({ msg: 'Photographer is already booked for this time slot' });
+      return res
+        .status(400)
+        .json({ message: 'This photographer is not available during this time.' });
     }
-    const newBooking = new BookingModel({
-      client,
-      photographer: photographer._id,
-      start_time: bookingStartTime.toDate(),
-      end_time: bookingEndTime.toDate(),
+
+    // Create new booking
+    const booking = new BookingModel({
+      photographer: photographerId,
+      client: req.user.id,
+      start_time: startTime,
+      end_time: endTime,
     });
-    await newBooking.save();
-    res.json({ msg: 'Booking request sent successfully' });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+
+    await booking.save();
+
+    return res.json({ message: 'Booking created successfully.' });
+  } catch (error) {
+    res.status(500).json({ message:error.message});
   }
 });
 // Retrieve all booking requests for a specific photographer
