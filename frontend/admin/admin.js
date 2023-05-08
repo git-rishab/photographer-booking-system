@@ -1,3 +1,6 @@
+const URL = "https://bookmyshoot-backend.onrender.com";
+
+// `${localStorage.getItem("token")}`;
 
 //  ALL DIVs
 // dashborad div
@@ -15,31 +18,34 @@ newRequestDiv.style.display = "none";
 let bookingDiv = document.querySelector("#all-booking-div");
 bookingDiv.style.display = "none";
 
+let allUserData = [];  //to store all user data (all registered users)
+
 // admin logout
 let logout = document.querySelector("#admin-logout");
-logout.addEventListener("click", async (e) => {
-
-	await fetch(`http://localhost:3000/user/logout`, {
-		method: "POST",
-		headers: {
-			"Content-type": "application/json;charset=UTF-8",
-			"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NzM4MDIsImV4cCI6MTY4MzQ3NzQwMn0.xGdiD_XZNmKc_mtGqo--Ljxy_jCme0SwqmDgUehX0xE"
-		},
-		body: JSON.stringify({})
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			alert("Loging out");
-			// ********** windows.location.href
-		})
-		.catch((err) => console.log(err));
+logout.addEventListener("click", async(e)=>{
+	
+	await fetch(`${URL}/user/logout`,{
+			method: "POST",
+  			headers: {"Content-type": "application/json;charset=UTF-8",
+					  "authorization":`${localStorage.getItem("token")}`
+					 },
+			body: JSON.stringify({})
+	 	})
+			.then((res)=>res.json())
+			.then((data)=>{
+				alert(data);
+				localStorage.clear();
+				allUserData = [];
+				window.location.href = "../index.html"
+			})
+			.catch((err)=>console.log(err));
 })
 
 
-let allUserData = [];
 
 
-// --------------------------------------------------
+//============================================================================
+// --------------------------------------------------old code----------------
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
 allSideMenu.forEach(item => {
@@ -109,14 +115,75 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
+//---------------------old code end-----------------------------------
+//====================================================================
 
 
 
 
 
+//------------------------new code----------------------------------
+
+//new loading admin.html
+dashboardFetch();
+
+async function dashboardFetch(){
+	
+	if(!localStorage.getItem("token")){
+		alert("Login fisrt to access Admin Dashboard!");
+	}
+	else{
+		newRequestDiv.style.display = "none";
+		allRegistrationDiv.style.display = "none";
+		bookingDiv.style.display = "none";
+		boxDiv.style.display = "grid";
+	
+		// total bookings
+		await fetch(`${URL}/book/`,{
+			method: "GET",
+				headers: {"Content-type": "application/json;charset=UTF-8",
+						"authorization": `${localStorage.getItem("token")}`
+						}
+			})
+				.then((res)=>res.json())
+				.then((data)=>{
+					let booknumber = document.querySelector("#total-booking")
+					booknumber.textContent = `${data.data.length}`;
+					// console.log(data.data.length);
+				})
+				.catch((err)=>console.log(err));
 
 
-// ------------------------new code----------------------------------
+		// --------------------all users number-----------------------
+
+		await fetch(`${URL}/user/`,{
+			method: "GET",
+				headers: {"Content-type": "application/json;charset=UTF-8",
+						"authorization": `${localStorage.getItem("token")}`
+						}
+			})
+				.then((res)=>res.json())
+				.then((data)=>{
+					document.querySelector("#total-registration").textContent = `${data.length}`;
+					let pendingNumber = 0, clientNumber = 0, photographerNumber = 0;
+					data.forEach((ele)=>{
+						if(ele.role === "client"){
+							clientNumber++;
+						}
+						else if(ele.role === "photographer" && ele.approved == true){
+							photographerNumber++;
+						}
+						else if(ele.role === "photographer" && ele.approved == false){
+							pendingNumber++;
+						}
+					})
+					document.querySelector("#total-client").textContent = `${clientNumber}`
+					document.querySelector("#total-photographer").textContent = `${photographerNumber}`
+					document.querySelector("#new-pending-request").textContent = `${pendingNumber}`
+				})
+				.catch((err)=>console.log(err));
+	}
+}
 
 let ds = document.querySelectorAll(".sdbtn")
 ds.forEach((ele) => {
@@ -136,27 +203,34 @@ ds.forEach((ele) => {
 		else if (e.target.innerText === "Booking Orders") {
 			fetchAllBooking();
 		}
+		else if(e.target.innerText === "Dashboard"){
+			dashboardFetch();
+		}
 	})
 })
 
 
 // fetch all registrations / users
-async function fetchAllRegistration() {
-	await fetch(`http://localhost:3000/user/`, {
-		method: "GET",
-		headers: {
-			"Content-type": "application/json;charset=UTF-8",
-			"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NzM4MDIsImV4cCI6MTY4MzQ3NzQwMn0.xGdiD_XZNmKc_mtGqo--Ljxy_jCme0SwqmDgUehX0xE"
-		}
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			// console.log(data);
-			allUserData = data;
-			showAllRegistration(data);
-		})
-		.catch((err) => console.log(err));
 
+async function fetchAllRegistration(){
+	if(!localStorage.getItem("token")){
+		alert("Login fisrt to access All Registration details!");
+	}
+	else{
+		await fetch(`${URL}/user/`,{
+			method: "GET",
+				  headers: {"Content-type": "application/json;charset=UTF-8",
+						  "authorization": `${localStorage.getItem("token")}`
+						}
+			 })
+				.then((res)=>res.json())
+				.then((data)=>{
+					// console.log(data);
+					allUserData = data;
+					showAllRegistration(data);
+				})
+				.catch((err)=>console.log(err));
+	}
 }
 // show all registrations / users
 function showAllRegistration(data) {
@@ -202,16 +276,20 @@ function showAllRegistration(data) {
 		let td2 = document.createElement("td");
 		td2.textContent = ele.email;
 		let td3 = document.createElement("td");
-		td3.textContent = ele.role;
-		if (ele.role === "client") {
-			btr.setAttribute("class", "status client");
+
+		// let span = document.createElement("span");
+		td3.textContent = ele.role ;
+		if(ele.role === "client"){
+			btr.setAttribute("class","status client");
 		}
-		else if (ele.role === "photographer") {
-			btr.setAttribute("class", "photographer");
+		else if(ele.role === "photographer"){
+			btr.setAttribute("class","status photographer");
 		}
-		else if (ele.role === "admin") {
-			btr.setAttribute("class", "admin");
+		else if(ele.role === "admin"){
+			btr.setAttribute("class","status admin");
+
 		}
+		// td3.append(span);
 		let td4 = document.createElement("td");
 		let removebtn = document.createElement("button")
 		removebtn.textContent = "Remove";
@@ -234,30 +312,35 @@ function showAllRegistration(data) {
 
 
 // fetch all clients
-async function fetchAllClients() {
-	if (allUserData.length > 1) {
-		let allclients = allUserData.filter((ele, index) => {
-			return ele.role == "client";
-		})
-		showClients(allclients);
+async function fetchAllClients(){
+	if(!localStorage.getItem("token")){
+		alert("Login fisrt to access Clients details!");
 	}
-	else {
-		let allclients = [];
-		await fetch(`http://localhost:3000/user/`, {
-			method: "GET",
-			headers: {
-				"Content-type": "application/json;charset=UTF-8",
-				"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NzM4MDIsImV4cCI6MTY4MzQ3NzQwMn0.xGdiD_XZNmKc_mtGqo--Ljxy_jCme0SwqmDgUehX0xE"
-			}
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				allclients = data.filter((ele, index) => {
-					return ele.role == "client";
-				});
-				showClients(allclients);
+	else{
+		if(allUserData.length > 1){
+			let allclients = allUserData.filter((ele,index)=>{
+				return ele.role == "client";
 			})
-			.catch((err) => console.log(err));
+			showClients(allclients);
+		}
+		else{
+			let allclients = [];
+			await fetch(`${URL}/user/`,{
+					method: "GET",
+						headers: {"Content-type": "application/json;charset=UTF-8",
+								"authorization": `${localStorage.getItem("token")}`
+								}
+					})
+					.then((res)=>res.json())
+					.then((data)=>{
+						allclients = data.filter((ele,index)=>{
+							return ele.role == "client";
+						});
+						showClients(allclients);
+					})
+					.catch((err)=>console.log(err));
+		}
+
 	}
 }
 //show al clients
@@ -327,33 +410,39 @@ function showClients(data) {
 
 
 // fetch all photographer
-async function fetchAllPhotographers() {
-	if (allUserData.length > 1) {
-		let allphotographers = allUserData.filter((ele, index) => {
-			return (ele.role == "photographer" && ele.approved == true);
-		})
-		showPhotographers(allphotographers);
-		// console.log(allphotographers)
+async function fetchAllPhotographers(){
+	if(!localStorage.getItem("token")){
+		alert("Login fisrt to access Photographers details!");
 	}
-	else {
-		let allphotographers = [];
-		await fetch(`http://localhost:3000/user/`, {
-			method: "GET",
-			headers: {
-				"Content-type": "application/json;charset=UTF-8",
-				"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NzM4MDIsImV4cCI6MTY4MzQ3NzQwMn0.xGdiD_XZNmKc_mtGqo--Ljxy_jCme0SwqmDgUehX0xE"
-			}
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				allphotographers = data.filter((ele, index) => {
-					return (ele.role == "photographer" && ele.approved == true);
-				});
-				showPhotographers(allphotographers);
-				// console.log(allphotographers)
+	else{ 
+		if(allUserData.length > 1){
+			let allphotographers = allUserData.filter((ele,index)=>{
+				return (ele.role == "photographer" && ele.approved == true) ;
 			})
-			.catch((err) => console.log(err));
+			showPhotographers(allphotographers);
+			// console.log(allphotographers)
+		}
+		else{
+			let allphotographers = [];
+			await fetch(`${URL}/user/`,{
+					method: "GET",
+						headers: {"Content-type": "application/json;charset=UTF-8",
+								"authorization": `${localStorage.getItem("token")}`
+								}
+					})
+					.then((res)=>res.json())
+					.then((data)=>{
+						allphotographers = data.filter((ele,index)=>{
+							return (ele.role == "photographer" && ele.approved == true);
+						});
+						showPhotographers(allphotographers);
+						// console.log(allphotographers)
+					})
+					.catch((err)=>console.log(err));
+		}
+
 	}
+	
 }
 //show all photographers
 function showPhotographers(data) {
@@ -386,8 +475,12 @@ function showPhotographers(data) {
 	let th5 = document.createElement("th");
 	th5.textContent = "Expertise";
 	let th6 = document.createElement("th");
-	th6.textContent = "Action";
-	theadtr.append(th1, th2, th3, th4, th5, th6);
+
+	th6.textContent = "Price per Hour";
+	let th7 = document.createElement("th");
+	th7.textContent = "Action";
+	theadtr.append(th1,th2,th3,th4,th5,th6,th7);
+
 	thead.append(theadtr);
 
 
@@ -410,6 +503,8 @@ function showPhotographers(data) {
 		let td5 = document.createElement("td");
 		td5.textContent = ele.expertise;
 		let td6 = document.createElement("td");
+		td6.textContent ="₹ "+ ele.price ;
+		let td7 = document.createElement("td");
 		let removebtn = document.createElement("button")
 		removebtn.textContent = "Remove";
 		removebtn.style.backgroundColor = "red";
@@ -418,9 +513,9 @@ function showPhotographers(data) {
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
-		td6.append(removebtn);
+		td7.append(removebtn);
 
-		btr.append(td1, td2, td3, td4, td5, td6);
+		btr.append(td1,td2,td3,td4,td5,td6,td7);
 
 		tbody.append(btr);
 	})
@@ -432,20 +527,29 @@ function showPhotographers(data) {
 
 
 //fetch pending / new request
-async function fetchNewRequest() {
-	await fetch(`http://localhost:3000/user/pending`, {
-		method: "GET",
-		headers: {
-			"Content-type": "application/json;charset=UTF-8",
-			"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0OTQ5NTEsImV4cCI6MTY4MzQ5ODU1MX0.EiyQJVIPaGGF0bLYCziCb-h1VZdUx101ALjB9RIIkkc"
-		}
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			// console.log(data);
-			showNewRequest(data);
-		})
-		.catch((err) => console.log(err));
+async function fetchNewRequest(){
+	if(!localStorage.getItem("token")){
+		alert("Login fisrt to access Pending requests!");
+	}
+	else{
+		await fetch(`${URL}/user/pending`,{
+			method: "GET",
+				  headers: {"Content-type": "application/json;charset=UTF-8",
+						  "authorization": `${localStorage.getItem("token")}`
+						}
+			 })
+				.then((res)=>res.json())
+				.then((data)=>{
+					if(data.message == "Unauthorized"){
+						alert("Login First");
+					}
+					else{
+						showNewRequest(data);
+					}
+				})
+				.catch((err)=>console.log(err));
+	}
+	 
 }
 //show pending / new request
 function showNewRequest(data) {
@@ -536,23 +640,29 @@ function showNewRequest(data) {
 
 
 //fetch all bookings
-async function fetchAllBooking() {
-	await fetch(`http://localhost:3000/book/`, {
-		method: "GET",
-		headers: {
-			"Content-type": "application/json;charset=UTF-8",
-			"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0NzM4MDIsImV4cCI6MTY4MzQ3NzQwMn0.xGdiD_XZNmKc_mtGqo--Ljxy_jCme0SwqmDgUehX0xE"
-		}
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			// console.log(data);
-			showBooking(data)
-		})
-		.catch((err) => console.log(err));
+async function fetchAllBooking(){
+	if(!localStorage.getItem("token")){
+		alert("Login fisrt to access Booking details!");
+	}
+	else{ 
+		await fetch(`${URL}/book/`,{
+			method: "GET",
+				headers: {"Content-type": "application/json;charset=UTF-8",
+						"authorization": `${localStorage.getItem("token")}`
+						}
+			})
+				.then((res)=>res.json())
+				.then((data)=>{
+					// console.log(data);
+					showBooking(data.data)
+				})
+				.catch((err)=>console.log(err)); 
+	}
 }
 //show all bookings
-function showBooking(data) {
+function showBooking(data){
+	// console.log(data);
+
 	allRegistrationDiv.style.display = "none";
 	boxDiv.style.display = "none";
 	newRequestDiv.style.display = "none";
@@ -595,10 +705,12 @@ function showBooking(data) {
 
 		// creating table cell td for data
 		let td1 = document.createElement("td");
-		td1.textContent = ele.client;
+		td1.textContent = ele.client.name;
 		// td1.setAttribute("class","tdbooking");
 		let td2 = document.createElement("td");
-		td2.textContent = ele.photographer;
+
+		td2.textContent = ele.photographer.name ;
+
 		// td2.setAttribute("class","tdbooking");
 		let td3 = document.createElement("td");
 		td3.textContent = ele.createdAt;
@@ -639,37 +751,39 @@ function showBooking(data) {
 // ----------approving photographer request
 async function approveRequest(user) {
 	user.approved = true;
-	await fetch(`http://localhost:3000/user/applications/${user.email}`, {
+	await fetch(`${URL}/user/applications/${user.email}`, {    
 		method: "PUT",
 		body: JSON.stringify(user),
-		headers: {
-			"Content-type": "application/json; charset=UTF-8",
-			"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0OTYyMDksImV4cCI6MTY4MzQ5OTgwOX0.iRvQ5QX8z1rGz0a6IwezkxusLTnkn-rCUeD7BI8f_us"
-		}
+    	headers: {
+        	"Content-type": "application/json; charset=UTF-8",
+			"authorization": `${localStorage.getItem("token")}`
+    	}
 	})
-		.then(response => response.json())
-		.then(json => alert(json.message))
-		.catch((err) => console.log(err))
-		.finally(() => {
-			fetchNewRequest();
-		})
+	.then(response => response.json())
+	.then(json => alert(json.message))
+	.catch((err)=>console.log(err))
+	.finally(()=>{
+		fetchNewRequest();
+	})
+		
 }
 
 // ----------rejecting photographer request
 async function rejectRequest(user) {
 	user.approved = false;
-	await fetch(`http://localhost:3000/user/applications/${user.email}`, {
+
+	await fetch(`${URL}/user/applications/${user.email}`, {    
 		method: "PUT",
 		body: JSON.stringify(user),
-		headers: {
-			"Content-type": "application/json; charset=UTF-8",
-			"authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OTZlZmZkNTcyMTYyNjgxNWNjY2YiLCJpYXQiOjE2ODM0OTYyMDksImV4cCI6MTY4MzQ5OTgwOX0.iRvQ5QX8z1rGz0a6IwezkxusLTnkn-rCUeD7BI8f_us"
-		}
+    	headers: {
+        	"Content-type": "application/json; charset=UTF-8",
+			"authorization": `${localStorage.getItem("token")}`
+    	}
 	})
-		.then(response => response.json())
-		.then(json => alert(json.message))
-		.catch((err) => console.log(err))
-		.finally(() => {
-			fetchNewRequest();
-		})
+	.then(response => response.json())
+	.then(json => alert(json.message))
+	.catch((err)=>console.log(err))
+	.finally(()=>{
+		fetchNewRequest();
+
 }
