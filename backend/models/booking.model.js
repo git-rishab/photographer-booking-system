@@ -27,9 +27,14 @@ const bookingSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-bookingSchema.index({ photographer: 1, date: 1, time: 1 }, { unique: true });
+bookingSchema.index({ photographer: 1, date: 1, time: 1 }, { unique: true});
 
 const BookingModel = mongoose.model('Booking', bookingSchema);
 module.exports={
   BookingModel
 }
+// {
+//   "photographerId":"6457a99a2761a3946757257a",
+//   "startTime":"2023-06-01T15:00:00.000Z",
+//   "endTime":"2023-06-01T18:00:00.000Z"
+//     }

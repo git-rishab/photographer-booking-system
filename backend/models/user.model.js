@@ -5,7 +5,7 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     pass: { type: String, required: true },
     role: { type: String, enum: ['client', 'photographer','admin'], default: 'client' },
-    availability: { type: [String], default: [] },
+    meetings: { type:Array,required:true, default: [] },
     approved: { type: Boolean, default: false },
     camera: {
       type: String,
