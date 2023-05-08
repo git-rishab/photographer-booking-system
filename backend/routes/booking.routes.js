@@ -9,7 +9,7 @@ const { checkRole } = require("../routes/user.routes")
 const moment = require("moment");
 BookingRouter.get("/", async (req, res) => {
   try {
-    let data = await BookingModel.find();
+    let data = await BookingModel.find().populate("photographer client","name");
     res.send({ data, ok: true });
   } catch (error) {
     console.log(error);
