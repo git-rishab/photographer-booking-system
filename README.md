@@ -14,10 +14,10 @@ Enthusiastic and professional photographers can apply to become photographers on
 ## Features & Pages :page_facing_up:
 
 ### For User 	:adult:
-`Home` - Overview of the website and find the photographers. <br> <br>
-`Sign Up` -  To sign up, you can use your email, GitHub, or Google account. The user details are stored in a MongoDB database. <br> <br>
-`Sign In` - Authentication is performed here to verify if the provided details match the information stored in the database. <br> <br>
-`Apply for photographer` - Users have the option to apply for a photographer role, enabling them to receive appointments for photoshoots. <br> <br>
+`Home` - Overview of the website and find the photographers. <br>
+`Sign Up` -  To sign up, you can use your email, GitHub, or Google account. The user details are stored in a MongoDB database. <br>
+`Sign In` - Authentication is performed here to verify if the provided details match the information stored in the database. <br>
+`Apply for photographer` - Users have the option to apply for a photographer role, enabling them to receive appointments for photoshoots. <br>
 
 ##### Photographer
 `About` - Once the role is approved by the admins, photographers can 
