@@ -8,6 +8,86 @@ const session = require("express-session")
 const { authMiddleWare } = require("../middlewares/jwt.middleware");
 require("dotenv").config()
 const userRoute = express.Router();
+const multer = require('multer');
+const ejs = require('ejs');
+
+//Set up multer
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+
+//Route for uploading the images
+userRoute.post('/upload', upload.single('image'), authMiddleWare, async (req, res) => {
+  const image = new Image({
+    name: req.file.originalname,
+    image: {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+      userID: req.user._id // adding userid in the image
+    },
+  });
+
+  await image.save();
+  res.send({ message: "image uploaded" });
+});
+
+//Route for getting the images by userID
+
+userRoute.get('/images', async (req, res) => {
+  const photographers = await UserModel.find({ approved: true })
+  const images = await Image.aggregate([
+    {
+      $group: {
+        _id: '$image.userID',
+        images: {
+          $push: {
+            _id: '$image.data',
+            content_type: '$image.contentType'
+          },
+        },
+      },
+    },
+  ]);
+
+  res.send({ images, photographers });
+});
+
+// Route for getting the Photographers sorted by price and filtered by location
+
+userRoute.get('/SortByPrice', async (req, res) => {
+  let query={}
+  let sortby={price:0}
+  query.approved=true;
+  if(req.query.location){
+    query.address=req.query.location
+  }
+  if (req.query.Sortby) {
+    if(req.query.Sortby=="asc"){
+      sortby["price"] = 1;
+    }else{
+      sortby["price"] = -1;
+    }
+  }
+  const photographers= await UserModel.find(query).sort(sortby)
+  const images = await Image.aggregate([
+      {
+        $group: {
+          _id: '$image.userID',
+          images: {
+            $push: {
+              _id: '$image.data',
+              content_type:'$image.contentType'
+            },
+          },
+        },
+      },
+    ]);
+
+    res.send({images,photographers});
+});
+
+
+
 const checkRole = (role) => {
   return (req, res, next) => {
     if (req.user.role !== role) {
@@ -25,12 +105,7 @@ userRoute.get("/", async(req,res)=>{
     res.status(403).json({error:error.message})
   }
 })
-const multer = require('multer');
-const ejs = require('ejs');
 
-//Set up multer
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 userRoute.post("/register", async (req, res) => {
   const { name, email, pass, role } = req.body;
   const check = await UserModel.find({ email });
@@ -168,75 +243,6 @@ userRoute.patch('/submit_photographer_details', authMiddleWare, async (req, res)
   }
 })
 
-//Route for uploading the images
-userRoute.post('/upload', upload.single('image'), authMiddleWare, async (req, res) => {
-  const image = new Image({
-    name: req.file.originalname,
-    image: {
-      data: req.file.buffer,
-      contentType: req.file.mimetype,
-      userID: req.user._id // adding userid in the image
-    },
-  });
-
-  await image.save();
-  res.send({ message: "image uploaded" });
-});
-
-//Route for getting the images by userID
-
-userRoute.get('/images', async (req, res) => {
-  const photographers = await UserModel.find({ approved: true })
-  const images = await Image.aggregate([
-    {
-      $group: {
-        _id: '$image.userID',
-        images: {
-          $push: {
-            _id: '$image.data',
-            content_type: '$image.contentType'
-          },
-        },
-      },
-    },
-  ]);
-
-  res.send({ images, photographers });
-});
-
-// Route for getting the Photographers sorted by price and filtered by location
-
-userRoute.get('/SortByPrice', async (req, res) => {
-  let query={}
-  let sortby={price:0}
-  query.approved=true;
-  if(req.query.location){
-    query.address=req.query.location
-  }
-  if (req.query.Sortby) {
-    if(req.query.Sortby=="asc"){
-      sortby["price"] = 1;
-    }else{
-      sortby["price"] = -1;
-    }
-  }
-  const photographers= await UserModel.find(query).sort(sortby)
-  const images = await Image.aggregate([
-      {
-        $group: {
-          _id: '$image.userID',
-          images: {
-            $push: {
-              _id: '$image.data',
-              content_type:'$image.contentType'
-            },
-          },
-        },
-      },
-    ]);
-
-    res.send({images,photographers});
-});
 
 module.exports = {
   userRoute,checkRole
