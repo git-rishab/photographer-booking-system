@@ -11,6 +11,9 @@ const authMiddleWare = async(req,res,next)=>{
         if(!user){
             return res.status(401).json({message:"Unauthorized"})
         }
+        if(user.isBlocked){
+            return res.status(403).json({message: ' Your account has been Blocked'})
+        }
         req.user = user;
         next()
     } catch (error) {
