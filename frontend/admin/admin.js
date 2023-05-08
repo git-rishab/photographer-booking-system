@@ -784,6 +784,6 @@ async function rejectRequest(user) {
 	.then(json => alert(json.message))
 	.catch((err)=>console.log(err))
 	.finally(()=>{
-		fetchNewRequest();
+		fetchNewRequest(); })
 
 }
