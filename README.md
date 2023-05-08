@@ -9,7 +9,7 @@ Enthusiastic and professional photographers can apply to become photographers on
 - :man_technologist: [Rishab](https://www.linkedin.com/in/rishab-kumar-chaurasiya-a144b4234/)
 - :man_technologist: [Kuldeep](https://www.linkedin.com/in/kuldeep-tiwari-a3637923a)
 - :man_technologist: [Saud](https://www.linkedin.com/in/mdsaud/)
-- :woman_technologist: [Nishtha](https://www.linkedin.com/in/nishthakashyap26)
+- :woman_technologist: [Nishtha](https://www.linkedin.com/in/nishthakashyap26/)
 - :man_technologist: [Anil](https://www.linkedin.com/in/anil-reddy-b2a364169/)
 
 ## Features & Pages :page_facing_up:
