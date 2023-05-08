@@ -128,13 +128,7 @@ userRoute.put('/applications/:email',authMiddleWare,checkRole("admin"),async (re
     res.status(500).send({ error: 'Server Error' });
   }
 });
-userRoute.get("/logout",async(req,res)=>{
-  try {
-    
-  } catch (error) {
-    
-  }
-})
+
 userRoute.use(session({
   secret: 'dancingCar',
   resave: false,

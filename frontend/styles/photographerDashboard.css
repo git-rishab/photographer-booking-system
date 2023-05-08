@@ -184,3 +184,20 @@ a{
 .link div:hover{
     background-color: #7ba4f5;
 }
+.accepted::first-letter, .pending::first-letter{
+    text-transform: capitalize;
+}
+.accepted div{
+    background-color: rgb(121, 223, 121);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+.pending div{
+    background-color: #5184eb;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}

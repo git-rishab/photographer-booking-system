@@ -66,6 +66,20 @@ BookingRouter.get('/requests/:status', authMiddleWare, async (req, res) => {
     res.status(500).send({ error: err.message, mssg: 'Server Error', ok: false });
   }
 });
+
+// Retrieve all booking requests for a specific client
+BookingRouter.get('/requests', authMiddleWare, async (req, res) => {
+  try {
+    // Get the logged-in client's ID
+    const clientId = req.user.id;
+    // Find all booking requests for the logged-in photographer from the database
+    const bookings = await BookingModel.find({ client: clientId }).populate('photographer', 'name email');
+    res.json({ ok: true, bookings });
+  } catch (err) {
+    res.status(500).send({ error: err.message, mssg: 'Server Error', ok: false });
+  }
+});
+
 // Route to accept or reject a booking request
 BookingRouter.post('/requests/:bookingid', authMiddleWare, async (req, res) => {
   try {
@@ -140,7 +154,7 @@ BookingRouter.post('/meeting/create', async (req, res) => {
       link,
       name
     }
-    console.log(data);
+    // console.log(data);
     if(!data){
       var newData = new MeetingModel({
         photographer,
