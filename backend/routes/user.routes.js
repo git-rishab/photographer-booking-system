@@ -3,7 +3,7 @@ const { UserModel } = require("../models/user.model");
 const { Image } = require("../models/image.model")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const tokenList={};
+const tokenList = {};
 const session = require("express-session")
 const { authMiddleWare } = require("../middlewares/jwt.middleware");
 require("dotenv").config()
@@ -54,7 +54,6 @@ userRoute.patch('/submit_photographer_details', authMiddleWare, async (req, res)
 //Route for getting the images by userID
 
 userRoute.get('/images', async (req, res) => {
-  console.log("hi")
   const photographers = await UserModel.find({ approved: true })
   const images = await Image.aggregate([
     {
@@ -69,49 +68,76 @@ userRoute.get('/images', async (req, res) => {
       },
     },
   ]);
-  res.send({images,photographers });
+  res.send({ images, photographers });
 });
 
 // Route for getting the Photographers sorted by price and filtered by location
 userRoute.get('/SortByPrice', async (req, res) => {
-  let query={}
-  let sortby={price:0}
-  query.approved=true;
-  if(req.query.location){
-    query.address=req.query.location
+  let query = {}
+  let sortby = { price: 0 }
+  query.approved = true;
+  if (req.query.location) {
+    query.address = req.query.location
   }
   if (req.query.Sortby) {
-    if(req.query.Sortby=="asc"){
+    if (req.query.Sortby == "asc") {
       sortby["price"] = 1;
-    }else{
+    } else {
       sortby["price"] = -1;
     }
   }
-  const photographers= await UserModel.find(query).sort(sortby)
+  const photographers = await UserModel.find(query).sort(sortby)
   const images = await Image.aggregate([
-      {
-        $group: {
-          _id: '$image.userID',
-          images: {
-            $push: {
-              _id: '$image.data',
-              content_type:'$image.contentType'
-            },
+    {
+      $group: {
+        _id: '$image.userID',
+        images: {
+          $push: {
+            _id: '$image.data',
+            content_type: '$image.contentType'
           },
         },
       },
-    ]);
+    },
+  ]);
 
-    res.send({images,photographers});
+  res.send({ images, photographers });
 });
 
-userRoute.get("/", async(req,res)=>{
+// route for getting photos of individual photographers
+
+userRoute.get("/images/:id", async (req, res) => {
+  const photographers = await UserModel.find({ _id: req.params.id, approved: true })
+  const images = await Image.aggregate([
+    {
+      $group: {
+        _id: '$image.userID',
+        images: {
+          $push: {
+            _id: '$image.data',
+            content_type: '$image.contentType'
+          },
+        },
+      },
+    },
+  ]);
+
+  const Images = images.filter(function (image) {
+    return image._id === req.params.id;
+  });
+  
+  res.send({ Images, photographers });
+
+})
+
+
+userRoute.get("/", async (req, res) => {
   try {
     const data = await UserModel.find();
     res.send(data)
-    
+
   } catch (error) {
-    res.status(403).json({error:error.message})
+    res.status(403).json({ error: error.message })
   }
 })
 
@@ -139,11 +165,11 @@ userRoute.post("/login", async (req, res) => {
     const { email, pass } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(401).json({ msg: "User with this email not found", ok:false })
+      return res.status(401).json({ msg: "User with this email not found", ok: false })
     }
     const isPasswordSame = await bcrypt.compare(pass, user.pass)
     if (!isPasswordSame) {
-      return res.status(401).json({ msg: "Invalid email or password", ok:false })
+      return res.status(401).json({ msg: "Invalid email or password", ok: false })
     }
     const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
     const refreshToken = jwt.sign({ userId: user._id }, process.env.refresh_secret, { expiresIn: "3hr" })
@@ -151,11 +177,11 @@ userRoute.post("/login", async (req, res) => {
       "ok": true,
       "token": token,
       "refreshToken": refreshToken,
-      "msg":"Login Successfull",
-      "role":user.role,
-      "approved":user.approved,
-      "id":user._id,
-      "userName":user.name
+      "msg": "Login Successfull",
+      "role": user.role,
+      "approved": user.approved,
+      "id": user._id,
+      "userName": user.name
     }
     tokenList[refreshToken] = response
     res.status(200).json(response)
@@ -168,7 +194,7 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
   try {
     let user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(400).json({ msg: 'User not found', ok:false });
+      return res.status(400).json({ msg: 'User not found', ok: false });
     }
     user.name = name;
     user.email = email;
@@ -179,10 +205,10 @@ userRoute.post('/apply', authMiddleWare, async (req, res) => {
     user.approved = false;
     user.role = 'photographer';
     await user.save();
-    res.json({ msg: 'Application submitted successfully',ok:true});
+    res.json({ msg: 'Application submitted successfully', ok: true });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Internal server error',ok:false });
+    res.status(500).json({ msg: 'Internal server error', ok: false });
   }
 });
 
@@ -195,7 +221,7 @@ userRoute.get('/pending', authMiddleWare, async (req, res) => {
   }
 });
 
-userRoute.put('/applications/:email',authMiddleWare,checkRole("admin"),async (req, res) => {
+userRoute.put('/applications/:email', authMiddleWare, checkRole("admin"), async (req, res) => {
   try {
     const { email } = req.params;
     const { approved } = req.body;
@@ -233,17 +259,17 @@ userRoute.post('/logout', (req, res) => {
 
 // Info of a particular user
 
-userRoute.get("/:id",  async(req,res)=>{
+userRoute.get("/:id", async (req, res) => {
   try {
-    const user = await UserModel.findById({_id:req.params.id});
-    const {name,email,role,approved,camera,expertise,address,price,_id} = user;
-    res.send({ok:true, user:{name,email,role,approved,camera,expertise,address,price,_id}})
+    const user = await UserModel.findById({ _id: req.params.id });
+    const { name, email, role, approved, camera, expertise, address, price, _id } = user;
+    res.send({ ok: true, user: { name, email, role, approved, camera, expertise, address, price, _id } })
   } catch (error) {
-    res.status(500).send({ msg: error.message, ok:false });
+    res.status(500).send({ msg: error.message, ok: false });
   }
 })
 
 
 module.exports = {
-  userRoute,checkRole
+  userRoute, checkRole
 }
