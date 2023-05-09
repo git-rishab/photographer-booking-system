@@ -96,7 +96,9 @@ label {
     font-weight: bold;
     font-size: 14px;
 }
-
+input:focus{
+    outline: none;
+}
 #results>h5 {
     display: flex;
     align-items: center;

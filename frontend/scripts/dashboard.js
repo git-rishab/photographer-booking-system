@@ -31,12 +31,12 @@ const searchParams = url.searchParams;
 const token = searchParams.get('token');
 const id = searchParams.get('id');
 const role = searchParams.get('role');
-const approved = searchParams.get('approved')
+const approved = searchParams.get('approved');
 
-console.log(token, id, role,approved);
 
 localStorage.setItem("token",token);
 localStorage.setItem("id",id);
+
 
 if(role == "photographer" && approved == "true"){
     window.location.href = "./photographerDashboard.html"

@@ -41,7 +41,7 @@ async function fetchData() {
 function createDom(data, status) {
     hideLoader2();
     if(!photographer.user.approved){
-        thead.innerHTML = "Your Request is still Pending, please wait to be Approved."
+        thead.innerHTML = "<h2>Your Request is still Pending, please wait to be Approved.</h2>"
         return;
     }
     const noClient = document.getElementById("noClient");
