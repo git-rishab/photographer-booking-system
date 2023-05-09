@@ -54,3 +54,19 @@ HamBurger.addEventListener("click", function () {
     navContents.classList.toggle("show-nav");
     console.log("clicked")
 });
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+if(isUserName){
+    singupTag.style.display = "none"
+    loginTag.textContent = "Hi," + " " + isUserName
+    loginTag.style.color = "#dd4545"
+}else{
+    singupTag.style.display = "block"
+    loginTag.textContent = "Login"
+}

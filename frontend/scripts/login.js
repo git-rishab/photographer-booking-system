@@ -17,6 +17,7 @@ form.addEventListener("submit", async(e)=>{
     });
     const response = await request.json();
     if(response.ok){
+        localStorage.setItem("userName", response.userName)
         Swal.fire(
             response.msg,
             '',
