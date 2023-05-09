@@ -1,17 +1,19 @@
 let container = document.getElementById('search-results')
 // Fetch the images data from the server
-const url = "https://bookmyshoot-backend.onrender.com"
+const URL = "https://bookmyshoot-backend.onrender.com"
 
 async function fetchData() {
     try {
-        const response = await fetch('http://localhost:3000/user/images');
+
+        const response = await fetch(`${URL}/user/images`);
         const data = await response.json();
+
         Display(data.images, data.photographers);
     } catch (error) {
         console.error(error);
     }
 }
-
+showLoader2();
 fetchData();
 
 var photographerID;
@@ -83,10 +85,9 @@ let locationValue;
 price_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     locationValue = location_sort.value;
-    await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
+    await fetch(`${URL}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
             const data = res;
             Display(data.images, data.photographers)
         })
@@ -97,10 +98,10 @@ location_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     sort.value
     locationValue = location_sort.value;
-    await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
+    await fetch(`${URL}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
+
             const data = res;
             Display(data.images, data.photographers)
             if (!data.photographers.length) {
