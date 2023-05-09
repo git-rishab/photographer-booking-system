@@ -21,6 +21,7 @@ const checkRole = (role) => {
     next();
   }
 }
+
 //Route for uploading the images
 userRoute.post('/upload', upload.single('image'), authMiddleWare, async (req, res) => {
   const image = new Image({
