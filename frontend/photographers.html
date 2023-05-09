@@ -12,6 +12,8 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./styles/loader.css">
+    <script src="./scripts/loader.js"></script>
   </head>
 
   <body>
@@ -35,38 +37,152 @@
         src="./images/Book world class photographers at BookMyShoot (2).png"
       />
     </div>
-    <div id="sorting_div">
-        <div id="count_div"></div>
-        <div id="location_div">
-            <select id="location">
-                <option selected value="">Choose a location</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Pune">Pune</option>
-                <option value="Lucknow">Lucknow</option>
-                <option value="Noida">Noida</option>
-                <option value="Gurugram">Gurugram</option>
-                <option value="Jaipur">Jaipur</option>
-                <option value="Kerela">Kerela</option>
-    
-            </select>
-        </div>
-        <div id="sort">
-            <select id="form-select" aria-label="Default select example">
-                <option selected value="">Sort by Price:</option>
-                <option value="desc">High-to-low</option>
-                <option value="asc">Low-to-high</option>
-                <option value="3">Recommended</option>
-            </select>
-        </div>
-    </div>
-    <hr id="sort_line"/>
-    
-    <div id="main">
-        <div id="search-results">
-          <!-- Append Here -->
-        </div>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
       </div>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <!-- Loader End -->
+    <div id="sorting_div">
+      <div id="count_div"></div>
+      <div id="location_div">
+        <select id="location">
+          <option selected value="">Choose a location</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Pune">Pune</option>
+          <option value="Lucknow">Lucknow</option>
+          <option value="Noida">Noida</option>
+          <option value="Gurugram">Gurugram</option>
+          <option value="Jaipur">Jaipur</option>
+          <option value="Kerela">Kerela</option>
+        </select>
+      </div>
+      <div id="sort">
+        <select id="form-select" aria-label="Default select example">
+          <option selected value="">Sort by Price:</option>
+          <option value="desc">High-to-low</option>
+          <option value="asc">Low-to-high</option>
+          <option value="3">Recommended</option>
+        </select>
+      </div>
+    </div>
+    <hr id="sort_line" />
+
+    <div id="search-results">
+      <!-- Append Here -->
     </div>
 
     <!-- <div id="sorting_div">
