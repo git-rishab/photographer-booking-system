@@ -9,7 +9,7 @@ function hideLoader() {
 
 // Hide the loader when the image has finished loading
 window.addEventListener("load", function () {
-    hideLoader();
+    // hideLoader();
 });
 
 // Example usage

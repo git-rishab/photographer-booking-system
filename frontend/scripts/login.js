@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000"
+const URL = "https://bookmyshoot-backend.onrender.com"
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async(e)=>{
