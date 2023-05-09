@@ -281,6 +281,29 @@ ion-icon {
 
 
 @media screen and (min-width: 500px) and (max-width: 1000px) {
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .hamburger .line {
+        width: 100%;
+        height: 2px;
+        background-color: #dd4545;
+    }
+
+    .nav-contents {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
     .bg_image {
         margin-bottom: 5%;
     }
