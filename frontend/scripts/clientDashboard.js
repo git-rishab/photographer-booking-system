@@ -22,13 +22,16 @@ fetchData();
 allPhotographer();
 
 async function fetchData() {
+    showLoader2();
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
     photographer = data
     document.getElementById("name").innerText = `Welcome Back! ${data.user.name}`
+    hideLoader2();
 }
 
 function createDom(data, status) {
+    hideLoader2();
     const noClient = document.getElementById("noClient");
     tbody.innerHTML = null;
     if (status == "all") {
@@ -97,6 +100,7 @@ function formatTime(time) {
 }
 
 async function allPhotographer() {
+    showLoader2();
     const req = await fetch(`${URL}/book/requests`, {
         method:"GET",
         headers: {
@@ -109,6 +113,7 @@ async function allPhotographer() {
 }
 
 async function notification() {
+    showLoader2();
     const req = await fetch(`${URL}/book/notifications`, {
         method:"GET",
         headers: {

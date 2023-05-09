@@ -1,6 +1,7 @@
 const form = document.querySelector("form");
 const URL = "https://bookmyshoot-backend.onrender.com"
 
+const signup = document.getElementById("submit");
 const client_checked= document.getElementById("radio1")
 const photographer_checked= document.getElementById("radio2")
 form.addEventListener("submit", async(e)=>{
@@ -12,6 +13,9 @@ form.addEventListener("submit", async(e)=>{
         pass:form.pass.value,
         role:checkedValue
     }
+    signup.style.display = "none";
+    showLoader2();
+
     const request = await fetch(`${URL}/user/register`, {
         method:"POST",
         headers:{
@@ -39,6 +43,8 @@ form.addEventListener("submit", async(e)=>{
             footer: `<b><u><a href="./login.html">Login Here!</a></u></b>`
         });
     }
+    hideLoader2();
+    signup.style.display = "block";
 })
 
 

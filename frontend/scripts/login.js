@@ -1,5 +1,6 @@
 const URL = "https://bookmyshoot-backend.onrender.com"
 const form = document.querySelector("form");
+const submit = document.getElementById("submit");
 
 form.addEventListener("submit", async(e)=>{
     e.preventDefault();
@@ -7,6 +8,8 @@ form.addEventListener("submit", async(e)=>{
         email:form.email.value,
         pass:form.pwd.value
     }
+    submit.style.display = "none";
+    showLoader2();
     
     const request = await fetch(`${URL}/user/login`, {
         method:"POST",
@@ -52,6 +55,8 @@ form.addEventListener("submit", async(e)=>{
             footer: `<b><u><a href="./signup.html">Register Here!</a></u></b>`
         });
     }
+    submit.style.display = "block";
+    hideLoader2();
     form.email.value = "";
     form.pwd.value = "";
 })
