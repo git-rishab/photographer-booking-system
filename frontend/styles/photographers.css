@@ -77,14 +77,15 @@ nav.scrolled a {
 /* ------------------------------ Sorting ----------------------------------- */
 
 #sorting_div {
-  width: 80%;
+  width: 1000px;
   margin: auto;
   display: flex;
   margin-top: 30px;
 }
 
 #sorting_div>div {
-  width: 20%;
+  width: 500px;
+  margin-right: 30px;
 }
 
 #sorting_div>div select {
@@ -97,9 +98,9 @@ select:focus{
   outline: none;
 }
 
-#sort {
-  /* margin-left: 6%; */
-}
+/* #sort {
+  margin-left: 6%;
+} */
 
 #sort_line {
   background-color: #767676;
@@ -224,18 +225,16 @@ select:focus{
 
 
 /* ----------------------------------------- Footer ---------------------------------------------------- */
-
 footer {
   display: flex;
   align-items: center;
+  margin-top: 100px;
   justify-content: space-around;
   background-color: rgb(136, 136, 136);
-  margin-top: 250px;
 }
 
 footer ul {
   display: flex;
-  align-items: center;
   gap: 2rem;
 }
 
@@ -256,15 +255,12 @@ ion-icon {
 }
 
 /* testing */
-/* Main Section */
-#main {
-  display: flex;
-  width: 95%;
-  margin: auto;
-  padding: 30px;
-}
 
 #search-results {
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
@@ -275,15 +271,41 @@ ion-icon {
   border-radius: 20px;
 }
 
-@media screen and (min-width: 300px) and (max-width:750px) {
-  /* #gallery {
-    grid-template-columns: 1fr;
-  } */
-  #main{
-    width: 100%;
-    padding: 1px;
+
+@media screen and (min-width: 300px) and (max-width:1000px) {
+  nav{
+    position: relative;
+    top: 0;
   }
   #search-results{
+    width: 100%;
+    padding: 0;
     grid-template-columns: repeat(1,1fr);
+  }
+  #img_div{
+    display: none;
+  }
+  #sorting_div {
+    flex-direction: column;
+    margin-top: 200px;
+  }
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1001px) and (max-width:1400px) {
+  nav{
+    position: relative;
+    top: 0;
+  }
+  #search-results{
+    width: 100%;
+    padding: 0;
+    grid-template-columns: repeat(2,1fr);
+  }
+  #img_div{
+    display: none;
   }
 }
