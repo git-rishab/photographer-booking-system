@@ -88,6 +88,35 @@
 */
 /**
 * @swagger
+* components:
+*   schemas:
+*       Meeting:
+*           type: object
+*           properties:
+*               photographer:
+*                   type: string
+*                   description: user with role photographer
+*               meetings:
+*                   type: Array
+*                   description: Contains meeting for each users
+*/
+/**
+* @swagger
+* components:
+*   schemas:
+*       Image:
+*           type: object
+*           properties:
+*               name:
+*                   type: string
+*                   description: user's name
+*               image:
+*                   type: string
+*                   data: Buffer
+*                   description: Sample images of photographer
+*/
+/**
+* @swagger
 * /user/:
 *   get:
 *       summary: To get details of all the registered user in Database
@@ -264,6 +293,72 @@
 */
 /**
 * @swagger
+* /user/upload:
+*   post:
+*       summary: To upload images to the database
+*       tags: [Users]
+*       requestBody:
+*           required: true
+*           content:
+*               application/json:
+*                   schema:
+*                       $ref: '#/components/schemas/User'
+*       responses:
+*           200:
+*               description: Images uploaded successfully
+*               content:
+*                   application/json:
+*                       schema:
+*                           $ref: '#/components/schemas/User'
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /user/submit_photographer_details:
+*   patch:
+*       summary: To register a photographer detail in the database
+*       tags: [Users]
+*       requestBody:
+*           required: true
+*           content:
+*               application/json:
+*                   schema:
+*                       $ref: '#/components/schemas/User'
+*       responses:
+*           200:
+*               description: photographer data updated successfully
+*               content:
+*                   application/json:
+*                       schema:
+*                           $ref: '#/components/schemas/User'
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /user/images:
+*   get:
+*       summary: To get all the images from the database
+*       tags: [Users]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*                   schema:
+*                       $ref: '#/components/schemas/User'
+*       responses:
+*           200:
+*               description: images fetched successfully
+*               content:
+*                   application/json:
+*                       schema:
+*                           $ref: '#/components/schemas/User'
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
 * /book/:
 *   get:
 *       summary: All bookings done by the client
@@ -314,6 +409,28 @@
 *       tags: [Bookings]
 *       requestBody:
 *           required: true
+*           content:
+*               application/json:
+*                   schema:
+*                       $ref: '#/components/schemas/Booking'
+*       responses:
+*           200:
+*               description: Requests for meeting fetched Successfully
+*               content:
+*                   application/json:
+*                       schema:
+*                           $ref: '#/components/schemas/Booking'
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /book/requests/:status:
+*   get:
+*       summary: Get the status of requests sent by the clients
+*       tags: [Bookings]
+*       requestBody:
+*           required: false
 *           content:
 *               application/json:
 *                   schema:
@@ -391,6 +508,114 @@
 *                   application/json:
 *                       schema:
 *                           $ref: '#/components/schemas/Notification'
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /auth/google:
+*   get:
+*       summary: Send request to google to login
+*       tags: [OAuth]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*       responses:
+*           200:
+*               description: Data fetched Successfully
+*               content:
+*                   application/json:
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /auth/google/callback:
+*   get:
+*       summary: Callback data fetching from google
+*       tags: [OAuth]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*       responses:
+*           200:
+*               description: Data fetched Successfully
+*               content:
+*                   application/json:
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /auth/google/failure:
+*   get:
+*       summary: If Oauth failed then redirecting user to given route
+*       tags: [OAuth]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*       responses:
+*           200:
+*               description: redirected to google for help
+*               content:
+*                   application/json:
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /auth/github:
+*   get:
+*       summary: Send request to github to login
+*       tags: [OAuth]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*       responses:
+*           200:
+*               description: Data fetched Successfully
+*               content:
+*                   application/json:
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /auth/github/callback:
+*   get:
+*       summary: Callback data fetching from github
+*       tags: [OAuth]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*       responses:
+*           200:
+*               description: Data fetched Successfully
+*               content:
+*                   application/json:
+*           500:
+*               description: Some server error
+*/
+/**
+* @swagger
+* /auth/github/failure:
+*   get:
+*       summary: If Oauth failed then redirecting user to given route
+*       tags: [OAuth]
+*       requestBody:
+*           required: false
+*           content:
+*               application/json:
+*       responses:
+*           200:
+*               description: redirected to github for help
+*               content:
+*                   application/json:
 *           500:
 *               description: Some server error
 */
