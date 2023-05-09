@@ -165,9 +165,12 @@ async function dashboardFetch(){
 				.then((res)=>res.json())
 				.then((data)=>{
 					document.querySelector("#total-registration").textContent = `${data.length}`;
-					let pendingNumber = 0, clientNumber = 0, photographerNumber = 0;
+					let pendingNumber = 0, clientNumber = 0, photographerNumber = 0, blockedNumber = 0;
 					data.forEach((ele)=>{
-						if(ele.role === "client"){
+						if(ele.isBlocked === true){
+							blockedNumber++;
+						}
+						else if(ele.role === "client"){
 							clientNumber++;
 						}
 						else if(ele.role === "photographer" && ele.approved == true){
@@ -176,10 +179,12 @@ async function dashboardFetch(){
 						else if(ele.role === "photographer" && ele.approved == false){
 							pendingNumber++;
 						}
+						
 					})
 					document.querySelector("#total-client").textContent = `${clientNumber}`
 					document.querySelector("#total-photographer").textContent = `${photographerNumber}`
 					document.querySelector("#new-pending-request").textContent = `${pendingNumber}`
+					document.querySelector("#total-blocked").textContent = `${blockedNumber}`
 				})
 				.catch((err)=>console.log(err));
 	}
@@ -259,10 +264,11 @@ function showAllRegistration(data) {
 	let th3 = document.createElement("th");
 	th3.textContent = "Role";
 	let th4 = document.createElement("th");
-	th4.textContent = "Action";
-	theadtr.append(th1, th2, th3, th4);
+	th4.textContent = "Status";
+	let th5 = document.createElement("th");
+	th5.textContent = "Action";
+	theadtr.append(th1, th2, th3, th4, th5);
 	thead.append(theadtr);
-
 
 	//creating tbody for table
 	let tbody = document.createElement("tbody");
@@ -291,6 +297,14 @@ function showAllRegistration(data) {
 		}
 		// td3.append(span);
 		let td4 = document.createElement("td");
+		if(ele.isBlocked ){
+			td4.textContent = "Blocked";
+			td4.style.color = "red";
+		}
+		else{
+			td4.textContent = "Active";
+		}
+		let td5 = document.createElement("td");
 		let removebtn = document.createElement("button")
 		removebtn.textContent = "Remove";
 		removebtn.style.backgroundColor = "red";
@@ -299,9 +313,15 @@ function showAllRegistration(data) {
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
-		td4.append(removebtn);
+		removebtn.addEventListener("click",()=>{
+			blockUser(ele,"All Registration");
+		})
+		if(ele.isBlocked){
+			removebtn.style.cursor = "not-allowed";
+		}
+		td5.append(removebtn);
 
-		btr.append(td1, td2, td3, td4);
+		btr.append(td1, td2, td3, td4, td5);
 
 		tbody.append(btr);
 	})
@@ -319,7 +339,7 @@ async function fetchAllClients(){
 	else{
 		if(allUserData.length > 1){
 			let allclients = allUserData.filter((ele,index)=>{
-				return ele.role == "client";
+				return (ele.role == "client" && ele.isBlocked == false);
 			})
 			showClients(allclients);
 		}
@@ -334,7 +354,7 @@ async function fetchAllClients(){
 					.then((res)=>res.json())
 					.then((data)=>{
 						allclients = data.filter((ele,index)=>{
-							return ele.role == "client";
+							return (ele.role == "client" && ele.isBlocked == false);
 						});
 						showClients(allclients);
 					})
@@ -397,6 +417,9 @@ function showClients(data) {
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
+		removebtn.addEventListener("click",()=>{
+			blockUser(ele,"All Client");
+		})
 		td4.append(removebtn);
 
 		btr.append(td1, td2, td3, td4);
@@ -417,7 +440,7 @@ async function fetchAllPhotographers(){
 	else{ 
 		if(allUserData.length > 1){
 			let allphotographers = allUserData.filter((ele,index)=>{
-				return (ele.role == "photographer" && ele.approved == true) ;
+				return (ele.role == "photographer" && ele.approved == true && ele.isBlocked == false) ;
 			})
 			showPhotographers(allphotographers);
 			// console.log(allphotographers)
@@ -433,7 +456,7 @@ async function fetchAllPhotographers(){
 					.then((res)=>res.json())
 					.then((data)=>{
 						allphotographers = data.filter((ele,index)=>{
-							return (ele.role == "photographer" && ele.approved == true);
+							return (ele.role == "photographer" && ele.approved == true && ele.isBlocked == false);
 						});
 						showPhotographers(allphotographers);
 						// console.log(allphotographers)
@@ -513,6 +536,9 @@ function showPhotographers(data) {
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
+		removebtn.addEventListener("click",()=>{
+			blockUser(ele,"All Photographer");
+		})
 		td7.append(removebtn);
 
 		btr.append(td1,td2,td3,td4,td5,td6,td7);
@@ -787,3 +813,35 @@ async function rejectRequest(user) {
 		fetchNewRequest(); })
 
 }
+
+
+async function blockUser(user,msg){
+	// console.log(user)
+	await fetch(`${URL}/user/block/${user._id}`, {    
+		method: "POST",
+		body: JSON.stringify(user),
+    	headers: {
+        	"Content-type": "application/json; charset=UTF-8",
+			"authorization": `${localStorage.getItem("token")}`
+    	}
+	})
+	.then(response => response.json())
+	.then(json => alert("User Blocked!"))
+	.catch((err)=>alert(err.message))
+	
+		if(msg = "All Registration"){
+			fetchAllRegistration();
+		}
+		else if(msg = "All Client"){
+			fetchAllClients()
+		}
+		else if(msg = "All Photographer"){
+			fetchAllPhotographers()
+		}
+	
+}
+
+let readDoc = document.querySelector("#btn-read-doc");
+readDoc.addEventListener("click",(e)=>{
+	window.location.href = "https://bookmyshoot-backend.onrender.com/api-docs/"
+})
