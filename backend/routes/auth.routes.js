@@ -89,7 +89,7 @@ authRoute.get(
 );
 
 authRoute.get("/github/failure", (req, res) => {
-    res.redirect("https://twitter.com")
+    res.redirect("https://github.com")
 })
 
 passportGithub.use(
