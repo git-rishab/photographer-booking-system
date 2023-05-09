@@ -29,13 +29,21 @@ document.getElementById("settings").addEventListener("click",()=>{
 })
 
 async function fetchData() {
+    showLoader2();
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
     photographer = data
+    console.log(photographer);
     document.getElementById("name").innerText = `Welcome Back! ${data.user.name}`
+    hideLoader2();
 }
 
 function createDom(data, status) {
+    hideLoader2();
+    if(!photographer.user.approved){
+        thead.innerHTML = "Your Request is still Pending, please wait to be Approved."
+        return;
+    }
     const noClient = document.getElementById("noClient");
     tbody.innerHTML = null;
     if(status == "pending"){
@@ -115,6 +123,7 @@ function createDom(data, status) {
 }
 
 async function queue() {
+    showLoader2();
     const request = await fetch(`${URL}/book/requests/pending`, {
         method: "GET",
         headers: {
@@ -133,6 +142,7 @@ function formatTime(time) {
 }
 
 async function accepted() {
+    showLoader2();
     const request = await fetch(`${URL}/book/requests/accepted`, {
         method: "GET",
         headers: {
@@ -167,6 +177,7 @@ function logout() {
 }
 
 async function sendResponse(id, status) {
+
     let notification;
     if(status == "accepted"){
         notification = `${photographer.user.name} has accepted your request`
@@ -226,6 +237,7 @@ async function meet(bookingId, name) {
 }
 
 async function meeting(){
+    showLoader2();
     const req = await fetch(`${URL}/book/${photographer.user._id}`,{
         method:"GET",
         headers:{

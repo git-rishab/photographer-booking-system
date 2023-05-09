@@ -4,7 +4,6 @@ function showLoader2() {
 
 // Hide the loader
 function hideLoader2() {
-    console.log(document.querySelectorAll(".loader2"));
     document.getElementById("loader2").style.display = "none";
 }
 // hideLoader2();
