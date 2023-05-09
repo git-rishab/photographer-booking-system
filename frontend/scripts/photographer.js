@@ -46,3 +46,11 @@ function getTime() {
     const utcTime = selectedTime.toISOString();
     console.log(utcTime); // Output: UTC format of selected time
 }
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    console.log("clicked")
+});

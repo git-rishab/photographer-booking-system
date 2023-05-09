@@ -9,20 +9,19 @@ window.addEventListener('scroll', () => {
 });
 
 
-var signupLink = document.getElementById("signup-link");
-var dropdownMenu = document.getElementById("dropdown-menu");
+// var signupLink = document.getElementById("signup-link");
+// var dropdownMenu = document.getElementById("dropdown-menu");
 
-signupLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "block" : "none";
-});
+// signupLink.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "block" : "none";
+// });
 
 var HamBurger = document.getElementById("hamburger");
 var navContents = document.querySelector(".nav-contents");
 
 HamBurger.addEventListener("click", function () {
     navContents.classList.toggle("show-nav");
-    console.log("clicked")
 });
 
 
