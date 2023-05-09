@@ -23,7 +23,7 @@ BookingRouter.post('/book', authMiddleWare,async (req, res) => {
     // Check if photographer and client exist in the database
     const photographer = await UserModel.findById(photographerId);
     if (!photographer){
-      return res.status(400).json({ message: 'Invalid photographer or client ID' });
+      return res.status(400).json({ message: 'Invalid photographer or client ID', ok:false });
     }
     // Create the booking
     const booking = new BookingModel({
@@ -34,10 +34,10 @@ BookingRouter.post('/book', authMiddleWare,async (req, res) => {
     });
     // Save the booking to the database
     await booking.save();
-    return res.status(201).json({ message: 'Booking request sent successfully' });
+    return res.status(201).json({ message: 'Booking request sent successfully', ok:true });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: err.message, ok:false });
   }
 });
 // {

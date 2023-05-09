@@ -36,7 +36,7 @@ authRoute.get(
 );
 
 authRoute.get("/google/failure", (req, res) => {
-    res.redirect("https://google.com")
+    res.redirect("https://bookmyshoot.netlify.app/login.html")
 })
 
 passport.use(
@@ -89,7 +89,7 @@ authRoute.get(
 );
 
 authRoute.get("/github/failure", (req, res) => {
-    res.redirect("https://github.com")
+    res.redirect("https://bookmyshoot.netlify.app/login.html")
 })
 
 passportGithub.use(

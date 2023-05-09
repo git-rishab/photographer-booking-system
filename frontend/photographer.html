@@ -8,6 +8,7 @@
     <title>Book My Shoot |</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/loader.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./scripts/loader.js"></script>
     <link rel="stylesheet" href="./styles/photographer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -224,10 +225,10 @@
                 <b>Start booking</b> <br>
                 <form>
                     <label for="date">Start Time</label> <br>
-                    <input type="datetime-local" id="datetimeInput">
+                    <input type="datetime-local" id="start">
                     <label for="date">End Time</label> <br>
-                    <input type="datetime-local" id="datetimeInput">
-                    <button id="time_btn" onclick="getTime()">Get Time</button> <br>
+                    <input type="datetime-local" id="end">
+                    <!-- <button id="time_btn" onclick="getTime()">Get Time </button> <br> -->
                     <label for="duration">Duration</label><br>
                     <select id="duration">
                         <option value="anytime">Anytime</option>
