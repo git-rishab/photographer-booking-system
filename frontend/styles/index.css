@@ -304,6 +304,22 @@ ion-icon {
     .hamburger {
         display: flex;
     }
+    .show-nav {
+        display: flex;
+        position: absolute;
+        top: 83%;
+        width: auto;
+        left: 47%;
+        flex-direction: column;
+        background-color: #f9f9f9;
+        padding: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .show-nav a {
+        font-size: small;
+        color: #333;
+    }
     .bg_image {
         margin-bottom: 5%;
     }

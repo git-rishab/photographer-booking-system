@@ -36,3 +36,19 @@ form.addEventListener("submit", (event) => {
     event.preventDefault()
     console.log(occassion.value, date.value, duration.value, place.value);
 })
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+if(isUserName){
+    singupTag.style.display = "none"
+    loginTag.textContent = "Hi," + " " + isUserName
+    loginTag.style.color = "#dd4545"
+}else{
+    singupTag.style.display = "block"
+    loginTag.textContent = "Login"
+}
