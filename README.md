@@ -57,3 +57,13 @@ If you are a professional or aspiring photographer, you have the opportunity to 
 -  Mongo DB  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/mongodb-icon.svg" alt="HTML Icon" width="32" height="22">
 -  Redis
 
+### Take a glimpse of our website
+
+#### Home Page
+![index4](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/68655bf2-a8b7-43c8-9d7e-0cc9997de808)
+
+#### Photographers Dashboard
+![page4-1](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/1e616ccd-843f-4a80-8ab0-a7f84718a3f4)
+
+#### Photographer Page
+![page4](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/28441808-4337-4c7a-aa3a-772e8a4eb0f1)
