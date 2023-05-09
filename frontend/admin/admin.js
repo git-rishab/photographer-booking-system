@@ -33,7 +33,7 @@ logout.addEventListener("click", async(e)=>{
 	 	})
 			.then((res)=>res.json())
 			.then((data)=>{
-				alert("Loggin out!");
+				alert("Logging out!");
 				localStorage.clear();
 				allUserData = [];
 				window.location.href = "../index.html"
