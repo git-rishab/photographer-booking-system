@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
 });
 
 // Example usage
-showLoader(); // Show the loader
+//showLoader(); // Show the loader
   // Load your content here
 
 // Assuming the URL is https://example.com/?name=John&age=25
@@ -32,6 +32,8 @@ const token = searchParams.get('token');
 const id = searchParams.get('id');
 const role = searchParams.get('role');
 const approved = searchParams.get('approved')
+
+console.log(token, id, role,approved);
 
 localStorage.setItem("token",token);
 localStorage.setItem("id",id);
