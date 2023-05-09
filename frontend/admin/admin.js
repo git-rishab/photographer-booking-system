@@ -829,13 +829,13 @@ async function blockUser(user,msg){
 	.then(json => alert("User Blocked!"))
 	.catch((err)=>alert(err.message))
 	
-		if(msg = "All Registration"){
+		if(msg === "All Registration"){
 			fetchAllRegistration();
 		}
-		else if(msg = "All Client"){
+		else if(msg === "All Client"){
 			fetchAllClients()
 		}
-		else if(msg = "All Photographer"){
+		else if(msg === "All Photographer"){
 			fetchAllPhotographers()
 		}
 	
