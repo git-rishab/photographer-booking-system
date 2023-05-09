@@ -1,4 +1,5 @@
-![logo](https://user-images.githubusercontent.com/114225283/236804389-3c2715ca-4c96-4d0e-a55e-f63be74b29b4.png) 
+![logo](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/323c88eb-5ee1-4aa4-a72b-1b18f3bf96df)
+
 # Book My Shoot :camera_flash:
 A photographer booking system allows logged-in users to book a shoot with their desired photographer. <br>
 Enthusiastic and professional photographers can apply to become photographers on our website.
