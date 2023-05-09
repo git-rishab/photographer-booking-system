@@ -38,6 +38,10 @@ You will land on the home page. From the navigation bar, click on "Signup" to be
 
 If you are a professional or aspiring photographer, you have the opportunity to apply for the photographer role on our website. By applying for this role, you gain access to a range of benefits, including the ability to receive appointment requests from various users on our platform. This means that users interested in photography services can directly reach out to you to book appointments and hire you for their photography needs. It's a great opportunity to showcase your skills, expand your client base, and connect with individuals seeking photography services through our platform.
 
+### Deloployed Links
+Backend on [Render](https://bookmyshoot-backend.onrender.com) <br>
+Frontend on [Netlify](https://bookmyshoot.netlify.app/)
+
 ### Tech Stack
 
 #### Front-End
