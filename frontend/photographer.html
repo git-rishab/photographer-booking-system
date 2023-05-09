@@ -34,9 +34,21 @@
     <div id="swiper-container">
         <div class="swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide">
+                    <img src="./images/pexels-photo-1456613.webp" alt="">
+                </div>
+                <!-- <div class="swiper-slide">
+                    <img src="./images/pexels-photo-2122951.webp" alt="">
+                </div> -->
+                <div class="swiper-slide">
+                    <img src="./images/pexels-photo-678414.jpeg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/pexels-photo-8229247.jpeg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/pexels-photo-939702.jpeg" alt="">
+                </div>
             </div>
         </div>
     </div>
@@ -53,7 +65,7 @@
             </div>
             <div id="photographer_nav">
                 <a href="#aboutme"> About Me</a>
-                <a href="#reviews">Reviews</a>
+                <!-- <a href="#reviews">Reviews</a> -->
                 <a href="#works">How it works</a>
             </div>
             <div id="aboutme">
@@ -91,26 +103,18 @@
             <div>
                 <b>Start booking</b> <br>
                 <form>
-                    <label for="date">Date</label> <br>
+                    <label for="date">Start Time</label> <br>
+                    <input type="datetime-local" id="datetimeInput">
+                    <label for="date">End Time</label> <br>
                     <input type="datetime-local" id="datetimeInput">
                     <button id="time_btn" onclick="getTime()">Get Time</button> <br>
                     <label for="duration">Duration</label><br>
                     <select id="duration">
                         <option value="anytime">Anytime</option>
-                        <option value="1hour">1 Hour</option>
-                        <option value="2hours">2 Hour</option>
-                        <option value="3hours">3 Hours</option>
                         <option value="4hours">4 Hours</option>
-                    </select> <br>
-                    <label for="occasion">Type of photoshoot</label><br>
-                    <select id="occassion">
-                        <option value="" selected disabled>What you need photographed</option>
-                        <option value="children">Children</option>
-                        <option value="family">Family</option>
-                        <option value="corporate">Corporate</option>
-                        <option value="enagagement">Engagement</option>
-                        <option value="event">Event</option>
-                        <option value="product">Product</option>
+                        <option value="4hours">5 Hours</option>
+                        <option value="4hours">6 Hours</option>
+                        <option value="4hours">7 Hours</option>
                     </select> <br>
                     <p class="price"><b>Price -</b> <span>₹</span> <span id="price"></span></p>
                     <input type="submit" value="Book">
