@@ -24,17 +24,16 @@ let bookingId;
 queue();
 fetchData();
 
-document.getElementById("settings").addEventListener("click",()=>{
-    window.location.href = "./photographer_details.html"
-})
+// document.getElementById("settings").addEventListener("click",()=>{
+//     window.location.href = "./photographer_details.html"
+// })
 
 async function fetchData() {
     showLoader2();
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
     photographer = data
-    console.log(photographer);
-    document.getElementById("name").innerText = `Welcome Back! ${data.user.name}`
+    // console.log(photographer);
     hideLoader2();
 }
 
@@ -155,6 +154,9 @@ async function accepted() {
 }
 
 function logout() {
+    fetch(`${URL}/user/logout`,{
+        method:"POST"
+    })
     Swal.fire({
         title: 'Are you sure?',
         text: "You want to Log Out?",
@@ -248,3 +250,24 @@ async function meeting(){
     const res = await req.json();
     createDom(res,"meeting")
 }
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+
+loginTag.textContent = "Hi," + " " + isUserName
+loginTag.style.color = "#dd4545"
+loginTag.setAttribute("href","./userDashboard.html");
+

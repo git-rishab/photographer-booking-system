@@ -638,3 +638,12 @@ body {
   padding-bottom: 6px;
   margin-top: 10px;
 }
+.bold{
+  color: rgb(81, 162, 228);
+}
+#total_pay{
+  color: rgb(53, 196, 53);
+}
+.price{
+  color: #7855b9;
+}

@@ -126,6 +126,9 @@ async function notification() {
 }
 
 function logout() {
+    fetch(`${URL}/user/logout`,{
+        method:"POST"
+    })
     Swal.fire({
         title: 'Are you sure?',
         text: "You want to Log Out?",
@@ -146,3 +149,23 @@ function logout() {
         }
     })
 }
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+
+loginTag.textContent = "Hi," + " " + isUserName
+loginTag.style.color = "#dd4545"
+loginTag.setAttribute("href","./userDashboard.html");

@@ -12,7 +12,7 @@ body{
 }
 
 /* Nav Bar */
-nav{
+/* nav{
     display: flex;
     position: sticky;
     top: 0;
@@ -39,7 +39,47 @@ nav > div:nth-child(1){
 nav img{
     height: 100%;
     width: 100%;
+} */
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 50px;
+    height: 60px;
+    position: sticky;
+    z-index: 2;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
+.logo_name>a>img {
+    width: 70%;
+    margin-left: 5%;
+}
+#logout2{
+    display: flex;
+}
+#logout2 img{
+    margin-left: 50px;
+    height: 50px;
+    width: 50px;
+}
+/* nav.scrolled {
+    background-color: #dd4545;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+} */
+
+.nav-contents {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-contents>a:hover {
+    color: #dd4545;
+}
+
 #settings {
     height: 90%;
 }
@@ -48,7 +88,7 @@ nav img{
     align-items: center;
     justify-content: center;
     width: 80px;
-    padding: 0px 10px;
+    padding: 10px 10px;
     border: none;
     border-radius: 7px;
     color: #fff;

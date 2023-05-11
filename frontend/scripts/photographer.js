@@ -7,9 +7,17 @@ const swiper = new Swiper('.swiper', {
     },
     slidesPerView: 2
 });
-const URL = "https://bookmyshoot-backend.onrender.com";
-const form = document.querySelector("form")
-const photographer = localStorage.getItem("photographerId");
+// Get the current URL
+const currentUrl = window.location.href;
+// Create a URL object from the current URL
+const url2 = new URL(currentUrl);
+// Get the search parameters from the URL
+const searchParams = url2.searchParams;
+
+// const url = "http://localhost:3000"
+const url = "https://bookmyshoot-backend.onrender.com";
+const form = document.querySelector("form");
+const photographer = searchParams.get("id");
 const photographerName = document.getElementById("name")
 const photographerPlace = document.getElementById("place")
 const photographerCamera  = document.getElementById("camera")
@@ -18,7 +26,7 @@ const photographerExpertise = document.getElementById("expertise")
 const titleName = document.querySelector("title")
 const token = localStorage.getItem("token") || null;
 let userData;
-fetch(`${URL}/user/${photographer}`)
+fetch(`${url}/user/${photographer}`)
 .then((res) => res.json())
 .then((data) => {
     userData = data.user;
@@ -44,12 +52,55 @@ form.addEventListener("submit", async(e)=>{
     const selectedTime = new Date(datetimeValue);
     const selectedTime2 = new Date(datetimeValue2);
     const currentTime = new Date();
+    const differenceInMilliseconds = selectedTime2 - selectedTime;
+    const differenceInHours = differenceInMilliseconds / (1000 * 60 * 60);
+    const hours = Math.floor(differenceInHours);
     
-    if (selectedTime < currentTime || !datetimeValue2) {
+    if (!datetimeValue2) {
+        Swal.fire({
+            icon: "error",
+            title: "",
+            text: "Please enter Start and End Time",
+            footer: ``
+        });
+        start.value = ''; // Clear the input value if it's in the past
+        end.value = '';
+        return;
+    } else if (selectedTime < currentTime){
         Swal.fire({
             icon: "error",
             title: "",
             text: "Date could not be in the past",
+            footer: ``
+        });
+        start.value = ''; // Clear the input value if it's in the past
+        end.value = '';
+        return;
+    } else if(hours < 3){
+        Swal.fire({
+            icon: "error",
+            title: "",
+            text: "The Minimum booking duration is 4 hours",
+            footer: ``
+        });
+        start.value = ''; // Clear the input value if it's in the past
+        end.value = '';
+        return;
+    } else if (!token){
+        Swal.fire({
+            icon: "error",
+            title: "",
+            text: "Please Login First",
+            footer: `<a href="./login.html">Login here</a>`
+        });
+        start.value = ''; // Clear the input value if it's in the past
+        end.value = '';
+        return;
+    } else if(localStorage.getItem("role") != "client"){
+        Swal.fire({
+            icon: "error",
+            title: "",
+            text: "A photographer or Admin cannot book another photographer",
             footer: ``
         });
         start.value = ''; // Clear the input value if it's in the past
@@ -60,17 +111,7 @@ form.addEventListener("submit", async(e)=>{
     const utcTime = selectedTime.toISOString();
     const utcTime2 = selectedTime2.toISOString();
 
-    if(!token){
-        Swal.fire({
-            icon: "error",
-            title: "",
-            text: "Please Login First",
-            footer: `<a href="./login.html">Login here</a>`
-        });
-        return
-    }
-
-    const req = await fetch(`${URL}/book/book`,{
+    const req = await fetch(`${url}/book/book`,{
         method:"POST",
         headers:{
             "Content-type": "application/json",
@@ -80,12 +121,7 @@ form.addEventListener("submit", async(e)=>{
     })
     const res = await req.json();
     if(res.ok){
-        Swal.fire(
-            res.msg,
-            '',
-            'success'
-        )
-        // window.location.href = "./payment.html"
+        window.location.href = `./payment.html?id=${photographer}&time=${hours}`
     } else {
         Swal.fire({
             icon: "error",
@@ -103,7 +139,7 @@ var navContents = document.querySelector(".nav-contents");
 
 HamBurger.addEventListener("click", function () {
     navContents.classList.toggle("show-nav");
-    console.log("clicked")
+    // console.log("clicked")
 });
 
 // username visible after logging in
@@ -117,6 +153,7 @@ if(isUserName){
     singupTag.style.display = "none"
     loginTag.textContent = "Hi," + " " + isUserName
     loginTag.style.color = "#dd4545"
+    loginTag.setAttribute("href","./userDashboard.html");
 }else{
     singupTag.style.display = "block"
     loginTag.textContent = "Login"

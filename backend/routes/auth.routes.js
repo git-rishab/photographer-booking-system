@@ -31,7 +31,7 @@ authRoute.get(
             userID: user._id
         }, 'token', { expiresIn: '24hr' });
 
-        res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`); // chnge the link to frontend
+        res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}&username=${user.name}`); // chnge the link to frontend
     }
 );
 
@@ -84,7 +84,7 @@ authRoute.get(
             userID: user._id
         }, 'token', { expiresIn: '24hr' });
 
-        res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`);
+        res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}&username=${user.name}`);
     }
 );
 
