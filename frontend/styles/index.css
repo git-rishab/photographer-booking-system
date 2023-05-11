@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    background: #ddeefc;
 }
 
 a {
@@ -151,8 +152,15 @@ input[type="submit"]:hover {
     width: 30%;
     height: auto;
     font-size: 18px;
+    background-color: #FCEFEF;
+    padding: 20px;
+    border-radius: 10px;
 }
-
+.steps_to_book > div{
+    background-color: #fff;
+    padding: 10px 25px;
+    border-radius: 10px;
+}
 .steps_to_book div p:nth-child(2) {
     color: gray;
 }
@@ -175,9 +183,8 @@ input[type="submit"]:hover {
     width: 30%;
     height: 300px;
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border-radius: 10px;
-    background: #dd45458e;
+    background: #FCEFEF;
 }
 
 .index_reviews div p {

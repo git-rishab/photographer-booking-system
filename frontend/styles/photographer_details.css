@@ -4,8 +4,47 @@
 }
 body{
   font-family: sans-serif;
-  background-color: #f0f2f5;
+  background: #ddeefc;
 }
+
+/* Navbar */
+nav a {
+  text-decoration: none;
+  color: rgb(67, 67, 67);
+}
+.logo_name>a>img {
+  width: 70%;
+  margin-left: 5%;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+/* nav.scrolled {
+  background-color: #dd4545;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+} */
+
+.nav-contents {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-contents>a:hover {
+  color: #dd4545;
+}
+
 #head{
   font-size: 25px;
   text-align: center;
@@ -19,12 +58,10 @@ form {
 }
 
 label{
-  margin-top: 10px;
   color: #000000;
   font-weight: 500;
   margin-bottom: 5px;
 }
-
 input {
   border-radius: 5px;
   border: 1px solid rgb(211, 202, 202);
@@ -51,14 +88,13 @@ input:focus{
 }
 
 #main{
-  padding-top: 10px;
-  padding-bottom: 10px;
   background-color: #fff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 20px;
-  width: 50%;
+  width: 60%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 78px;
+  padding: 40px;
 }
 /* #main>div{
   border: 1px solid red;
@@ -84,16 +120,20 @@ input:focus{
   width: 100%;
 }
 
-#main_div div {
+form > div{
+  margin-top: 20px;
+}
+
+/* #main_div div { */
   /* display: flex; */
   /* flex-direction: column; */
   /* border: 1px solid red; */
-}
-#main_div>div {
+/* } */
+/* #main_div>div { */
   /* display: flex; */
   /* flex-direction: column; */
   /* border: 1px solid red; */
-}
+/* } */
 
 #main_div>div:nth-child(1) {
   width:65%;
@@ -137,11 +177,17 @@ input:focus{
 }
 footer {
   display: flex;
+  width: 100%;
   align-items: center;
+  padding: 14px 0;
   justify-content: space-around;
-  padding: 20px;
-  margin-top: 100px;
   background-color: rgb(136, 136, 136);
+  position: absolute;
+  bottom: 0;
+}
+footer div{
+  display: flex;
+  align-items: center;
 }
 
 footer ul {

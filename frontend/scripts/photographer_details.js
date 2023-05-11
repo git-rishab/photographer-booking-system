@@ -94,3 +94,30 @@ detailsForm.addEventListener("submit", async (e) => {
     }, 2500)
   }
 })
+
+// username visible after logging in
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+if(isUserName){
+    singupTag.style.display = "none"
+    loginTag.textContent = "Hi," + " " + isUserName
+    loginTag.style.color = "#dd4545"
+    loginTag.setAttribute("href","./userDashboard.html");
+}else{
+    singupTag.style.display = "block"
+    loginTag.textContent = "Login"
+}
