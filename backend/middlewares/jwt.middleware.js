@@ -9,10 +9,10 @@ const authMiddleWare = async(req,res,next)=>{
         //Checking if user exists
         const user = await UserModel.findById(userId);
         if(!user){
-            return res.status(401).json({message:"Unauthorized"})
+            return res.status(401).json({message:"Please Login Again",ok:false})
         }
         if(user.isBlocked){
-            return res.status(403).json({message: ' Your account has been Blocked'})
+            return res.status(403).json({message: 'Your account has been Blocked', ok:false})
         }
         req.user = user;
         next()

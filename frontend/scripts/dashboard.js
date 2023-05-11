@@ -32,10 +32,13 @@ const token = searchParams.get('token');
 const id = searchParams.get('id');
 const role = searchParams.get('role');
 const approved = searchParams.get('approved');
-
+const userName = searchParams.get("username");
 
 localStorage.setItem("token",token);
 localStorage.setItem("id",id);
+localStorage.setItem("userName", userName);
+localStorage.setItem("role",role);
+localStorage.setItem("approved",approved);
 
 
 if(role == "photographer" && approved == "true"){

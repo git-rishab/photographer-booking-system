@@ -120,15 +120,13 @@ location_sort?.addEventListener("change", async () => {
 container?.addEventListener("click", (event) => {
     if (event.target.id === "view_profile") {
         const photographerId = event.target.closest(".photographer_div").id;
-        localStorage.setItem("photographerId", photographerId);
         fetchProfilePage(photographerId);
-        console.log(photographerId);
     }
 });
 
 
 function fetchProfilePage(photographerId) {
-    const profilePageUrl = "photographer.html"
+    const profilePageUrl = `photographer.html?id=${photographerId}`
     window.open(profilePageUrl, "_blank");
 }
 
@@ -143,6 +141,7 @@ if(isUserName){
     singupTag.style.display = "none"
     loginTag.textContent = "Hi," + " " + isUserName
     loginTag.style.color = "#dd4545"
+    loginTag.setAttribute("href","./userDashboard.html");
 }else{
     singupTag.style.display = "block"
     loginTag.textContent = "Login"
