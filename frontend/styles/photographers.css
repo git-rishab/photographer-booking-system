@@ -5,7 +5,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f1f1f1 !important;
+  background-color: #ddeefc !important;
   /* background-image: url("https://user-images.githubusercontent.com/114337213/236949656-a920d051-7219-498e-be7f-e1be510cee11.jpg");
     background-size: 100% 100%;
     height: 100vh;
@@ -23,8 +23,8 @@ nav a {
 }
 
 .logo_name>a>img {
-  width: 40%;
-  margin-left: -40px;
+  width: 70%;
+  margin-left: 5%;
 }
 
 nav {
@@ -32,33 +32,27 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffffff;
+  background-color: white;
   height: 70px;
-  padding: 10px;
-  z-index: 1;
   position: fixed;
   top: 0;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.nav-contents>a:hover {
-  color: #5184eb;
-}
-
-nav.scrolled {
-  background-color: #ffffff;
-  padding-top: 2rem;
-  padding-bottom: 1.5rem;
+  z-index: 2;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 
-nav.scrolled a {
-  color: black;
-}
+/* nav.scrolled {
+  background-color: #dd4545;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+} */
 
 .nav-contents {
   display: flex;
   gap: 3rem;
+}
+
+.nav-contents>a:hover {
+  color: #dd4545;
 }
 
 /* ---------------------------------- Image   ----------------------------------- */
@@ -77,14 +71,19 @@ nav.scrolled a {
 /* ------------------------------ Sorting ----------------------------------- */
 
 #sorting_div {
-  width: 1000px;
+  width: fit-content;
+  position: relative;
   margin: auto;
   display: flex;
-  margin-top: 30px;
+  margin-top: 100px;
+  /* flex-wrap: wrap; */
 }
-
+#sorting_div>div:nth-child(1){
+  width: fit-content;
+}
 #sorting_div>div {
-  width: 500px;
+  width: fit-content;
+  /* margin-left: 10%; */
   margin-right: 30px;
 }
 
@@ -94,7 +93,8 @@ nav.scrolled a {
   background-color: #fff;
   border-radius: 7px;
 }
-select:focus{
+
+select:focus {
   outline: none;
 }
 
@@ -226,11 +226,19 @@ select:focus{
 
 /* ----------------------------------------- Footer ---------------------------------------------------- */
 footer {
+  position: relative;
+  bottom: 0;
   display: flex;
+  width: 100%;
   align-items: center;
-  margin-top: 100px;
+  padding: 14px;
   justify-content: space-around;
   background-color: rgb(136, 136, 136);
+  margin-top: 100px;
+}
+footer div{
+  display: flex;
+  align-items: center;
 }
 
 footer ul {
@@ -261,18 +269,120 @@ ion-icon {
   margin: auto;
   margin-top: 20px;
   padding: 30px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,243,244,1) 0%, rgba(255,249,249,1) 0%);
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* grid-template-rows: auto; */
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 243, 244, 1) 0%, rgba(255, 249, 249, 1) 0%);
   padding: 30px;
+  min-height: 100vh;
   gap: 40px;
   border-radius: 20px;
 }
 
+@media screen and (min-width: 500px) and (max-width: 1000px) {
 
-@media screen and (min-width: 300px) and (max-width:1000px) {
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .hamburger .line {
+    width: 100%;
+    height: 2px;
+    background-color: #dd4545;
+  }
+
+  .nav-contents {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .show-nav {
+    display: flex;
+    position: absolute;
+    top: 83%;
+    width: auto;
+    left: 75%;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .show-nav a {
+    font-size: small;
+    color: #333;
+  }
+  #sorting_div{
+    width: fit-content;
+    flex-direction: column;
+  }
+  #sorting_div > div {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 100px) and (max-width: 499px) {
+
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .hamburger .line {
+    width: 100%;
+    height: 2px;
+    background-color: #dd4545;
+  }
+
+  .nav-contents {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .show-nav {
+    display: flex;
+    position: absolute;
+    top: 83%;
+    width: auto;
+    left: 55%;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .show-nav a {
+    font-size: small;
+    color: #333;
+  }
+
+}
+
+/* @media screen and (min-width: 300px) and (max-width:1000px) {
   nav{
     position: relative;
     top: 0;
@@ -308,4 +418,4 @@ ion-icon {
   #img_div{
     display: none;
   }
-}
+} */

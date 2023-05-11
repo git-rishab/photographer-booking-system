@@ -1,11 +1,11 @@
 let container = document.getElementById('search-results')
 // Fetch the images data from the server
-const URL = "https://bookmyshoot-backend.onrender.com"
+const url = "https://bookmyshoot-backend.onrender.com"
 
 async function fetchData() {
     try {
 
-        const response = await fetch(`${URL}/user/images`);
+        const response = await fetch(`${url}/user/images`);
         const data = await response.json();
 
         Display(data.images, data.photographers);
@@ -85,7 +85,7 @@ let locationValue;
 price_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     locationValue = location_sort.value;
-    await fetch(`${URL}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
+    await fetch(`${url}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
             const data = res;
@@ -98,7 +98,7 @@ location_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     sort.value
     locationValue = location_sort.value;
-    await fetch(`${URL}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
+    await fetch(`${url}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
 
@@ -126,9 +126,19 @@ container?.addEventListener("click", (event) => {
 
 
 function fetchProfilePage(photographerId) {
-    const profilePageUrl = `photographer.html?id=${photographerId}`
-    window.open(profilePageUrl, "_blank");
+    const profilePageurl = `photographer.html?id=${photographerId}`
+    window.open(profilePageurl, "_blank");
 }
+
+// username visible after logging in
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
 
 // username visible after logging in
 
