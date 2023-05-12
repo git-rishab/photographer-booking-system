@@ -339,10 +339,13 @@ function showAllRegistration(data) {
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
 		removebtn.setAttribute("class", "redbtn")
-		removebtn.addEventListener("click", () => {
-			blockUser(ele, "All Registration");
-		})
-		if (ele.isBlocked) {
+		
+		if (ele.isBlocked === false && ele.role!== "admin") {
+			removebtn.addEventListener("click", () => {
+				blockUser(ele, "All Registration");
+			})
+		}
+		if(ele.isBlocked || ele.role == "admin"){
 			removebtn.style.cursor = "not-allowed";
 		}
 		td5.append(removebtn);
@@ -759,15 +762,15 @@ function showBooking(data) {
 	th1.textContent = "Client";
 	let th2 = document.createElement("th");
 	th2.textContent = "Photographer";
-	let th3 = document.createElement("th");
-	th3.textContent = "Created At";
+	// let th3 = document.createElement("th");
+	// th3.textContent = "Created At";
 	let th4 = document.createElement("th");
 	th4.textContent = "Start Time";
 	let th5 = document.createElement("th");
 	th5.textContent = "End Time";
 	let th6 = document.createElement("th");
 	th6.textContent = "Status";
-	theadtr.append(th1, th2, th3, th4, th5, th6);
+	theadtr.append(th1, th2, th4, th5, th6);
 	thead.append(theadtr);
 
 	// creating tbody to append booking data
@@ -786,14 +789,14 @@ function showBooking(data) {
 		td2.textContent = ele.photographer.name;
 
 		// td2.setAttribute("class","tdbooking");
-		let td3 = document.createElement("td");
-		td3.textContent = ele.createdAt;
+		// let td3 = document.createElement("td");
+		// td3.textContent = formatTime(ele.createdAt);
 		// td3.setAttribute("class","tdbooking");
 		let td4 = document.createElement("td");
-		td4.textContent = ele.start_time;
+		td4.textContent = formatTime(ele.start_time);
 		// td4.setAttribute("class","tdbooking");
 		let td5 = document.createElement("td");
-		td5.textContent = ele.end_time;
+		td5.textContent = formatTime(ele.end_time);
 		// td5.setAttribute("class","tdbooking");
 		let td6 = document.createElement("td");
 		td6.textContent = ele.status;
@@ -809,7 +812,7 @@ function showBooking(data) {
 			btr.setAttribute("class", "rejected");
 		}
 
-		btr.append(td1, td2, td3, td4, td5, td6);
+		btr.append(td1, td2, td4, td5, td6);
 
 		tbody.append(btr);
 	})
@@ -819,7 +822,11 @@ function showBooking(data) {
 	tableParent.append(table);
 }
 
-
+function formatTime(time) {
+    const utcTime = new Date(time);
+    const normalTime = utcTime.toLocaleString().split(",").join(" |");
+    return normalTime;
+}
 
 
 // ----------approving photographer request
