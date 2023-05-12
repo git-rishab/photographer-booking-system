@@ -45,6 +45,8 @@ if(role == "photographer" && approved == "true"){
     window.location.href = "./photographerDashboard.html"
 } else if(role == "photographer"){
     window.location.href = "./photographer_details.html"
+} else if(role == "admin"){
+    window.location.href = "./admin/admin.html"
 } else {
     window.location.href = "./clientDashboard.html";
 }

@@ -25,8 +25,7 @@ async function fetchData() {
     showLoader2();
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
-    photographer = data
-    document.getElementById("name").innerText = `Welcome Back! ${data.user.name}`
+    photographer = data;
     hideLoader2();
 }
 

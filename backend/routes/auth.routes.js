@@ -10,7 +10,6 @@ const passport = require("passport");
 require("dotenv").config();
 
 const { v4: uuidv4 } = require("uuid");
-require("dotenv").config();
 
 const authRoute = express.Router();
 
@@ -28,9 +27,7 @@ authRoute.get(
     }),
     function (req, res) {
         let user = req.user;
-        const token = jwt.sign({
-            userID: user._id
-        }, process.env.secret, { expiresIn: '1hr' });
+        const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
 
         res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}&username=${user.name}`); // chnge the link to frontend
     }
@@ -81,9 +78,7 @@ authRoute.get(
     }),
     function (req, res) {
         let user = req.user;
-        const token = jwt.sign({
-            userID: user._id
-        }, process.env.secret, { expiresIn: '1hr' });
+        const token = jwt.sign({ userId: user._id }, process.env.secret, { expiresIn: '1hr' })
 
         res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}&username=${user.name}`);
     }
