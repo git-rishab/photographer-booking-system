@@ -33,6 +33,7 @@ async function fetchData() {
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
     photographer = data
+    localStorage.setItem("approved",data.user.approved)
     // console.log(photographer);
     hideLoader2();
 }
