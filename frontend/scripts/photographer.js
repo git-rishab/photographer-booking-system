@@ -13,7 +13,7 @@ const currentUrl = window.location.href;
 const url2 = new URL(currentUrl);
 // Get the search parameters from the URL
 const searchParams = url2.searchParams;
-
+const id = url.searchParams.get('id');
 // const url = "http://localhost:3000"
 const url = "https://bookmyshoot-backend.onrender.com";
 const form = document.querySelector("form");
@@ -153,7 +153,7 @@ let image_3= document.getElementById("img3")
 let image_4= document.getElementById("img4")
 async function fetchData() {
     try {
-        const response = await fetch(`${url}/user/images/${photographer_id}`);
+        const response = await fetch(`${url}/user/images/${id}`);
         const data = await response.json();
         let images_array = data.Images[0].images;
         console.log(images_array);
