@@ -125,9 +125,6 @@ async function notification() {
 }
 
 function logout() {
-    fetch(`${URL}/user/logout`,{
-        method:"POST"
-    })
     Swal.fire({
         title: 'Are you sure?',
         text: "You want to Log Out?",
@@ -138,6 +135,14 @@ function logout() {
         confirmButtonText: 'Yes'
     }).then((result) => {
         if (result.isConfirmed) {
+            fetch(`${URL}/user/logout`,{
+                method:"POST",
+                headers: {
+                    "Content-type": "application/json;charset=UTF-8",
+                    "authorization": token
+                }
+            })
+            
             Swal.fire(
                 'see you soon',
                 '',
