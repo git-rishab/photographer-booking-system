@@ -13,7 +13,7 @@ const currentUrl = window.location.href;
 const url2 = new URL(currentUrl);
 // Get the search parameters from the URL
 const searchParams = url2.searchParams;
-const id = url.searchParams.get('id');
+const id = url2.searchParams.get('id');
 // const url = "http://localhost:3000"
 const url = "https://bookmyshoot-backend.onrender.com";
 const form = document.querySelector("form");
