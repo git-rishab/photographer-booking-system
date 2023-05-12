@@ -13,7 +13,7 @@ const currentUrl = window.location.href;
 const url2 = new URL(currentUrl);
 // Get the search parameters from the URL
 const searchParams = url2.searchParams;
-const id = url2.searchParams.get('id');
+
 // const url = "http://localhost:3000"
 const url = "https://bookmyshoot-backend.onrender.com";
 const form = document.querySelector("form");
@@ -145,8 +145,7 @@ HamBurger.addEventListener("click", function () {
 
 
 //----------------------------------- Carousel images --------------------------------------------------//
-
-let photographer_id = localStorage.getItem("photographerId")
+const id = url2.searchParams.get('id');
 let image_1= document.getElementById("img1")
 let image_2= document.getElementById("img2")
 let image_3= document.getElementById("img3")
@@ -156,7 +155,6 @@ async function fetchData() {
         const response = await fetch(`${url}/user/images/${id}`);
         const data = await response.json();
         let images_array = data.Images[0].images;
-        console.log(images_array);
         image_1.setAttribute("src",`data:image/png;base64,${images_array[0]._id}`)
         image_2.setAttribute("src",`data:image/png;base64,${images_array[1]._id}`)
         image_3.setAttribute("src",`data:image/png;base64,${images_array[2]._id}`)
