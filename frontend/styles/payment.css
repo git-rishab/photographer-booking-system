@@ -4,6 +4,26 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 16px;
 }
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+body::after {
+  content: "";
+  background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.9;
+  /* Set the desired opacity value */
+  pointer-events: none;
+  z-index: -1;
+}
+
 
 * {
   box-sizing: border-box;
