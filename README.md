@@ -39,6 +39,10 @@ You will land on the home page. From the navigation bar, click on "Signup" to be
 
 If you are a professional or aspiring photographer, you have the opportunity to apply for the photographer role on our website. By applying for this role, you gain access to a range of benefits, including the ability to receive appointment requests from various users on our platform. This means that users interested in photography services can directly reach out to you to book appointments and hire you for their photography needs. It's a great opportunity to showcase your skills, expand your client base, and connect with individuals seeking photography services through our platform.
 
+### Have a look at our routes in `Swagger`
+
+[API](https://bookmyshoot-backend.onrender.com/api-docs)
+
 ### Deloployed Links
 Backend on [Render](https://bookmyshoot-backend.onrender.com) <br>
 Frontend on [Netlify](https://bookmyshoot.netlify.app/)
@@ -65,10 +69,12 @@ Frontend on [Netlify](https://bookmyshoot.netlify.app/)
 ### Take a glimpse of our website
 
 #### Home Page
-![index4](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/68655bf2-a8b7-43c8-9d7e-0cc9997de808)
+![index](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/aa359a39-5532-4fc4-b9f6-61b4e808330c)
+
 
 #### Photographers Dashboard
-![page4-1](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/1e616ccd-843f-4a80-8ab0-a7f84718a3f4)
+![photogrpahers](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/a97a0af3-f12c-4c7d-b95b-183f66473403)
 
 #### Photographer Page
-![page4](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/28441808-4337-4c7a-aa3a-772e8a4eb0f1)
+![individual](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/8467e373-81dc-4f3f-85de-cc3603c9b297)
+
