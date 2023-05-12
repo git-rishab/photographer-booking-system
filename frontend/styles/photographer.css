@@ -1,7 +1,26 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: #ddeefc;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+body::after {
+    content: "";
+    background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    /* Set the desired opacity value */
+    pointer-events: none;
+    z-index: -1;
 }
 
 a {
@@ -53,9 +72,11 @@ nav {
     margin-bottom: 20px;
     background-color: #fff;
 }
-.swiper-slide>img{
+
+.swiper-slide>img {
     width: 90%;
 }
+
 .container {
     display: flex;
     position: relative;
@@ -71,11 +92,13 @@ nav {
     border-radius: 8px;
     background-color: #fff;
 }
-#aboutme,#works{
+
+#aboutme, #works {
     padding: 15px;
     background-color: #dd454515;
     border-radius: 5px;
 }
+
 .book {
     padding: 2rem;
     border-radius: 8px;
@@ -102,7 +125,8 @@ select {
     font-weight: bold;
     font-size: 17px;
 }
-.book input[type="submit"]:hover{
+
+.book input[type="submit"]:hover {
     cursor: pointer;
     background-color: #df8585;
 }
@@ -112,9 +136,11 @@ label {
     font-weight: bold;
     font-size: 14px;
 }
-input:focus{
+
+input:focus {
     outline: none;
 }
+
 #results>h5 {
     display: flex;
     align-items: center;
@@ -196,10 +222,12 @@ ion-icon {
         width: fit-content;
         flex-direction: column;
     }
+
     .about {
         width: fit-content;
         margin: 3rem;
     }
+
     .hamburger {
         display: none;
         flex-direction: column;
@@ -299,6 +327,7 @@ ion-icon {
         font-size: small;
         color: #333;
     }
+
     .about {
         width: fit-content;
         margin: 3rem;

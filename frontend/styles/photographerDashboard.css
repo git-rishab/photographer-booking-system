@@ -11,6 +11,23 @@ body{
     background-color: #E5E7EB;
 }
 
+body::after {
+    content: "";
+    background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    /* Set the desired opacity value */
+    pointer-events: none;
+    z-index: -1;
+}
+
+
 /* Nav Bar */
 /* nav{
     display: flex;
