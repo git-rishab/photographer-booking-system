@@ -8,6 +8,10 @@ function showLoader() {
 
 // Hide the loader
 function hideLoader() {
+    const loader = document.getElementById("loader");
+    if(!loader){
+        return;
+    }
     document.getElementById("loader").style.display = "none";
 }
 
