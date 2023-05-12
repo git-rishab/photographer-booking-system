@@ -31,12 +31,12 @@ authRoute.get(
             userID: user._id
         }, 'token', { expiresIn: '24hr' });
 
-        res.redirect(`https://github.com?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`); // chnge the link to frontend
+        res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`); // chnge the link to frontend
     }
 );
 
 authRoute.get("/google/failure", (req, res) => {
-    res.redirect("https://google.com")
+    res.redirect("https://bookmyshoot.netlify.app/login.html")
 })
 
 passport.use(
@@ -84,12 +84,12 @@ authRoute.get(
             userID: user._id
         }, 'token', { expiresIn: '24hr' });
 
-        res.redirect(`https://facebook.com?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`);
+        res.redirect(`https://bookmyshoot.netlify.app/dashboard.html?id=${user._id}&token=${token}&role=${user.role}&approved=${user.approved}`);
     }
 );
 
 authRoute.get("/github/failure", (req, res) => {
-    res.redirect("https://twitter.com")
+    res.redirect("https://bookmyshoot.netlify.app/login.html")
 })
 
 passportGithub.use(
