@@ -120,6 +120,9 @@ location_sort?.addEventListener("change", async () => {
 container?.addEventListener("click", (event) => {
     if (event.target.id === "view_profile") {
         const photographerId = event.target.closest(".photographer_div").id;
+
+        console.log(photographerId);
+        localStorage.setItem("photographerId", photographerId);
         fetchProfilePage(photographerId);
     }
 });

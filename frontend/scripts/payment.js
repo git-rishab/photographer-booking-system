@@ -86,6 +86,7 @@ new Vue({
   }
 });
 
+
 // Get the current URL
 const currentUrl = window.location.href;
 // Create a URL object from the current URL
@@ -147,3 +148,4 @@ submit.addEventListener("click", () => {
     window.location.href = "./clientDashboard.html"
   },2500)
 })
+

@@ -142,6 +142,34 @@ HamBurger.addEventListener("click", function () {
     // console.log("clicked")
 });
 
+
+
+//----------------------------------- Carousel images --------------------------------------------------//
+
+var URL = window.location.href;
+
+// Create an anchor element to parse the URL
+var parser = document.createElement('a');
+parser.href = url;
+
+// Get the value of the 'id' parameter
+var id = parser.searchParams.get('id');
+
+console.log(id);
+
+async function fetchData() {
+    console.log("hi")
+    // try {
+    //     const response = await fetch('http://localhost:3000/user/images/');
+    //     const data = await response.json();
+    //     Display(data.images, data.photographers);
+    // } catch (error) {
+    //     console.error(error);
+    // }
+}
+
+fetchData();
+
 // username visible after logging in
 
 let loginTag = document.getElementById("login")
@@ -158,3 +186,4 @@ if(isUserName){
     singupTag.style.display = "block"
     loginTag.textContent = "Login"
 }
+
