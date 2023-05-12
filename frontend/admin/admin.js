@@ -130,7 +130,12 @@ dashboardFetch();
 async function dashboardFetch(){
 	
 	if(!localStorage.getItem("token")){
-		alert("Login fisrt to access Admin Dashboard!");
+		// alert("Login fisrt to access Admin Dashboard!");
+		Swal.fire(
+			'Login First!',
+			'',
+			'warning'
+		)
 	}
 	else{
 		newRequestDiv.style.display = "none";
@@ -219,7 +224,11 @@ ds.forEach((ele) => {
 
 async function fetchAllRegistration(){
 	if(!localStorage.getItem("token")){
-		alert("Login fisrt to access All Registration details!");
+		Swal.fire(
+			'Login First!',
+			'',
+			'warning'
+		)
 	}
 	else{
 		await fetch(`${URL}/user/`,{
@@ -306,13 +315,14 @@ function showAllRegistration(data) {
 		}
 		let td5 = document.createElement("td");
 		let removebtn = document.createElement("button")
-		removebtn.textContent = "Remove";
-		removebtn.style.backgroundColor = "red";
+		removebtn.textContent = "Block";
+		removebtn.style.backgroundColor = "#EF5350";
 		removebtn.style.color = "white";
 		removebtn.style.fontSize = "16px"
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
+		removebtn.setAttribute("class","redbtn")
 		removebtn.addEventListener("click",()=>{
 			blockUser(ele,"All Registration");
 		})
@@ -334,7 +344,11 @@ function showAllRegistration(data) {
 // fetch all clients
 async function fetchAllClients(){
 	if(!localStorage.getItem("token")){
-		alert("Login fisrt to access Clients details!");
+		Swal.fire(
+			'Login First!',
+			'',
+			'warning'
+		)
 	}
 	else{
 		if(allUserData.length > 1){
@@ -410,13 +424,14 @@ function showClients(data) {
 		td3.textContent = ele.role;
 		let td4 = document.createElement("td");
 		let removebtn = document.createElement("button")
-		removebtn.textContent = "Remove";
-		removebtn.style.backgroundColor = "red";
+		removebtn.textContent = "Block";
+		removebtn.style.backgroundColor = "#EF5350";
 		removebtn.style.color = "white";
 		removebtn.style.fontSize = "16px"
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
+		
 		removebtn.addEventListener("click",()=>{
 			blockUser(ele,"All Client");
 		})
@@ -435,7 +450,11 @@ function showClients(data) {
 // fetch all photographer
 async function fetchAllPhotographers(){
 	if(!localStorage.getItem("token")){
-		alert("Login fisrt to access Photographers details!");
+		Swal.fire(
+			'Login First!',
+			'',
+			'warning'
+		)
 	}
 	else{ 
 		if(allUserData.length > 1){
@@ -529,13 +548,14 @@ function showPhotographers(data) {
 		td6.textContent ="₹ "+ ele.price ;
 		let td7 = document.createElement("td");
 		let removebtn = document.createElement("button")
-		removebtn.textContent = "Remove";
-		removebtn.style.backgroundColor = "red";
+		removebtn.textContent = "Block";
+		removebtn.style.backgroundColor = "#EF5350";
 		removebtn.style.color = "white";
 		removebtn.style.fontSize = "16px"
 		removebtn.style.borderRadius = "40px";
 		removebtn.style.padding = "10px 25px"
 		removebtn.style.border = "none";
+		removebtn.setAttribute("class","redbtn")
 		removebtn.addEventListener("click",()=>{
 			blockUser(ele,"All Photographer");
 		})
@@ -555,7 +575,11 @@ function showPhotographers(data) {
 //fetch pending / new request
 async function fetchNewRequest(){
 	if(!localStorage.getItem("token")){
-		alert("Login fisrt to access Pending requests!");
+		Swal.fire(
+			'Login First!',
+			'',
+			'warning'
+		)
 	}
 	else{
 		await fetch(`${URL}/user/pending`,{
@@ -668,7 +692,11 @@ function showNewRequest(data) {
 //fetch all bookings
 async function fetchAllBooking(){
 	if(!localStorage.getItem("token")){
-		alert("Login fisrt to access Booking details!");
+		Swal.fire(
+			'Login First!',
+			'',
+			'warning'
+		)
 	}
 	else{ 
 		await fetch(`${URL}/book/`,{
@@ -786,7 +814,13 @@ async function approveRequest(user) {
     	}
 	})
 	.then(response => response.json())
-	.then(json => alert(json.message))
+	.then(json =>{
+		Swal.fire(
+			'Photographer Request Accepted!',
+			'',
+			'success'
+		)
+	})
 	.catch((err)=>console.log(err))
 	.finally(()=>{
 		fetchNewRequest();
@@ -807,7 +841,13 @@ async function rejectRequest(user) {
     	}
 	})
 	.then(response => response.json())
-	.then(json => alert(json.message))
+	.then(json =>{
+		Swal.fire(
+			'Photographer Request Rejected!',
+			'',
+			'error'
+		)
+	})
 	.catch((err)=>console.log(err))
 	.finally(()=>{
 		fetchNewRequest(); })
@@ -826,7 +866,14 @@ async function blockUser(user,msg){
     	}
 	})
 	.then(response => response.json())
-	.then(json => alert("User Blocked!"))
+	.then(json => {
+		// alert("User Blocked!");
+		Swal.fire(
+			'User Blocked!',
+			'',
+			'warning'
+		)
+	})
 	.catch((err)=>alert(err.message))
 	
 		if(msg === "All Registration"){
