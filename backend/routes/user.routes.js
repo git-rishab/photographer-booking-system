@@ -48,7 +48,7 @@ userRoute.patch('/submit_photographer_details', authMiddleWare, async (req, res)
   }
 })
 
-//Route for getting the images by userID
+//Route for getting the images with userID
 
 userRoute.get('/images', async (req, res) => {
   const photographers = await UserModel.find({ approved: true })
