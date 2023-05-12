@@ -241,3 +241,10 @@ a{
     border-radius: 4px;
     text-align: center;
 }
+.rejected div{
+    background-color: #df5e5e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
