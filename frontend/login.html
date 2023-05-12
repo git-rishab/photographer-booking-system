@@ -1,36 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookMyShoot | Login</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/login.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
+    <script src="./scripts/loader.js"></script>
+    <link rel="stylesheet" href="./styles/loader.css" />
+    <link rel="stylesheet" href="./styles/loader2.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+    <script src="./scripts/loader2.js"></script>
+  </head>
 
-<body id="particles-js">
+  <body id="particles-js">
+    <nav>
+      <div class="logo_name">
+        <a href="./index.html">
+          <img src="./images/logo.png" alt="" />
+        </a>
+      </div>
+      <div class="nav-contents">
+        <a href="">For Photographers</a>
+        <a href="">How it works</a>
+        <a id="login" href="login.html">Login</a>
+        <!-- <a href="#" id="signup-link">Login <ion-icon name="caret-down-outline"></ion-icon></a>
+            <div id="dropdown-menu" style="display: none;">
+                <a href="login.html">Login as client</a>
+                <a href="photographer_details.html">Apply for photographer</a>
+            </div> -->
+        <a id="signup" href="signup.html">Sign up</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </nav>
     <div class="animated bounceInDown">
-        <div class="container">
-            <span class="error animated tada" id="msg"></span>
-            <form name="form1" class="box">
-                <div><img src="./images/bookMyShoot.png" alt=""></div>
-                <h5>Sign in to your account.</h5>
-                <input type="email" name="email" placeholder="Email" id="email" autocomplete="off" required/>
-                <i class="typcn typcn-eye" id="eye"></i>
-                <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off" required/>
-                <a href="#" class="forgetpass">Forget Password?</a>
-                <input type="submit" value="Sign in" class="btn1" required/>
-            </form>
-            
-            <div class="logo" id="google">Sign in with <div><img src="./images/google.png" alt=""></div></div>
-            <div class="logo" id="github">Sign in with <div><img src="./images/github.png" alt=""></div></div>
-            <a href="./signup.html" class="dnthave">Don’t have an account? Sign up</a>
+      <div class="container">
+        <!-- Loader -->
+        <div class="loader" id="loader"></div>
+        <!-- Loader End -->
+        <span class="error animated tada" id="msg"></span>
+        <form name="form1" class="box">
+          <div><img src="./images/logo.png" alt="" /></div>
+          <h5>Sign in to your account.</h5>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            id="email"
+            autocomplete="off"
+            required
+          />
+          <i class="typcn typcn-eye" id="eye"></i>
+          <input
+            type="password"
+            name="password"
+            placeholder="Passsword"
+            id="pwd"
+            autocomplete="off"
+            required
+          />
+          <a href="#" class="forgetpass">Forget Password?</a>
+          <input
+            type="submit"
+            value="Sign in"
+            id="submit"
+            class="btn1"
+            required
+          />
+          <div class="loader2" id="loader2">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <div class="bar4"></div>
+            <div class="bar5"></div>
+            <div class="bar6"></div>
+            <div class="bar7"></div>
+            <div class="bar8"></div>
+            <div class="bar9"></div>
+            <div class="bar10"></div>
+            <div class="bar11"></div>
+            <div class="bar12"></div>
+          </div>
+        </form>
+
+        <div class="logo" id="google">
+          Sign in with
+          <div><img src="./images/google.png" alt="" /></div>
         </div>
-        
+        <div class="logo" id="github">
+          Sign in with
+          <div><img src="./images/github.png" alt="" /></div>
+        </div>
+        <a href="./signup.html" class="dnthave"
+          >Don’t have an account? Sign up</a
+        >
+      </div>
     </div>
-</body>
-<script src="./scripts/login.js"></script>
+  </body>
+  <script src="./scripts/login.js"></script>
 </html>

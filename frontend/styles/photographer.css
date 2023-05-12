@@ -3,6 +3,26 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+body::after {
+    content: "";
+    background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    /* Set the desired opacity value */
+    pointer-events: none;
+    z-index: -1;
+}
+
 a {
     text-decoration: none;
     color: rgb(0, 0, 0);
@@ -13,7 +33,7 @@ a {
 }
 
 .logo_name>a>img {
-    width: 40%;
+    width: 70%;
     margin-left: 5%;
 }
 
@@ -23,8 +43,9 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: white;
-    height: 60px;
+    height: 70px;
     position: fixed;
+    z-index: 2;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 
@@ -44,27 +65,45 @@ nav {
 }
 
 .swiper {
-    height: 500px;
-    margin-top: 1.5%;
+    height: 300px;
+    /* margin-top: 50px; */
+    position: relative;
+    /* top: 50px; */
+    margin-bottom: 20px;
+    background-color: #fff;
 }
-.swiper-slide>img{
+
+.swiper-slide>img {
     width: 90%;
 }
+
 .container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 70%;
+    position: relative;
+    justify-content: space-between;
+    width: 85%;
     margin: auto;
 }
 
 .about {
-    width: 70%;
+    width: 65%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+#aboutme, #works {
+    padding: 15px;
+    background-color: #dd454515;
+    border-radius: 5px;
 }
 
 .book {
-    margin-bottom: 5%;
     padding: 2rem;
+    border-radius: 8px;
+    height: fit-content;
+    background-color: #fff;
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
@@ -82,14 +121,24 @@ select {
 .book input[type="submit"] {
     color: white;
     background-color: #dd4545;
+    border: none;
     font-weight: bold;
     font-size: 17px;
+}
+
+.book input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #df8585;
 }
 
 label {
     color: #dd4545cf;
     font-weight: bold;
     font-size: 14px;
+}
+
+input:focus {
+    outline: none;
 }
 
 #results>h5 {
@@ -110,6 +159,7 @@ footer {
     align-items: center;
     justify-content: space-around;
     background-color: rgb(136, 136, 136);
+    margin-top: 100px;
 }
 
 footer ul {
@@ -163,19 +213,21 @@ ion-icon {
 
 @media screen and (min-width: 500px) and (max-width: 1000px) {
     .swiper {
-        height: 450px;
+        height: fit-content;
         margin-top: 1.5%;
-        margin-bottom: -30%;
+        /* margin-bottom: -30%; */
     }
 
     .container {
         width: fit-content;
         flex-direction: column;
     }
+
     .about {
         width: fit-content;
         margin: 3rem;
     }
+
     .hamburger {
         display: none;
         flex-direction: column;
@@ -220,9 +272,9 @@ ion-icon {
 
 @media screen and (min-width: 100px) and (max-width: 499px) {
     .swiper {
-        height: 450px;
+        height: fit-content;
         margin-top: 1.5%;
-        margin-bottom: -70%;
+        /* margin-bottom: -70%; */
     }
 
     .container {
@@ -275,6 +327,7 @@ ion-icon {
         font-size: small;
         color: #333;
     }
+
     .about {
         width: fit-content;
         margin: 3rem;

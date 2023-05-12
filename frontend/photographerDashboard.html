@@ -6,19 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookMyShoot | Dashboard</title>
     <link rel="stylesheet" href="./styles/photographerDashboard.css" />
+    <link rel="stylesheet" href="./styles/loader.css" />
+    <script src="./scripts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./scripts/loader2.js"></script>
+    <link rel="stylesheet" href="./styles/loader2.css" />
+    <style>
+      .loader2 {
+        left: 0;
+      }
+    </style>
   </head>
   <body>
     <nav>
-      <div>
-        <div id="logo"><img src="./images/logo.png" alt="logo" /></div>
-        <div id="name"></div>
+      <div class="logo_name">
+        <a href="index.html">
+          <img src="./images/logo.png" alt="" />
+        </a>
       </div>
-      <div>
+      <div class="nav-contents">
+        <!-- <a href="./photographers.html">Hire Photographers</a> -->
+        <!-- <a href="">How it works</a> -->
+        <a id="login" href="login.html">Login</a>
+        <!-- <a id="signup" href="signup.html">Sign up</a> -->
+      </div>
+      <div id="logout2">
         <div id="logout" onclick="logout()">Sign out</div>
-        <div id="settings">
-          <img src="./images/settings.png" alt="settings" />
-        </div>
+        <img src="./images/settings.png" alt="settings" />
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
       </div>
     </nav>
 
@@ -29,6 +48,10 @@
     </div>
 
     <div id="cont">
+      <!-- Loader -->
+      <div class="loader" id="loader">
+      </div>
+      <!-- Loader End -->
       <table>
         <thead>
           <tr>
@@ -44,6 +67,20 @@
 
         <tbody>
           <!-- Append data here -->
+          <div class="loader2" id="loader2">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <div class="bar4"></div>
+            <div class="bar5"></div>
+            <div class="bar6"></div>
+            <div class="bar7"></div>
+            <div class="bar8"></div>
+            <div class="bar9"></div>
+            <div class="bar10"></div>
+            <div class="bar11"></div>
+            <div class="bar12"></div>
+          </div>
         </tbody>
       </table>
     </div>

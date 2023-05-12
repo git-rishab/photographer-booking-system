@@ -4,14 +4,16 @@ const url = "https://bookmyshoot-backend.onrender.com"
 
 async function fetchData() {
     try {
-        const response = await fetch('http://localhost:3000/user/images');
+
+        const response = await fetch(`${url}/user/images`);
         const data = await response.json();
+
         Display(data.images, data.photographers);
     } catch (error) {
         console.error(error);
     }
 }
-
+showLoader2();
 fetchData();
 
 var photographerID;
@@ -83,10 +85,9 @@ let locationValue;
 price_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     locationValue = location_sort.value;
-    await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
+    await fetch(`${url}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
             const data = res;
             Display(data.images, data.photographers)
         })
@@ -97,10 +98,10 @@ location_sort?.addEventListener("change", async () => {
     sortvalue = price_sort.value
     sort.value
     locationValue = location_sort.value;
-    await fetch(`http://localhost:3000/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
+    await fetch(`${url}/user/SortByPrice?Sortby=${sortvalue}&location=${locationValue}`)
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
+
             const data = res;
             Display(data.images, data.photographers)
             if (!data.photographers.length) {
@@ -119,15 +120,42 @@ location_sort?.addEventListener("change", async () => {
 container?.addEventListener("click", (event) => {
     if (event.target.id === "view_profile") {
         const photographerId = event.target.closest(".photographer_div").id;
+
         console.log(photographerId);
         localStorage.setItem("photographerId", photographerId);
         fetchProfilePage(photographerId);
-        console.log(photographerId);
     }
 });
 
 
 function fetchProfilePage(photographerId) {
-    const profilePageUrl = "photographer.html"
-    window.open(profilePageUrl, "_blank");
+    const profilePageurl = `photographer.html?id=${photographerId}`
+    window.open(profilePageurl, "_blank");
+}
+
+// username visible after logging in
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+if(isUserName){
+    singupTag.style.display = "none"
+    loginTag.textContent = "Hi," + " " + isUserName
+    loginTag.style.color = "#dd4545"
+    loginTag.setAttribute("href","./userDashboard.html");
+}else{
+    singupTag.style.display = "block"
+    loginTag.textContent = "Login"
 }

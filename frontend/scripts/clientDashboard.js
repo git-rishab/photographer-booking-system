@@ -9,7 +9,7 @@ boxes.forEach(box => {
     })
 });
 
-const URL = `http://localhost:3000`;
+const URL = `https://bookmyshoot-backend.onrender.com`;
 const token = localStorage.getItem("token");
 const id = localStorage.getItem("id");
 const tbody = document.querySelector("tbody");
@@ -22,13 +22,15 @@ fetchData();
 allPhotographer();
 
 async function fetchData() {
+    showLoader2();
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
-    photographer = data
-    document.getElementById("name").innerText = `Welcome Back! ${data.user.name}`
+    photographer = data;
+    hideLoader2();
 }
 
 function createDom(data, status) {
+    hideLoader2();
     const noClient = document.getElementById("noClient");
     tbody.innerHTML = null;
     if (status == "all") {
@@ -97,6 +99,7 @@ function formatTime(time) {
 }
 
 async function allPhotographer() {
+    showLoader2();
     const req = await fetch(`${URL}/book/requests`, {
         method:"GET",
         headers: {
@@ -109,6 +112,7 @@ async function allPhotographer() {
 }
 
 async function notification() {
+    showLoader2();
     const req = await fetch(`${URL}/book/notifications`, {
         method:"GET",
         headers: {
@@ -131,6 +135,14 @@ function logout() {
         confirmButtonText: 'Yes'
     }).then((result) => {
         if (result.isConfirmed) {
+            fetch(`${URL}/user/logout`,{
+                method:"POST",
+                headers: {
+                    "Content-type": "application/json;charset=UTF-8",
+                    "authorization": token
+                }
+            })
+            
             Swal.fire(
                 'see you soon',
                 '',
@@ -141,3 +153,23 @@ function logout() {
         }
     })
 }
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+
+loginTag.textContent = "Hi," + " " + isUserName
+loginTag.style.color = "#dd4545"
+loginTag.setAttribute("href","./userDashboard.html");

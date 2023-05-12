@@ -9,11 +9,11 @@ function hideLoader() {
 
 // Hide the loader when the image has finished loading
 window.addEventListener("load", function () {
-    hideLoader();
+    // hideLoader();
 });
 
 // Example usage
-showLoader(); // Show the loader
+//showLoader(); // Show the loader
   // Load your content here
 
 // Assuming the URL is https://example.com/?name=John&age=25
@@ -31,15 +31,22 @@ const searchParams = url.searchParams;
 const token = searchParams.get('token');
 const id = searchParams.get('id');
 const role = searchParams.get('role');
-const approved = searchParams.get('approved')
+const approved = searchParams.get('approved');
+const userName = searchParams.get("username");
 
 localStorage.setItem("token",token);
 localStorage.setItem("id",id);
+localStorage.setItem("userName", userName);
+localStorage.setItem("role",role);
+localStorage.setItem("approved",approved);
+
 
 if(role == "photographer" && approved == "true"){
     window.location.href = "./photographerDashboard.html"
 } else if(role == "photographer"){
     window.location.href = "./photographer_details.html"
+} else if(role == "admin"){
+    window.location.href = "./admin/admin.html"
 } else {
     window.location.href = "./clientDashboard.html";
 }

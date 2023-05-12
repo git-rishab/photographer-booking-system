@@ -9,7 +9,7 @@ boxes.forEach(box => {
     })
 });
 
-const URL = `http://localhost:3000`;
+const URL = `https://bookmyshoot-backend.onrender.com`;
 const token = localStorage.getItem("token");
 const id = localStorage.getItem("id");
 const queueId = document.getElementById("queue");
@@ -24,18 +24,26 @@ let bookingId;
 queue();
 fetchData();
 
-document.getElementById("settings").addEventListener("click",()=>{
-    window.location.href = "./photographer_details.html"
-})
+// document.getElementById("settings").addEventListener("click",()=>{
+//     window.location.href = "./photographer_details.html"
+// })
 
 async function fetchData() {
+    showLoader2();
     const request = await fetch(`${URL}/user/${id}`);
     const data = await request.json();
     photographer = data
-    document.getElementById("name").innerText = `Welcome Back! ${data.user.name}`
+    localStorage.setItem("approved",data.user.approved)
+    // console.log(photographer);
+    hideLoader2();
 }
 
 function createDom(data, status) {
+    hideLoader2();
+    if(!photographer.user.approved){
+        thead.innerHTML = "<h2>Your Request is still Pending, please wait to be Approved.</h2>"
+        return;
+    }
     const noClient = document.getElementById("noClient");
     tbody.innerHTML = null;
     if(status == "pending"){
@@ -115,6 +123,7 @@ function createDom(data, status) {
 }
 
 async function queue() {
+    showLoader2();
     const request = await fetch(`${URL}/book/requests/pending`, {
         method: "GET",
         headers: {
@@ -133,6 +142,7 @@ function formatTime(time) {
 }
 
 async function accepted() {
+    showLoader2();
     const request = await fetch(`${URL}/book/requests/accepted`, {
         method: "GET",
         headers: {
@@ -145,6 +155,9 @@ async function accepted() {
 }
 
 function logout() {
+    fetch(`${URL}/user/logout`,{
+        method:"POST"
+    })
     Swal.fire({
         title: 'Are you sure?',
         text: "You want to Log Out?",
@@ -167,6 +180,7 @@ function logout() {
 }
 
 async function sendResponse(id, status) {
+
     let notification;
     if(status == "accepted"){
         notification = `${photographer.user.name} has accepted your request`
@@ -204,7 +218,7 @@ async function meet(bookingId, name) {
     })
     document.getElementsByClassName('swal2-confirm swal2-styled')[0].addEventListener("click", async() => {
         const msg = document.getElementById("message").value;
-        const link = `http://127.0.0.1:5500/frontend/meeting.html?id=${room}` // link to be changed after deployment
+        const link = `https://bookmyshoot.netlify.app/meeting.html?id=${room}` // link to be changed after deployment
         const request = await fetch(`${URL}/book/meeting/create`,{
             method:"POST",
             headers:{
@@ -226,6 +240,7 @@ async function meet(bookingId, name) {
 }
 
 async function meeting(){
+    showLoader2();
     const req = await fetch(`${URL}/book/${photographer.user._id}`,{
         method:"GET",
         headers:{
@@ -236,3 +251,24 @@ async function meeting(){
     const res = await req.json();
     createDom(res,"meeting")
 }
+
+var HamBurger = document.getElementById("hamburger");
+var navContents = document.querySelector(".nav-contents");
+
+HamBurger.addEventListener("click", function () {
+    navContents.classList.toggle("show-nav");
+    // console.log("clicked")
+});
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+
+loginTag.textContent = "Hi," + " " + isUserName
+loginTag.style.color = "#dd4545"
+loginTag.setAttribute("href","./userDashboard.html");
+

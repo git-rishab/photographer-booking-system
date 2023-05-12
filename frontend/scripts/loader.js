@@ -1,9 +1,17 @@
 function showLoader() {
-    document.getElementById("loader").style.display = "flex";
+    const loader = document.getElementById("loader");
+    if(!loader){
+        return;
+    }
+    loader.style.display = "flex";
 }
 
 // Hide the loader
 function hideLoader() {
+    const loader = document.getElementById("loader");
+    if(!loader){
+        return;
+    }
     document.getElementById("loader").style.display = "none";
 }
 

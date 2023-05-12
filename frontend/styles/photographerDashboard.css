@@ -11,8 +11,25 @@ body{
     background-color: #E5E7EB;
 }
 
+body::after {
+    content: "";
+    background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    /* Set the desired opacity value */
+    pointer-events: none;
+    z-index: -1;
+}
+
+
 /* Nav Bar */
-nav{
+/* nav{
     display: flex;
     position: sticky;
     top: 0;
@@ -39,7 +56,47 @@ nav > div:nth-child(1){
 nav img{
     height: 100%;
     width: 100%;
+} */
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 50px;
+    height: 60px;
+    position: sticky;
+    z-index: 2;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
+.logo_name>a>img {
+    width: 70%;
+    margin-left: 5%;
+}
+#logout2{
+    display: flex;
+}
+#logout2 img{
+    margin-left: 50px;
+    height: 50px;
+    width: 50px;
+}
+/* nav.scrolled {
+    background-color: #dd4545;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+} */
+
+.nav-contents {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-contents>a:hover {
+    color: #dd4545;
+}
+
 #settings {
     height: 90%;
 }
@@ -48,7 +105,7 @@ nav img{
     align-items: center;
     justify-content: center;
     width: 80px;
-    padding: 0px 10px;
+    padding: 10px 10px;
     border: none;
     border-radius: 7px;
     color: #fff;
@@ -197,6 +254,13 @@ a{
 .pending div{
     background-color: #5184eb;
     color: white;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+.rejected div{
+    background-color: #df5e5e;
+    color: #fff;
     padding: 10px;
     border-radius: 4px;
     text-align: center;

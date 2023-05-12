@@ -6,6 +6,63 @@ body, html {
   margin: 0;
 }
 
+body::after {
+  content: "";
+  background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.9;
+  /* Set the desired opacity value */
+  pointer-events: none;
+  z-index: -1;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.logo_name>a>img {
+  width: 40%;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: absolute;
+  z-index: 1;
+  position: fixed;
+  transition: padding-bottom padding-top background-color 0.5s ease;
+}
+
+nav.scrolled {
+  background-color: #ffffff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+nav.scrolled a {
+  color: black;
+}
+
+.nav-contents {
+  margin-left: 20%;
+  display: flex;
+  gap: 3rem;
+}
+
+.loader2{
+  left: 0;
+}
 #particles-js {
   position: absolute;
   width: 100%;
@@ -15,7 +72,7 @@ body, html {
 
 .container{
   margin: 0;
-  top: 50px;
+  top: 150px;
   left: 50%;
   position: absolute;
   text-align: center;

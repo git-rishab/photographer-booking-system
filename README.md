@@ -1,9 +1,10 @@
-![logo](https://user-images.githubusercontent.com/114225283/236804389-3c2715ca-4c96-4d0e-a55e-f63be74b29b4.png) 
+![logo](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/323c88eb-5ee1-4aa4-a72b-1b18f3bf96df)
+
 # Book My Shoot :camera_flash:
 A photographer booking system allows logged-in users to book a shoot with their desired photographer. <br>
 Enthusiastic and professional photographers can apply to become photographers on our website.
 
-#### Our Project is delpoyed on 
+#### Our Project is delpoyed here [Book My Shoot](https://bookmyshoot.netlify.app/)
 
 ### Team 
 - :man_technologist: [Rishab](https://www.linkedin.com/in/rishab-kumar-chaurasiya-a144b4234/)
@@ -34,9 +35,13 @@ Enthusiastic and professional photographers can apply to become photographers on
 `Approve` - Once a user has applied for the photographer role, the admin will review the details provided by the user. Based on the assessment, the admin can approve or reject the application. This process ensures that only qualified and suitable individuals are granted the photographer role on the platform. <br> <br>
 
 ## User Experience Flow
-You will land on the home page. From the navigation bar, click on "Signup" to be redirected to the signup portal and register as a user. You will need to provide your email and password for logging in. After logging in, you can explore the home page and discover photographers who are available based on your requirements. Select a photographer and access their details. If you are satisfied with the photographer's previous works and comfortable with the price, you can book them for a specific day or multiple days.
+You will land on the home page. From the navigation bar, click on "Signup" to be redirected to the signup portal and register as a user. You will need to provide your email and password for logging in. After logging in, you can explore the home page and discover photographers who are available based on your requirements. Select a photographer and access their details. If you are satisfied with the photographer's previous works and comfortable with the price, you can book them for a specific day or multiple days. After booking a photographer, you can initiate a video chat with them through your client dashboard once they accept your booking.
 
 If you are a professional or aspiring photographer, you have the opportunity to apply for the photographer role on our website. By applying for this role, you gain access to a range of benefits, including the ability to receive appointment requests from various users on our platform. This means that users interested in photography services can directly reach out to you to book appointments and hire you for their photography needs. It's a great opportunity to showcase your skills, expand your client base, and connect with individuals seeking photography services through our platform.
+
+### Deloployed Links
+Backend on [Render](https://bookmyshoot-backend.onrender.com) <br>
+Frontend on [Netlify](https://bookmyshoot.netlify.app/)
 
 ### Tech Stack
 
@@ -57,3 +62,13 @@ If you are a professional or aspiring photographer, you have the opportunity to 
 -  Mongo DB  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/mongodb-icon.svg" alt="HTML Icon" width="32" height="22">
 -  Redis
 
+### Take a glimpse of our website
+
+#### Home Page
+![index4](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/68655bf2-a8b7-43c8-9d7e-0cc9997de808)
+
+#### Photographers Dashboard
+![page4-1](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/1e616ccd-843f-4a80-8ab0-a7f84718a3f4)
+
+#### Photographer Page
+![page4](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/28441808-4337-4c7a-aa3a-772e8a4eb0f1)

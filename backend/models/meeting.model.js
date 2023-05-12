@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const meetingSchema = mongoose.Schema({
     photographer:{
         type:String,

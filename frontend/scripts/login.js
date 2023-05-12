@@ -1,5 +1,6 @@
-const URL = "http://localhost:3000"
+const URL = "https://bookmyshoot-backend.onrender.com"
 const form = document.querySelector("form");
+const submit = document.getElementById("submit");
 
 form.addEventListener("submit", async(e)=>{
     e.preventDefault();
@@ -7,6 +8,8 @@ form.addEventListener("submit", async(e)=>{
         email:form.email.value,
         pass:form.pwd.value
     }
+    submit.style.display = "none";
+    showLoader2();
     
     const request = await fetch(`${URL}/user/login`, {
         method:"POST",
@@ -17,6 +20,9 @@ form.addEventListener("submit", async(e)=>{
     });
     const response = await request.json();
     if(response.ok){
+        localStorage.setItem("userName", response.userName);
+        localStorage.setItem("role",response.role);
+        localStorage.setItem("approved",response.approved);
         Swal.fire(
             response.msg,
             '',
@@ -24,24 +30,22 @@ form.addEventListener("submit", async(e)=>{
         )
 
         setTimeout(()=>{
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("id",response.id)
             if(response.role == "photographer" && response.approved){
+
                 window.location.href = "./photographerDashboard.html"
-                localStorage.setItem("token", response.token);
-                localStorage.setItem("id",response.id)
             } else if(response.role == "photographer"){
+
                 window.location.href = "./photographer_details.html"
-                localStorage.setItem("token", response.token);
-                localStorage.setItem("id",response.id)
             } else if(response.role == "admin"){
+
                 window.location.href = "./admin/admin.html"
-                localStorage.setItem("token", response.token);
-                localStorage.setItem("id",response.id)
             }else {
+
                 window.location.href = "./clientDashboard.html";
-                localStorage.setItem("token", response.token);
-                localStorage.setItem("id",response.id)
             }
-        },2500)
+        },2000)
 
     } else {
         Swal.fire({
@@ -51,6 +55,8 @@ form.addEventListener("submit", async(e)=>{
             footer: `<b><u><a href="./signup.html">Register Here!</a></u></b>`
         });
     }
+    submit.style.display = "block";
+    hideLoader2();
     form.email.value = "";
     form.pwd.value = "";
 })

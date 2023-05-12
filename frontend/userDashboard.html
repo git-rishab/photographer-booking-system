@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./styles/loader.css">
+  <script src="./scripts/loader.js"></script>
+</head>
+
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+  </div>
+  <!-- Loader End -->
+</body>
+<script>
+  const role = localStorage.getItem("role");
+  const approved = JSON.parse(localStorage.getItem("approved"));
+  if (role == "photographer" && approved) {
+    window.location.href = "./photographerDashboard.html"
+  } else if (role == "photographer") {
+    window.location.href = "./photographer_details.html"
+  } else if(role == "admin"){
+    window.location.href = "./admin/admin.html"
+  } else {
+    window.location.href = "./clientDashboard.html";
+  }
+</script>
+
+</html>

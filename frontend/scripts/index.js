@@ -33,6 +33,33 @@ let place = document.getElementById("location")
 const form = document.querySelector("form")
 
 form.addEventListener("submit", (event) => {
-    event.preventDefault()
-    console.log(occassion.value, date.value, duration.value, place.value);
+    event.preventDefault();
+  console.log(occassion.value, date.value, duration.value, place.value);
+    const obj = {
+        ocassion:occassion.value,
+        date:date.value,
+        duration:duration.value,
+        place: place.value
+    }
+    localStorage.setItem("search", JSON.stringify(obj));
+    window.location.href = "./photographers.html";
+    
 })
+
+// username visible after logging in
+
+let loginTag = document.getElementById("login")
+let singupTag = document.getElementById("signup")
+
+let isUserName = localStorage.getItem("userName")
+
+if(isUserName){
+    singupTag.style.display = "none"
+    loginTag.textContent = "Hi," + " " + isUserName
+    loginTag.style.color = "#dd4545"
+    loginTag.setAttribute("href","./userDashboard.html");
+}else{
+    singupTag.style.display = "block"
+    loginTag.textContent = "Login"
+}
+

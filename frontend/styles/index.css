@@ -1,7 +1,24 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    /* background: #ddeefc; */
 }
+body::after {
+    content: "";
+    background-image: url("https://wallpapercave.com/wp/wp1933240.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    /* Set the desired opacity value */
+    pointer-events: none;
+    z-index: -1;
+}
+
 
 a {
     text-decoration: none;
@@ -151,8 +168,15 @@ input[type="submit"]:hover {
     width: 30%;
     height: auto;
     font-size: 18px;
+    background-color: #FCEFEF;
+    padding: 20px;
+    border-radius: 10px;
 }
-
+.steps_to_book > div{
+    background-color: #fff;
+    padding: 10px 25px;
+    border-radius: 10px;
+}
 .steps_to_book div p:nth-child(2) {
     color: gray;
 }
@@ -175,9 +199,8 @@ input[type="submit"]:hover {
     width: 30%;
     height: 300px;
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border-radius: 10px;
-    background: #dd45458e;
+    background: #FCEFEF;
 }
 
 .index_reviews div p {
@@ -303,6 +326,22 @@ ion-icon {
 
     .hamburger {
         display: flex;
+    }
+    .show-nav {
+        display: flex;
+        position: absolute;
+        top: 83%;
+        width: auto;
+        left: 47%;
+        flex-direction: column;
+        background-color: #f9f9f9;
+        padding: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .show-nav a {
+        font-size: small;
+        color: #333;
     }
     .bg_image {
         margin-bottom: 5%;

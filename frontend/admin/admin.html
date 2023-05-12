@@ -4,19 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- Boxicons -->
+	
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="admin.css">
 	<link rel="stylesheet" href="../styles/loader.css">
 	<script src="../scripts/loader.js"></script>
-	<title>BMS | Admin</title>
+	<title>BookMyShoot | Admin Panel</title>
 </head>
 <body>
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<!-- ******************************************************************************************* -->
-		<img style="width: 200px; margin-left: 40px; margin-top: 10px;" src="../images/logo.png" alt="">
+		<a href="../index.html"><img style="width: 200px; margin-left: 40px; margin-top: 10px;" src="../images/logo.png" alt=""></a>
 		<!-- ********************************************************************************************** -->
 		<a href="#" class="brand">
 			<i class='bx bxs-smile'></i>
@@ -104,8 +106,8 @@
 					<h1>Dashboard</h1>
 				</div>
 				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
+					<i class='bx bxs-file-doc' ></i>
+					<span id="btn-read-doc" class="text">Read  Documentation</span>
 				</a>
 			</div>
 
@@ -139,19 +141,20 @@
 					</span>
 				</li>
 				<li>
+					<i class='bx bxs-user-x' ></i>
+					<span class="text">
+						<h3 id="total-blocked">00</h3>
+						<p>Total Blocked Users</p>
+					</span>
+				</li>
+				<li>
 					<i class='bx bxs-spreadsheet' ></i>
 					<span class="text">
 						<h3 id="total-booking">00</h3>
 						<p>Total Bookings</p>
 					</span>
 				</li>
-				<!-- <li>
-					<i class='bx bxs-dollar-circle' ></i>
-					<span class="text">
-						<h3 id="total-transaction">00</h3>
-						<p>Total Transactions</p>
-					</span>
-				</li> -->
+				
 			</ul>
 
 

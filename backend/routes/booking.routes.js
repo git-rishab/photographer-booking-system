@@ -16,49 +16,36 @@ BookingRouter.get("/", async (req, res) => {
     res.send({ error: error.message, ok: false });
   }
 });
-BookingRouter.post('/book', authMiddleWare, async (req, res) => {
+BookingRouter.post('/book', authMiddleWare,async (req, res) => {
   const { photographerId, startTime, endTime } = req.body;
-  // Check if photographerId and userId are different
-  if (photographerId === req.user.id) {
-    return res.status(400).json({ message: 'You cannot book yourself.' });
-  }
-
-  // Check if booking is at least 4 hours
-  const diffTime = Math.abs(new Date(endTime) - new Date(startTime));
-  const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
-  if (diffHours < 4) {
-    return res
-      .status(400)
-      .json({ message: 'Booking should be at least 4 hours.' });
-  }
 
   try {
-    // Check if there is already a booking for the photographer during the requested time
-    const existingBooking = await BookingModel.findOne({
-      photographer: photographerId,
-      start_time: { $lt: endTime },
-      end_time: { $gt: startTime },
-    });
-    if (existingBooking) {
-      return res
-        .status(400)
-        .json({ message: 'This photographer is not available during this time.' });
-      return res.status(400).json({ msg: 'Photographer is already booked for this time slot', ok: false });
+    // Check if photographer and client exist in the database
+    const photographer = await UserModel.findById(photographerId);
+    if (!photographer){
+      return res.status(400).json({ message: 'Invalid photographer or client ID', ok:false });
     }
-
-    // Create new booking
+    // Create the booking
     const booking = new BookingModel({
       photographer: photographerId,
       client: req.user.id,
-      start_time: startTime,
-      end_time: endTime,
+      start_time: new Date(startTime),
+      end_time: new Date(endTime),
     });
+    // Save the booking to the database
     await booking.save();
-    return res.json({ message: 'Booking created successfully.' });
-  } catch (error) {
-    res.status(500).json({ message:error.message});
+    return res.status(201).json({ message: 'Booking request sent successfully', ok:true });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: err.message, ok:false });
   }
 });
+// {
+//   "photographerId":"6455cdf70851601e639bba63",
+//   "startTime":"2025-06-01T10:00:00.000Z",
+//   "endTime":"2025-06-01T19:00:00.000Z"
+// }
+
 // Retrieve all booking requests for a specific photographer
 BookingRouter.get('/requests/:status', authMiddleWare, async (req, res) => {
   try {

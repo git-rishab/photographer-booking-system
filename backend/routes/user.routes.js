@@ -122,7 +122,7 @@ userRoute.get("/images/:id", async (req, res) => {
   const Images = images.filter(function (image) {
     return image._id === req.params.id;
   });
-  
+
   res.send({ Images, photographers });
 
 })
@@ -262,16 +262,17 @@ userRoute.get("/:id", async (req, res) => {
     res.status(500).send({ msg: error.message, ok: false });
   }
 })
-userRoute.post('/block/:userId', authMiddleWare,checkRole("admin"), async (req, res) => {
+
+userRoute.post('/block/:userId', authMiddleWare, checkRole("admin"), async (req, res) => {
   try {
     // Find the user by ID and update their `blocked` field to `true`
-    const user = await UserModel.findByIdAndUpdate(req.params.userId, { blocked: true });
+    const user = await UserModel.findByIdAndUpdate(req.params.userId, { isBlocked: true });
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
     }
-    return res.json({ok:true, message: 'User blocked Successfully.' });
+    return res.json({ ok: true, message: 'User blocked Successfully.' });
   } catch (error) {
-    return res.status(500).json({ message: error.message});
+    return res.status(500).json({ message: error.message });
   }
 });
 module.exports = {
