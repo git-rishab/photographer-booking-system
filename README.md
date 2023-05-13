@@ -61,6 +61,7 @@ Frontend on [Netlify](https://bookmyshoot.netlify.app/)
 -  Passport
 -  PeerJS
 -  Socket.io
+-  Multer
 
 #### DataBase
 -  Mongo DB  <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/mongodb-icon.svg" alt="HTML Icon" width="32" height="22">
