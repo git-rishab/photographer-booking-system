@@ -1,4 +1,4 @@
-![logo](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/323c88eb-5ee1-4aa4-a72b-1b18f3bf96df)
+![logo](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/a1f3dc00-1841-47f6-a651-3938d209dc6c)
 
 # Book My Shoot :camera_flash:
 A photographer booking system allows logged-in users to book a shoot with their desired photographer. <br>
@@ -70,12 +70,14 @@ Frontend on [Netlify](https://bookmyshoot.netlify.app/)
 ### Take a glimpse of our website
 
 #### Home Page
-![index](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/aa359a39-5532-4fc4-b9f6-61b4e808330c)
+![index](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/4975d61a-6fc2-4c14-ae97-acd8be0d586b)
 
 
 #### Photographers Dashboard
-![photogrpahers](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/a97a0af3-f12c-4c7d-b95b-183f66473403)
+![photogrpahers](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/de0d6ff6-2e94-4f02-9c9d-e15098caa654)
+
 
 #### Photographer Page
-![individual](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/8467e373-81dc-4f3f-85de-cc3603c9b297)
+
+![individual](https://github.com/git-rishab/accessible-juice-7886/assets/114225283/05bd5907-0e3c-46f0-9070-d5611afca54a)
 
